@@ -11,7 +11,6 @@
 </head>
 <body>
 
-<!-- پس‌زمینه ذرات -->
 <canvas id="particles"></canvas>
 
 <!-- نوار بالایی -->
@@ -45,14 +44,14 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">درباره</a></li>
       <li><a href="#features">ویژگی‌ها</a></li>
-      <li><a href="#why">چرا ما؟</a></li>
-      <li><a href="#screenshots">تصاویر</a></li>
+      <li><a href="#install">نصب</a></li>
+      <li><a href="#faq">سوالات</a></li>
       <li><a href="#download" class="nav-cta">دانلود</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- هدر اصلی -->
+<!-- هدر -->
 <header id="hero" class="hero">
   <div class="hero-glow"></div>
   <div class="hero-content">
@@ -99,12 +98,11 @@
         </svg>
         دانلود رایگان
       </a>
-      <a href="#features" class="btn btn-secondary">
+      <a href="#install" class="btn btn-secondary">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
         </svg>
-        مشاهده ویژگی‌ها
+        راهنمای نصب
       </a>
     </div>
 
@@ -170,7 +168,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 19l7-7 3 3-7 7-3-3z"/>
             <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
-            <path d="M2 2l7.586 7.586"/>
             <circle cx="11" cy="11" r="2"/>
           </svg>
         </div>
@@ -228,8 +225,6 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
             <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
           </svg>
         </div>
         <h3>خروجی exe</h3>
@@ -240,65 +235,246 @@
   </div>
 </section>
 
-<!-- چرا ما -->
-<section id="why" class="section">
+<!-- ============================================= -->
+<!-- بخش نصب کامل و واقعی -->
+<!-- ============================================= -->
+<section id="install" class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">چرا LoomEngine؟</span>
-      <h2>مقایسه با بقیه</h2>
+      <span class="section-tag">راهنمای نصب</span>
+      <h2>نصب در چند دقیقه</h2>
+      <p class="section-desc">راهنمای کامل نصب و راه‌اندازی LoomEngine روی ویندوز</p>
     </div>
-    <div class="why-grid">
 
-      <div class="why-card">
-        <div class="why-number">۰۱</div>
-        <h3>رایگان و متن‌باز</h3>
-        <p>کد کامل روی گیت‌هاب. می‌تونی بخونی، تغییر بدی، و حتی مشارکت کنی.</p>
+    <!-- سیستم مورد نیاز -->
+    <div class="install-block">
+      <h3 class="install-title">
+        <span class="title-icon">💻</span>
+        سیستم مورد نیاز
+      </h3>
+      <div class="requirements-grid">
+        <div class="requirement">
+          <div class="req-label">سیستم عامل</div>
+          <div class="req-value">ویندوز ۱۰ یا ۱۱ (۶۴ بیتی)</div>
+        </div>
+        <div class="requirement">
+          <div class="req-label">پردازنده</div>
+          <div class="req-value">Intel/AMD دوهسته‌ای یا بالاتر</div>
+        </div>
+        <div class="requirement">
+          <div class="req-label">رم</div>
+          <div class="req-value">حداقل ۴ گیگابایت</div>
+        </div>
+        <div class="requirement">
+          <div class="req-label">فضای دیسک</div>
+          <div class="req-value">حداقل ۲۰۰ مگابایت</div>
+        </div>
+        <div class="requirement">
+          <div class="req-label">کارت گرافیک</div>
+          <div class="req-value">هر کارت گرافیک استاندارد</div>
+        </div>
+        <div class="requirement">
+          <div class="req-label">نصب اضافی</div>
+          <div class="req-value">نیاز به نصب پایتون یا Qt <strong>ندارد</strong></div>
+        </div>
       </div>
-
-      <div class="why-card">
-        <div class="why-number">۰۲</div>
-        <h3>بدون نصب</h3>
-        <p>فقط یه فایل exe. بدون نیاز به نصب پایتون یا Qt. دابل‌کلیک کن و شروع کن.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-number">۰۳</div>
-        <h3>یادگیری سریع</h3>
-        <p>رابط ساده و مستندات فارسی. توی چند دقیقه اولین بازی‌ت رو بساز.</p>
-      </div>
-
-      <div class="why-card">
-        <div class="why-number">۰۴</div>
-        <h3>پایتون واقعی</h3>
-        <p>نه یه زبان اختصاصی. همون پایتونی که بلدی، توی بازی هم به کارت میاد.</p>
-      </div>
-
     </div>
+
+    <!-- مراحل نصب -->
+    <div class="install-block">
+      <h3 class="install-title">
+        <span class="title-icon">📥</span>
+        مراحل نصب
+      </h3>
+
+      <div class="install-steps-list">
+
+        <div class="install-step">
+          <div class="step-circle">۱</div>
+          <div class="step-content">
+            <h4>دانلود فایل</h4>
+            <p>روی دکمه دانلود در پایین همین صفحه کلیک کن و فایل <code>LoomEngine.exe</code> رو ذخیره کن.</p>
+            <div class="step-note">⚠️ اگه مرورگر هشدار داد، روی <strong>"Keep"</strong> یا <strong>"Keep anyway"</strong> کلیک کن.</div>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-circle">۲</div>
+          <div class="step-content">
+            <h4>تأیید صحت فایل (اختیاری ولی پیشنهادی)</h4>
+            <p>برای اطمینان از سالم بودن فایل، PowerShell رو باز کن و این دستور رو بزن:</p>
+            <div class="code-block">
+              <code>Get-FileHash LoomEngine.exe -Algorithm SHA256</code>
+            </div>
+            <p>خروجی باید با این مقدار یکی باشه:</p>
+            <div class="hash-block">
+              <code>b8374b36b6da0dab2ac86928da2b099026cfb596ea8456eff0cebd63272cf17e</code>
+            </div>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-circle">۳</div>
+          <div class="step-content">
+            <h4>ساخت پوشه</h4>
+            <p>یه پوشه جدید توی درایو C بساز، مثلاً:</p>
+            <div class="code-block">
+              <code>C:\LoomEngine</code>
+            </div>
+            <p>فایل <code>LoomEngine.exe</code> رو از Downloads به این پوشه منتقل کن.</p>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-circle">۴</div>
+          <div class="step-content">
+            <h4>اجرا</h4>
+            <p>روی <code>LoomEngine.exe</code> دابل‌کلیک کن.</p>
+            <p>اگه ویندوز پیام <strong>"Windows protected your PC"</strong> داد:</p>
+            <ul class="step-list">
+              <li>روی <strong>More info</strong> کلیک کن</li>
+              <li>بعد روی <strong>Run anyway</strong> کلیک کن</li>
+            </ul>
+            <div class="step-note">💡 این پیام چون فایل <strong>امضای دیجیتال</strong> نداره ظاهر می‌شه — طبیعیه.</div>
+          </div>
+        </div>
+
+        <div class="install-step">
+          <div class="step-circle">۵</div>
+          <div class="step-content">
+            <h4>شروع به ساخت بازی</h4>
+            <p>بعد از باز شدن، روی <strong>NEW PROJECT</strong> کلیک کن، نوع ۲D رو انتخاب کن، و شروع کن!</p>
+            <p>برای راهنمای استفاده، بخش <a href="#faq">سوالات متداول</a> رو ببین.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ویدیو آموزشی (اختیاری) -->
+    <div class="install-block">
+      <h3 class="install-title">
+        <span class="title-icon">🎬</span>
+        ویدیو آموزشی
+      </h3>
+      <div class="video-placeholder">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+        </svg>
+        <p>به‌زودی ویدیو آموزشی اضافه می‌شه</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- تصاویر -->
-<section id="screenshots" class="section section-alt">
+<!-- سوالات متداول -->
+<section id="faq" class="section section-alt">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">تصاویر</span>
-      <h2>نگاهی به موتور</h2>
+      <span class="section-tag">سوالات متداول</span>
+      <h2>پاسخ سوالات رایج</h2>
     </div>
-    <div class="screenshots-grid">
-      <div class="screenshot">
-        <div class="screenshot-frame">
-          <img src="screenshots/editor.png" alt="ادیتور LoomEngine" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
-          <div class="placeholder-text">ادیتور گرافیکی</div>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>آیا LoomEngine رایگانه؟</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>بله، کاملاً رایگانه. هم استفاده شخصی، هم تجاری. کد کامل هم روی گیت‌هاب منتشر شده.</p>
         </div>
-        <p>ادیتور با درخت نود، Inspector و Viewport</p>
       </div>
-      <div class="screenshot">
-        <div class="screenshot-frame">
-          <img src="screenshots/game.png" alt="بازی در حال اجرا" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
-          <div class="placeholder-text">بازی در حال اجرا</div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>آیا به نصب پایتون نیاز دارم؟</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>نه! فایل exe همه چیز رو داخل خودش داره — پایتون، Qt، و کتابخانه‌های لازم. فقط دانلود کن و اجرا کن.</p>
         </div>
-        <p>پلتفرمر ساخته شده با LoomEngine</p>
       </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>چرا ویندوز هشدار "Windows protected your PC" می‌ده؟</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>چون فایل امضای دیجیتال (Code Signing) نداره. این امضا هزینه سالانه داره و فعلاً تهیه نشده. با کلیک روی <strong>More info</strong> و بعد <strong>Run anyway</strong> می‌تونی اجراش کنی.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>چطور مطمئن بشم فایل سالمه و ویروس نداره؟</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>با SHA-256 hash چک کن. توی PowerShell دستور <code>Get-FileHash LoomEngine.exe -Algorithm SHA256</code> رو بزن و خروجی رو با hash موجود در همین صفحه مقایسه کن.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>می‌تونم بازی‌ام رو بفروشم؟</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>بله، بازی‌هایی که با LoomEngine می‌سازی کاملاً مال خودته. می‌تونی رایگان منتشر کنی یا بفروشی.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>روی مک یا لینوکس کار می‌کنه؟</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>نسخه فعلی فقط برای ویندوزه. ولی چون کدش پایتونه، به‌زودی نسخه مک و لینوکس هم منتشر می‌شه.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>چطور بازی‌ام رو به exe تبدیل کنم؟</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>بعد از ساخت بازی توی ادیتور، فایل پروژه رو ذخیره کن. بعد توی پوشه پروژه، فایل <code>main.py</code> رو با PyInstaller بیلد کن. راهنمای کامل توی مستندات هست.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>پروژه‌ام توی چه فایل‌هایی ذخیره می‌شه؟</span>
+          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>هر پروژه یه پوشه با سه زیرپوشه‌ست: <code>scenes/</code> برای صحنه‌ها، <code>scripts/</code> برای اسکریپت‌های پایتون، و <code>assets/</code> برای تصاویر و صداها.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -321,28 +497,36 @@
       </div>
       <h3>LoomEngine 1.6</h3>
       <p class="download-platform">ویندوز ۱۰ و ۱۱ (۶۴ بیتی)</p>
+
       <a href="https://github.com/USERNAME/LoomEngine/releases/download/v1.6/LoomEngine.exe"
          class="btn btn-primary btn-large" download>
         دانلود رایگان — ۴۵ مگابایت
       </a>
-      <p class="download-meta">آخرین بروزرسانی: مهر ۱۴۰۵</p>
-    </div>
 
-    <div class="install-steps">
-      <h3>نصب در ۳ مرحله</h3>
-      <div class="steps-grid">
-        <div class="step">
-          <div class="step-num">۱</div>
-          <p>فایل <code>LoomEngine.exe</code> رو دانلود کن</p>
+      <div class="download-info">
+        <div class="info-item">
+          <span class="info-label">نسخه:</span>
+          <span class="info-value">1.6</span>
         </div>
-        <div class="step">
-          <div class="step-num">۲</div>
-          <p>توی یه پوشه مثل <code>C:\LoomEngine</code> بذار</p>
+        <div class="info-item">
+          <span class="info-label">حجم:</span>
+          <span class="info-value">۴۵ مگابایت</span>
         </div>
-        <div class="step">
-          <div class="step-num">۳</div>
-          <p>دابل‌کلیک کن و شروع کن!</p>
+        <div class="info-item">
+          <span class="info-label">تاریخ انتشار:</span>
+          <span class="info-value">مهر ۱۴۰۵</span>
         </div>
+      </div>
+
+      <div class="hash-verify">
+        <div class="hash-header">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>SHA-256 (برای تأیید صحت فایل)</span>
+        </div>
+        <div class="hash-value" id="hashValue">b8374b36b6da0dab2ac86928da2b099026cfb596ea8456eff0cebd63272cf17e</div>
+        <button class="copy-btn" onclick="copyHash()">📋 کپی</button>
       </div>
     </div>
   </div>
@@ -365,6 +549,8 @@
       <div class="footer-links">
         <a href="#about">درباره</a>
         <a href="#features">ویژگی‌ها</a>
+        <a href="#install">نصب</a>
+        <a href="#faq">سوالات</a>
         <a href="#download">دانلود</a>
         <a href="https://github.com/USERNAME/LoomEngine">GitHub</a>
       </div>
@@ -375,7 +561,6 @@
   </div>
 </footer>
 
-<!-- دکمه بالا -->
 <button class="back-to-top" id="backToTop" aria-label="برگشت به بالا">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
     <polyline points="18 15 12 9 6 15"/>
