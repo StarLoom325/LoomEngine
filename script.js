@@ -174,6 +174,77 @@ function drawParticles() {
     }
   });
 
+// ============================================
+// ۷. آکاردئون سوالات متداول
+// ============================================
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    const wasOpen = item.classList.contains('open');
+
+    // بستن همه
+    document.querySelectorAll('.faq-item').forEach(i => {
+      i.classList.remove('open');
+    });
+
+    // باز کردن اگه قبلاً بسته بود
+    if (!wasOpen) {
+      item.classList.add('open');
+    }
+  });
+});
+
+// ============================================
+// ۸. کپی hash
+// ============================================
+function copyHash() {
+  const hashEl = document.getElementById('hashValue');
+  const btn = event.target;
+  const hash = hashEl.textContent.trim();
+
+  navigator.clipboard.writeText(hash).then(() => {
+    const original = btn.textContent;
+    btn.textContent = '✅ کپی شد!';
+    btn.classList.add('copied');
+
+    setTimeout(() => {
+      btn.textContent = original;
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // فالبک برای مرورگرهای قدیمی
+    const range = document.createRange();
+    range.selectNode(hashEl);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    btn.textContent = '✅ کپی شد!';
+    setTimeout(() => {
+      btn.textContent = '📋 کپی';
+    }, 2000);
+  });
+}
+
+// ============================================
+// ۹. انیمیشن برای بخش‌های نصب و FAQ
+// ============================================
+const newObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+      newObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.install-step, .requirement, .faq-item, .install-title, .video-placeholder').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = `all 0.6s ease-out ${i * 0.05}s`;
+  newObserver.observe(el);
+});
+  
   requestAnimationFrame(drawParticles);
 }
 
