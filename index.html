@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="LoomEngine - موتور بازی‌سازی دوبعدی سبک با پایتون و PySide6">
+<meta name="theme-color" content="#0f172a">
+<title>LoomEngine - موتور بازی‌سازی دوبعدی</title>
+<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- پس‌زمینه ذرات -->
+<canvas id="particles"></canvas>
+
+<!-- نوار بالایی -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#hero" class="logo">
+      <svg viewBox="0 0 256 256" width="38" height="38">
+        <defs>
+          <linearGradient id="gearNav" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fbbf24"/>
+            <stop offset="100%" stop-color="#f97316"/>
+          </linearGradient>
+          <linearGradient id="playNav" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#38bdf8"/>
+            <stop offset="100%" stop-color="#818cf8"/>
+          </linearGradient>
+        </defs>
+        <g transform="translate(128,128)">
+          <path d="M0,-80 L18,-80 L22,-60 L40,-54 L54,-68 L68,-54 L54,-40 L60,-22 L80,-18 L80,18 L60,22 L54,40 L68,54 L54,68 L40,54 L22,60 L18,80 L-18,80 L-22,60 L-40,54 L-54,68 L-68,54 L-54,40 L-60,22 L-80,18 L-80,-18 L-60,-22 L-54,-40 L-68,-54 L-54,-68 L-40,-54 L-22,-60 L-18,-80 Z" fill="url(#gearNav)"/>
+          <circle r="44" fill="#0f172a"/>
+          <path d="M-16,-20 L26,0 L-16,20 Z" fill="url(#playNav)"/>
+        </g>
+      </svg>
+      <span>LoomEngine</span>
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="منو">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">درباره</a></li>
+      <li><a href="#features">ویژگی‌ها</a></li>
+      <li><a href="#why">چرا ما؟</a></li>
+      <li><a href="#screenshots">تصاویر</a></li>
+      <li><a href="#download" class="nav-cta">دانلود</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- هدر اصلی -->
+<header id="hero" class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-content">
+    <div class="hero-icon">
+      <svg viewBox="0 0 256 256" width="140" height="140">
+        <defs>
+          <linearGradient id="gearHero" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#fbbf24"/>
+            <stop offset="100%" stop-color="#f97316"/>
+          </linearGradient>
+          <linearGradient id="playHero" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#38bdf8"/>
+            <stop offset="100%" stop-color="#818cf8"/>
+          </linearGradient>
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        <g transform="translate(128,128)" filter="url(#glow)">
+          <path d="M0,-80 L18,-80 L22,-60 L40,-54 L54,-68 L68,-54 L54,-40 L60,-22 L80,-18 L80,18 L60,22 L54,40 L68,54 L54,68 L40,54 L22,60 L18,80 L-18,80 L-22,60 L-40,54 L-54,68 L-68,54 L-54,40 L-60,22 L-80,18 L-80,-18 L-60,-22 L-54,-40 L-68,-54 L-54,-68 L-40,-54 L-22,-60 L-18,-80 Z" fill="url(#gearHero)"/>
+          <circle r="44" fill="#0f172a"/>
+          <path d="M-16,-20 L26,0 L-16,20 Z" fill="url(#playHero)"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="badge">✨ نسخه ۱.۶ منتشر شد</div>
+    <h1 class="hero-title">LoomEngine</h1>
+    <p class="tagline">
+      <span id="typed"></span>
+      <span class="cursor">|</span>
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#download" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        دانلود رایگان
+      </a>
+      <a href="#features" class="btn btn-secondary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
+        </svg>
+        مشاهده ویژگی‌ها
+      </a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-value">۴۵<span>MB</span></div>
+        <div class="stat-label">حجم</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-value">۱۰۰٪</div>
+        <div class="stat-label">رایگان</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-value">۲D</div>
+        <div class="stat-label">موتور</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <div class="stat-value">Python</div>
+        <div class="stat-label">زبان</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-down" aria-label="اسکرول">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </a>
+</header>
+
+<!-- درباره -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">درباره</span>
+      <h2>موتوری ساده برای ساخت بازی</h2>
+    </div>
+    <p class="lead">
+      LoomEngine یه موتور بازی‌سازی دوبعدی سبک و متن‌بازه که با پایتون و PySide6 ساخته شده.
+      هدفش اینه که ساخت بازی رو برای همه آسون کنه — از تازه‌کار تا حرفه‌ای.
+    </p>
+    <p>
+      با ادیتور گرافیکی، صحنه‌ها رو با موس بساز. با اسکریپت‌های پایتون، منطق بازی رو بنویس.
+      با یه کلیک، بازی‌ت رو اجرا کن. فیزیک، انیمیشن، برخورد، دوربین — همه از پیش آماده.
+    </p>
+  </div>
+</section>
+
+<!-- ویژگی‌ها -->
+<section id="features" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">ویژگی‌ها</span>
+      <h2>هر چیزی که برای ساخت بازی نیاز داری</h2>
+    </div>
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+            <path d="M2 2l7.586 7.586"/>
+            <circle cx="11" cy="11" r="2"/>
+          </svg>
+        </div>
+        <h3>ادیتور گرافیکی</h3>
+        <p>صحنه‌ها رو با موس و کیبورد بساز. درخت نود، Inspector، Viewport دوبعدی.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </div>
+        <h3>فیزیک دوبعدی</h3>
+        <p>گرانش، پرش، برخورد با سکوها، و حرکت روان — همه از پیش آماده.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/>
+            <polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <h3>اسکریپت پایتون</h3>
+        <p>منطق بازی رو با پایتون بنویس. ویرایشگر داخلی با بررسی سینتکس.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+        </div>
+        <h3>تصاویر و انیمیشن</h3>
+        <p>اسپرایت‌های ثابت و انیمیشن‌های فریم‌به‌فریم با کنترل سرعت.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 7l-7 5 7 5V7z"/>
+            <rect x="1" y="5" width="15" height="14" rx="2"/>
+          </svg>
+        </div>
+        <h3>دوربین متحرک</h3>
+        <p>دوربین دنبال بازیکن می‌ره — مناسب مراحل بزرگ و بی‌پایان.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+            <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+            <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+            <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+          </svg>
+        </div>
+        <h3>خروجی exe</h3>
+        <p>بازی‌ت رو به یه فایل exe مستقل تبدیل کن و به دیگران بده.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- چرا ما -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">چرا LoomEngine؟</span>
+      <h2>مقایسه با بقیه</h2>
+    </div>
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-number">۰۱</div>
+        <h3>رایگان و متن‌باز</h3>
+        <p>کد کامل روی گیت‌هاب. می‌تونی بخونی، تغییر بدی، و حتی مشارکت کنی.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-number">۰۲</div>
+        <h3>بدون نصب</h3>
+        <p>فقط یه فایل exe. بدون نیاز به نصب پایتون یا Qt. دابل‌کلیک کن و شروع کن.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-number">۰۳</div>
+        <h3>یادگیری سریع</h3>
+        <p>رابط ساده و مستندات فارسی. توی چند دقیقه اولین بازی‌ت رو بساز.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-number">۰۴</div>
+        <h3>پایتون واقعی</h3>
+        <p>نه یه زبان اختصاصی. همون پایتونی که بلدی، توی بازی هم به کارت میاد.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- تصاویر -->
+<section id="screenshots" class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">تصاویر</span>
+      <h2>نگاهی به موتور</h2>
+    </div>
+    <div class="screenshots-grid">
+      <div class="screenshot">
+        <div class="screenshot-frame">
+          <img src="screenshots/editor.png" alt="ادیتور LoomEngine" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+          <div class="placeholder-text">ادیتور گرافیکی</div>
+        </div>
+        <p>ادیتور با درخت نود، Inspector و Viewport</p>
+      </div>
+      <div class="screenshot">
+        <div class="screenshot-frame">
+          <img src="screenshots/game.png" alt="بازی در حال اجرا" onerror="this.style.display='none';this.parentElement.classList.add('placeholder')">
+          <div class="placeholder-text">بازی در حال اجرا</div>
+        </div>
+        <p>پلتفرمر ساخته شده با LoomEngine</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- دانلود -->
+<section id="download" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">دانلود</span>
+      <h2>آماده‌ای شروع کنی؟</h2>
+    </div>
+
+    <div class="download-card">
+      <div class="download-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </div>
+      <h3>LoomEngine 1.6</h3>
+      <p class="download-platform">ویندوز ۱۰ و ۱۱ (۶۴ بیتی)</p>
+      <a href="https://github.com/USERNAME/LoomEngine/releases/download/v1.6/LoomEngine.exe"
+         class="btn btn-primary btn-large" download>
+        دانلود رایگان — ۴۵ مگابایت
+      </a>
+      <p class="download-meta">آخرین بروزرسانی: مهر ۱۴۰۵</p>
+    </div>
+
+    <div class="install-steps">
+      <h3>نصب در ۳ مرحله</h3>
+      <div class="steps-grid">
+        <div class="step">
+          <div class="step-num">۱</div>
+          <p>فایل <code>LoomEngine.exe</code> رو دانلود کن</p>
+        </div>
+        <div class="step">
+          <div class="step-num">۲</div>
+          <p>توی یه پوشه مثل <code>C:\LoomEngine</code> بذار</p>
+        </div>
+        <div class="step">
+          <div class="step-num">۳</div>
+          <p>دابل‌کلیک کن و شروع کن!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- فوتر -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <svg viewBox="0 0 256 256" width="32" height="32">
+          <g transform="translate(128,128)">
+            <path d="M0,-80 L18,-80 L22,-60 L40,-54 L54,-68 L68,-54 L54,-40 L60,-22 L80,-18 L80,18 L60,22 L54,40 L68,54 L54,68 L40,54 L22,60 L18,80 L-18,80 L-22,60 L-40,54 L-54,68 L-68,54 L-54,40 L-60,22 L-80,18 L-80,-18 L-60,-22 L-54,-40 L-68,-54 L-54,-68 L-40,-54 L-22,-60 L-18,-80 Z" fill="#fbbf24"/>
+            <circle r="44" fill="#0f172a"/>
+            <path d="M-16,-20 L26,0 L-16,20 Z" fill="#38bdf8"/>
+          </g>
+        </svg>
+        <span>LoomEngine</span>
+      </div>
+      <div class="footer-links">
+        <a href="#about">درباره</a>
+        <a href="#features">ویژگی‌ها</a>
+        <a href="#download">دانلود</a>
+        <a href="https://github.com/USERNAME/LoomEngine">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© ۱۴۰۵ LoomEngine — ساخته شده با ❤️ و پایتون</p>
+    </div>
+  </div>
+</footer>
+
+<!-- دکمه بالا -->
+<button class="back-to-top" id="backToTop" aria-label="برگشت به بالا">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+    <polyline points="18 15 12 9 6 15"/>
+  </svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
