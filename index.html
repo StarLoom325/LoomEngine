@@ -3,37 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="LoomEngine - موتور بازی‌سازی دوبعدی سبک با پایتون و PySide6">
-<meta name="theme-color" content="#0f172a">
+<meta name="description" content="LoomEngine - موتور بازی‌سازی دوبعدی سبک و متن‌باز با پایتون">
+<meta name="theme-color" content="#0a0e17">
+<meta property="og:title" content="LoomEngine - موتور بازی‌سازی دوبعدی">
+<meta property="og:description" content="موتور بازی‌سازی رایگان با پایتون و PySide6">
 <title>LoomEngine - موتور بازی‌سازی دوبعدی</title>
 <link rel="icon" type="image/svg+xml" href="icon.svg">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- نوار پیشرفت اسکرول -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- پس‌زمینه گرادیانت متحرک -->
+<div class="bg-gradient"></div>
+
+<!-- پس‌زمینه ذرات -->
 <canvas id="particles"></canvas>
 
 <!-- نوار بالایی -->
 <nav class="navbar" id="navbar">
   <div class="nav-container">
     <a href="#hero" class="logo">
-      <svg viewBox="0 0 256 256" width="38" height="38">
-        <defs>
-          <linearGradient id="gearNav" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#fbbf24"/>
-            <stop offset="100%" stop-color="#f97316"/>
-          </linearGradient>
-          <linearGradient id="playNav" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#38bdf8"/>
-            <stop offset="100%" stop-color="#818cf8"/>
-          </linearGradient>
-        </defs>
-        <g transform="translate(128,128)">
-          <path d="M0,-80 L18,-80 L22,-60 L40,-54 L54,-68 L68,-54 L54,-40 L60,-22 L80,-18 L80,18 L60,22 L54,40 L68,54 L54,68 L40,54 L22,60 L18,80 L-18,80 L-22,60 L-40,54 L-54,68 L-68,54 L-54,40 L-60,22 L-80,18 L-80,-18 L-60,-22 L-54,-40 L-68,-54 L-54,-68 L-40,-54 L-22,-60 L-18,-80 Z" fill="url(#gearNav)"/>
-          <circle r="44" fill="#0f172a"/>
-          <path d="M-16,-20 L26,0 L-16,20 Z" fill="url(#playNav)"/>
-        </g>
-      </svg>
+      <div class="logo-icon">
+        <svg viewBox="0 0 256 256" width="40" height="40">
+          <defs>
+            <linearGradient id="gearNav" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#fbbf24"/>
+              <stop offset="100%" stop-color="#f97316"/>
+            </linearGradient>
+            <linearGradient id="playNav" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#38bdf8"/>
+              <stop offset="100%" stop-color="#818cf8"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(128,128)">
+            <path d="M0,-80 L18,-80 L22,-60 L40,-54 L54,-68 L68,-54 L54,-40 L60,-22 L80,-18 L80,18 L60,22 L54,40 L68,54 L54,68 L40,54 L22,60 L18,80 L-18,80 L-22,60 L-40,54 L-54,68 L-68,54 L-54,40 L-60,22 L-80,18 L-80,-18 L-60,-22 L-54,-40 L-68,-54 L-54,-68 L-40,-54 L-22,-60 L-18,-80 Z" fill="url(#gearNav)"/>
+            <circle r="44" fill="#0a0e17"/>
+            <path d="M-16,-20 L26,0 L-16,20 Z" fill="url(#playNav)"/>
+          </g>
+        </svg>
+      </div>
       <span>LoomEngine</span>
     </a>
 
@@ -46,17 +57,35 @@
       <li><a href="#features">ویژگی‌ها</a></li>
       <li><a href="#install">نصب</a></li>
       <li><a href="#faq">سوالات</a></li>
-      <li><a href="#download" class="nav-cta">دانلود</a></li>
+      <li><a href="#download" class="nav-cta">
+        دانلود
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+      </a></li>
     </ul>
   </div>
 </nav>
 
 <!-- هدر -->
 <header id="hero" class="hero">
-  <div class="hero-glow"></div>
+  <div class="hero-bg-orb orb-1"></div>
+  <div class="hero-bg-orb orb-2"></div>
+  <div class="hero-bg-orb orb-3"></div>
+
   <div class="hero-content">
+    <div class="hero-badge">
+      <span class="badge-dot"></span>
+      نسخه ۱.۶ منتشر شد
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+        <polyline points="9 18 15 12 9 6"/>
+      </svg>
+    </div>
+
     <div class="hero-icon">
-      <svg viewBox="0 0 256 256" width="140" height="140">
+      <svg viewBox="0 0 256 256" width="160" height="160">
         <defs>
           <linearGradient id="gearHero" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stop-color="#fbbf24"/>
@@ -67,7 +96,7 @@
             <stop offset="100%" stop-color="#818cf8"/>
           </linearGradient>
           <filter id="glow">
-            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
             <feMerge>
               <feMergeNode in="coloredBlur"/>
               <feMergeNode in="SourceGraphic"/>
@@ -76,14 +105,16 @@
         </defs>
         <g transform="translate(128,128)" filter="url(#glow)">
           <path d="M0,-80 L18,-80 L22,-60 L40,-54 L54,-68 L68,-54 L54,-40 L60,-22 L80,-18 L80,18 L60,22 L54,40 L68,54 L54,68 L40,54 L22,60 L18,80 L-18,80 L-22,60 L-40,54 L-54,68 L-68,54 L-54,40 L-60,22 L-80,18 L-80,-18 L-60,-22 L-54,-40 L-68,-54 L-54,-68 L-40,-54 L-22,-60 L-18,-80 Z" fill="url(#gearHero)"/>
-          <circle r="44" fill="#0f172a"/>
+          <circle r="44" fill="#0a0e17"/>
           <path d="M-16,-20 L26,0 L-16,20 Z" fill="url(#playHero)"/>
         </g>
       </svg>
     </div>
 
-    <div class="badge">✨ نسخه ۱.۶ منتشر شد</div>
-    <h1 class="hero-title">LoomEngine</h1>
+    <h1 class="hero-title">
+      <span class="title-gradient">LoomEngine</span>
+    </h1>
+
     <p class="tagline">
       <span id="typed"></span>
       <span class="cursor">|</span>
@@ -92,30 +123,30 @@
     <div class="hero-buttons">
       <a href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe"
          class="btn btn-primary" download>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
           <polyline points="7 10 12 15 17 10"/>
           <line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
         دانلود رایگان
       </a>
-      <a href="#install" class="btn btn-secondary">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+      <a href="https://github.com/StarLoom325/LoomEngine" class="btn btn-secondary" target="_blank">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
         </svg>
-        راهنمای نصب
+        گیت‌هاب
       </a>
     </div>
 
     <div class="hero-stats">
       <div class="stat">
-        <div class="stat-value">۴۵<span>MB</span></div>
-        <div class="stat-label">حجم</div>
+        <div class="stat-value" data-count="45">۰</div>
+        <div class="stat-label">مگابایت</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
-        <div class="stat-value">۱۰۰٪</div>
-        <div class="stat-label">رایگان</div>
+        <div class="stat-value" data-count="100">۰</div>
+        <div class="stat-label">درصد رایگان</div>
       </div>
       <div class="stat-divider"></div>
       <div class="stat">
@@ -141,17 +172,68 @@
 <section id="about" class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">درباره</span>
-      <h2>موتوری ساده برای ساخت بازی</h2>
+      <span class="section-tag">
+        <span class="tag-dot"></span>
+        درباره
+      </span>
+      <h2>موتوری ساده برای <span class="text-gradient">ساخت بازی</span></h2>
     </div>
-    <p class="lead">
-      LoomEngine یه موتور بازی‌سازی دوبعدی سبک و متن‌بازه که با پایتون و PySide6 ساخته شده.
-      هدفش اینه که ساخت بازی رو برای همه آسون کنه — از تازه‌کار تا حرفه‌ای.
-    </p>
-    <p>
-      با ادیتور گرافیکی، صحنه‌ها رو با موس بساز. با اسکریپت‌های پایتون، منطق بازی رو بنویس.
-      با یه کلیک، بازی‌ت رو اجرا کن. فیزیک، انیمیشن، برخورد، دوربین — همه از پیش آماده.
-    </p>
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="lead">
+          LoomEngine یه موتور بازی‌سازی دوبعدی سبک و متن‌بازه که با پایتون و PySide6 ساخته شده.
+          هدفش اینه که ساخت بازی رو برای همه آسون کنه — از تازه‌کار تا حرفه‌ای.
+        </p>
+        <p>
+          با ادیتور گرافیکی، صحنه‌ها رو با موس بساز. با اسکریپت‌های پایتون، منطق بازی رو بنویس.
+          با یه کلیک، بازی‌ت رو اجرا کن. فیزیک، انیمیشن، برخورد، دوربین — همه از پیش آماده.
+        </p>
+        <div class="about-highlights">
+          <div class="highlight">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>بدون نیاز به نصب</span>
+          </div>
+          <div class="highlight">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>کاملاً متن‌باز</span>
+          </div>
+          <div class="highlight">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>یادگیری سریع</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <div class="code-window">
+          <div class="code-header">
+            <div class="code-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <span class="code-title">player.py</span>
+          </div>
+          <pre class="code-body"><code><span class="c-keyword">from</span> <span class="c-module">engine.node</span> <span class="c-keyword">import</span> <span class="c-class">Node</span>
+
+<span class="c-keyword">class</span> <span class="c-class">Player</span>(<span class="c-class">Node</span>):
+    <span class="c-keyword">def</span> <span class="c-func">__init__</span>(<span class="c-param">self</span>):
+        <span class="c-func">super</span>().<span class="c-func">__init__</span>(
+            <span class="c-string">"Player"</span>, <span class="c-string">"Player2D"</span>
+        )
+        <span class="c-param">self</span>.speed = <span class="c-num">280</span>
+        <span class="c-param">self</span>.jump_force = <span class="c-num">-650</span>
+
+    <span class="c-keyword">def</span> <span class="c-func">update</span>(<span class="c-param">self</span>, dt):
+        <span class="c-param">self</span>.<span class="c-func">handle_input</span>()
+        <span class="c-param">self</span>.<span class="c-func">apply_gravity</span>(dt)</code></pre>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -159,9 +241,14 @@
 <section id="features" class="section section-alt">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">ویژگی‌ها</span>
-      <h2>هر چیزی که برای ساخت بازی نیاز داری</h2>
+      <span class="section-tag">
+        <span class="tag-dot"></span>
+        ویژگی‌ها
+      </span>
+      <h2>هر چیزی که برای <span class="text-gradient">ساخت بازی</span> نیاز داری</h2>
+      <p class="section-desc">ابزارهای حرفه‌ای با رابط ساده</p>
     </div>
+
     <div class="features-grid">
 
       <div class="feature-card">
@@ -174,6 +261,7 @@
         </div>
         <h3>ادیتور گرافیکی</h3>
         <p>صحنه‌ها رو با موس و کیبورد بساز. درخت نود، Inspector، Viewport دوبعدی.</p>
+        <div class="feature-tag">WYSIWYG</div>
       </div>
 
       <div class="feature-card">
@@ -185,6 +273,7 @@
         </div>
         <h3>فیزیک دوبعدی</h3>
         <p>گرانش، پرش، برخورد با سکوها، و حرکت روان — همه از پیش آماده.</p>
+        <div class="feature-tag">Real-time</div>
       </div>
 
       <div class="feature-card">
@@ -196,6 +285,7 @@
         </div>
         <h3>اسکریپت پایتون</h3>
         <p>منطق بازی رو با پایتون بنویس. ویرایشگر داخلی با بررسی سینتکس.</p>
+        <div class="feature-tag">Python 3</div>
       </div>
 
       <div class="feature-card">
@@ -208,6 +298,7 @@
         </div>
         <h3>تصاویر و انیمیشن</h3>
         <p>اسپرایت‌های ثابت و انیمیشن‌های فریم‌به‌فریم با کنترل سرعت.</p>
+        <div class="feature-tag">Sprite2D</div>
       </div>
 
       <div class="feature-card">
@@ -219,6 +310,7 @@
         </div>
         <h3>دوربین متحرک</h3>
         <p>دوربین دنبال بازیکن می‌ره — مناسب مراحل بزرگ و بی‌پایان.</p>
+        <div class="feature-tag">Camera2D</div>
       </div>
 
       <div class="feature-card">
@@ -230,6 +322,7 @@
         </div>
         <h3>خروجی exe</h3>
         <p>بازی‌ت رو به یه فایل exe مستقل تبدیل کن و به دیگران بده.</p>
+        <div class="feature-tag">Standalone</div>
       </div>
 
     </div>
@@ -240,8 +333,11 @@
 <section id="install" class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">راهنمای نصب</span>
-      <h2>نصب در چند دقیقه</h2>
+      <span class="section-tag">
+        <span class="tag-dot"></span>
+        راهنمای نصب
+      </span>
+      <h2>نصب در <span class="text-gradient">چند دقیقه</span></h2>
       <p class="section-desc">راهنمای کامل نصب و راه‌اندازی LoomEngine روی ویندوز</p>
     </div>
 
@@ -253,28 +349,46 @@
       </h3>
       <div class="requirements-grid">
         <div class="requirement">
-          <div class="req-label">سیستم عامل</div>
-          <div class="req-value">ویندوز ۱۰ یا ۱۱ (۶۴ بیتی)</div>
+          <div class="req-icon">🪟</div>
+          <div class="req-content">
+            <div class="req-label">سیستم عامل</div>
+            <div class="req-value">ویندوز ۱۰ یا ۱۱ (۶۴ بیتی)</div>
+          </div>
         </div>
         <div class="requirement">
-          <div class="req-label">پردازنده</div>
-          <div class="req-value">Intel/AMD دوهسته‌ای یا بالاتر</div>
+          <div class="req-icon">⚡</div>
+          <div class="req-content">
+            <div class="req-label">پردازنده</div>
+            <div class="req-value">Intel/AMD دوهسته‌ای یا بالاتر</div>
+          </div>
         </div>
         <div class="requirement">
-          <div class="req-label">رم</div>
-          <div class="req-value">حداقل ۴ گیگابایت</div>
+          <div class="req-icon">🧠</div>
+          <div class="req-content">
+            <div class="req-label">رم</div>
+            <div class="req-value">حداقل ۴ گیگابایت</div>
+          </div>
         </div>
         <div class="requirement">
-          <div class="req-label">فضای دیسک</div>
-          <div class="req-value">حداقل ۲۰۰ مگابایت</div>
+          <div class="req-icon">💾</div>
+          <div class="req-content">
+            <div class="req-label">فضای دیسک</div>
+            <div class="req-value">حداقل ۲۰۰ مگابایت</div>
+          </div>
         </div>
         <div class="requirement">
-          <div class="req-label">کارت گرافیک</div>
-          <div class="req-value">هر کارت گرافیک استاندارد</div>
+          <div class="req-icon">🎮</div>
+          <div class="req-content">
+            <div class="req-label">کارت گرافیک</div>
+            <div class="req-value">هر کارت گرافیک استاندارد</div>
+          </div>
         </div>
-        <div class="requirement">
-          <div class="req-label">نصب اضافی</div>
-          <div class="req-value">نیاز به نصب پایتون یا Qt <strong>ندارد</strong></div>
+        <div class="requirement highlight-req">
+          <div class="req-icon">✨</div>
+          <div class="req-content">
+            <div class="req-label">نصب اضافی</div>
+            <div class="req-value">نیاز به نصب پایتون یا Qt ندارد</div>
+          </div>
         </div>
       </div>
     </div>
@@ -289,28 +403,47 @@
       <div class="install-steps-list">
 
         <div class="install-step">
-          <div class="step-circle">۱</div>
+          <div class="step-number">
+            <span>۱</span>
+          </div>
           <div class="step-content">
             <h4>دانلود فایل</h4>
             <p>روی دکمه دانلود در پایین همین صفحه کلیک کن و فایل <code>LoomEngine.exe</code> رو ذخیره کن.</p>
-            <div class="step-note">⚠️ اگه مرورگر هشدار داد، روی <strong>"Keep"</strong> یا <strong>"Keep anyway"</strong> کلیک کن.</div>
+            <div class="step-note">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              اگه مرورگر هشدار داد، روی <strong>"Keep"</strong> کلیک کن.
+            </div>
           </div>
         </div>
 
         <div class="install-step">
-          <div class="step-circle">۲</div>
+          <div class="step-number">
+            <span>۲</span>
+          </div>
           <div class="step-content">
             <h4>ساخت پوشه</h4>
             <p>یه پوشه جدید توی درایو C بساز، مثلاً:</p>
             <div class="code-block">
               <code>C:\LoomEngine</code>
+              <button class="copy-code-btn" onclick="copyCode(this, 'C:\\LoomEngine')">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2"/>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+              </button>
             </div>
             <p>فایل <code>LoomEngine.exe</code> رو از Downloads به این پوشه منتقل کن.</p>
           </div>
         </div>
 
         <div class="install-step">
-          <div class="step-circle">۳</div>
+          <div class="step-number">
+            <span>۳</span>
+          </div>
           <div class="step-content">
             <h4>اجرا</h4>
             <p>روی <code>LoomEngine.exe</code> دابل‌کلیک کن.</p>
@@ -319,15 +452,30 @@
               <li>روی <strong>More info</strong> کلیک کن</li>
               <li>بعد روی <strong>Run anyway</strong> کلیک کن</li>
             </ul>
-            <div class="step-note">💡 این پیام چون فایل امضای دیجیتال نداره ظاهر می‌شه — طبیعیه.</div>
+            <div class="step-note">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="16" x2="12" y2="12"/>
+                <line x1="12" y1="8" x2="12.01" y2="8"/>
+              </svg>
+              این پیام چون فایل امضای دیجیتال نداره ظاهر می‌شه — طبیعیه.
+            </div>
           </div>
         </div>
 
         <div class="install-step">
-          <div class="step-circle">۴</div>
+          <div class="step-number">
+            <span>۴</span>
+          </div>
           <div class="step-content">
             <h4>شروع به ساخت بازی</h4>
             <p>بعد از باز شدن، روی <strong>NEW PROJECT</strong> کلیک کن، نوع ۲D رو انتخاب کن، و شروع کن!</p>
+            <div class="success-note">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+              آماده‌ای! اولین بازیت رو بساز.
+            </div>
           </div>
         </div>
 
@@ -341,69 +489,102 @@
 <section id="faq" class="section section-alt">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">سوالات متداول</span>
-      <h2>پاسخ سوالات رایج</h2>
+      <span class="section-tag">
+        <span class="tag-dot"></span>
+        سوالات متداول
+      </span>
+      <h2>پاسخ <span class="text-gradient">سوالات رایج</span></h2>
     </div>
 
     <div class="faq-list">
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>آیا LoomEngine رایگانه؟</span>
-          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <span class="faq-q-text">
+            <span class="faq-number">۰۱</span>
+            آیا LoomEngine رایگانه؟
+          </span>
+          <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <polyline points="6 9 12 15 18 9"/>
           </svg>
         </button>
         <div class="faq-answer">
-          <p>بله، کاملاً رایگانه. هم استفاده شخصی، هم تجاری. کد کامل هم روی گیت‌هاب منتشر شده.</p>
+          <p>بله، کاملاً رایگانه. هم استفاده شخصی، هم تجاری. کد کامل هم روی گیت‌هاب منتشر شده و می‌تونی توی توسعه‌اش مشارکت کنی.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>آیا به نصب پایتون نیاز دارم؟</span>
-          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <span class="faq-q-text">
+            <span class="faq-number">۰۲</span>
+            آیا به نصب پایتون نیاز دارم؟
+          </span>
+          <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <polyline points="6 9 12 15 18 9"/>
           </svg>
         </button>
         <div class="faq-answer">
-          <p>نه! فایل exe همه چیز رو داخل خودش داره — پایتون، Qt، و کتابخانه‌های لازم.</p>
+          <p>نه! فایل exe همه چیز رو داخل خودش داره — پایتون، Qt، و کتابخانه‌های لازم. فقط دانلود کن و اجرا کن.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>چرا ویندوز هشدار "Windows protected your PC" می‌ده؟</span>
-          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <span class="faq-q-text">
+            <span class="faq-number">۰۳</span>
+            چرا ویندوز هشدار امنیتی می‌ده؟
+          </span>
+          <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <polyline points="6 9 12 15 18 9"/>
           </svg>
         </button>
         <div class="faq-answer">
-          <p>چون فایل امضای دیجیتال نداره. با کلیک روی <strong>More info</strong> و بعد <strong>Run anyway</strong> می‌تونی اجراش کنی.</p>
+          <p>چون فایل امضای دیجیتال (Code Signing) نداره. این امضا هزینه سالانه داره. با کلیک روی <strong>More info</strong> و بعد <strong>Run anyway</strong> می‌تونی اجراش کنی.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>می‌تونم بازی‌ام رو بفروشم؟</span>
-          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <span class="faq-q-text">
+            <span class="faq-number">۰۴</span>
+            می‌تونم بازی‌ام رو بفروشم؟
+          </span>
+          <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <polyline points="6 9 12 15 18 9"/>
           </svg>
         </button>
         <div class="faq-answer">
-          <p>بله، بازی‌هایی که با LoomEngine می‌سازی کاملاً مال خودته. می‌تونی رایگان منتشر کنی یا بفروشی.</p>
+          <p>بله، بازی‌هایی که با LoomEngine می‌سازی کاملاً مال خودته. می‌تونی رایگان منتشر کنی یا بفروشی — هر جایی که دوست داری.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>روی مک یا لینوکس کار می‌کنه؟</span>
-          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <span class="faq-q-text">
+            <span class="faq-number">۰۵</span>
+            روی مک یا لینوکس کار می‌کنه؟
+          </span>
+          <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <polyline points="6 9 12 15 18 9"/>
           </svg>
         </button>
         <div class="faq-answer">
           <p>نسخه فعلی فقط برای ویندوزه. ولی چون کدش پایتونه، به‌زودی نسخه مک و لینوکس هم منتشر می‌شه.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span class="faq-q-text">
+            <span class="faq-number">۰۶</span>
+            چطور می‌تونم مشارکت کنم؟
+          </span>
+          <svg class="faq-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <div class="faq-answer">
+          <p>کد کامل روی <a href="https://github.com/StarLoom325/LoomEngine" target="_blank">گیت‌هاب</a> منتشر شده. می‌تونی Issue باز کنی، Pull Request بفرستی، یا با ستاره دادن حمایت کنی.</p>
         </div>
       </div>
 
@@ -415,11 +596,15 @@
 <section id="download" class="section">
   <div class="container">
     <div class="section-header">
-      <span class="section-tag">دانلود</span>
-      <h2>آماده‌ای شروع کنی؟</h2>
+      <span class="section-tag">
+        <span class="tag-dot"></span>
+        دانلود
+      </span>
+      <h2>آماده‌ای <span class="text-gradient">شروع کنی؟</span></h2>
     </div>
 
     <div class="download-card">
+      <div class="download-glow"></div>
       <div class="download-icon">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -428,27 +613,55 @@
         </svg>
       </div>
       <h3>LoomEngine 1.6</h3>
-      <p class="download-platform">ویندوز ۱۰ و ۱۱ (۶۴ بیتی)</p>
+      <p class="download-platform">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+          <line x1="8" y1="21" x2="16" y2="21"/>
+          <line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        ویندوز ۱۰ و ۱۱ (۶۴ بیتی)
+      </p>
 
       <a href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe"
          class="btn btn-primary btn-large" download>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
         دانلود رایگان — ۴۵ مگابایت
       </a>
 
       <div class="download-info">
         <div class="info-item">
-          <span class="info-label">نسخه:</span>
-          <span class="info-value">1.6</span>
+          <span class="info-icon">📦</span>
+          <div>
+            <div class="info-label">نسخه</div>
+            <div class="info-value">1.6</div>
+          </div>
         </div>
         <div class="info-item">
-          <span class="info-label">حجم:</span>
-          <span class="info-value">۴۵ مگابایت</span>
+          <span class="info-icon">💾</span>
+          <div>
+            <div class="info-label">حجم</div>
+            <div class="info-value">۴۵ مگابایت</div>
+          </div>
         </div>
         <div class="info-item">
-          <span class="info-label">تاریخ انتشار:</span>
-          <span class="info-value">مهر ۱۴۰۵</span>
+          <span class="info-icon">📅</span>
+          <div>
+            <div class="info-label">انتشار</div>
+            <div class="info-value">مهر ۱۴۰۵</div>
+          </div>
         </div>
       </div>
+
+      <p class="download-note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        لینک دانلود مستقیم از گیت‌هاب رسمی
+      </p>
     </div>
   </div>
 </section>
@@ -458,32 +671,41 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <svg viewBox="0 0 256 256" width="32" height="32">
+        <svg viewBox="0 0 256 256" width="40" height="40">
           <g transform="translate(128,128)">
             <path d="M0,-80 L18,-80 L22,-60 L40,-54 L54,-68 L68,-54 L54,-40 L60,-22 L80,-18 L80,18 L60,22 L54,40 L68,54 L54,68 L40,54 L22,60 L18,80 L-18,80 L-22,60 L-40,54 L-54,68 L-68,54 L-54,40 L-60,22 L-80,18 L-80,-18 L-60,-22 L-54,-40 L-68,-54 L-54,-68 L-40,-54 L-22,-60 L-18,-80 Z" fill="#fbbf24"/>
-            <circle r="44" fill="#0f172a"/>
+            <circle r="44" fill="#0a0e17"/>
             <path d="M-16,-20 L26,0 L-16,20 Z" fill="#38bdf8"/>
           </g>
         </svg>
-        <span>LoomEngine</span>
+        <div>
+          <div class="footer-brand-name">LoomEngine</div>
+          <div class="footer-brand-desc">موتور بازی‌سازی دوبعدی</div>
+        </div>
       </div>
+
       <div class="footer-links">
         <a href="#about">درباره</a>
         <a href="#features">ویژگی‌ها</a>
         <a href="#install">نصب</a>
         <a href="#faq">سوالات</a>
         <a href="#download">دانلود</a>
-        <a href="https://github.com/StarLoom325/LoomEngine">GitHub</a>
+        <a href="https://github.com/StarLoom325/LoomEngine" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          گیت‌هاب
+        </a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© ۱۴۰۵ LoomEngine — ساخته شده با ❤️ و پایتون</p>
+      <p>© ۱۴۰۵ LoomEngine — ساخته شده با <span class="heart">❤️</span> و پایتون</p>
     </div>
   </div>
 </footer>
 
 <button class="back-to-top" id="backToTop" aria-label="برگشت به بالا">
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="18 15 12 9 6 15"/>
   </svg>
 </button>
