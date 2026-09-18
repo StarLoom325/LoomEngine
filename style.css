@@ -778,4 +778,421 @@ code {
   .download-card h3 { font-size: 1.5rem; }
   .btn-large { padding: 16px 30px; font-size: 1rem; }
   .footer-top { justify-content: center; text-align: center; }
+
+/* ============================================ */
+/* بخش نصب */
+/* ============================================ */
+
+.section-desc {
+  color: var(--text-dim);
+  margin-top: 15px;
+  font-size: 1.05rem;
+}
+
+.install-block {
+  margin-bottom: 60px;
+}
+
+.install-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--border);
+}
+
+.title-icon {
+  font-size: 1.8rem;
+}
+
+/* سیستم مورد نیاز */
+.requirements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.requirement {
+  background: var(--card);
+  padding: 22px;
+  border-radius: 15px;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.requirement:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.req-label {
+  color: var(--accent);
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.req-value {
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* مراحل نصب */
+.install-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.install-step {
+  display: flex;
+  gap: 25px;
+  background: var(--card);
+  padding: 30px;
+  border-radius: 15px;
+  border: 1px solid var(--border);
+  transition: all 0.3s;
+}
+
+.install-step:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow);
+}
+
+.step-circle {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  background: var(--gradient);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: white;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-content h4 {
+  color: var(--text);
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.step-content p {
+  color: var(--text-dim);
+  margin-bottom: 12px;
+  line-height: 1.9;
+}
+
+.step-content a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.step-content a:hover {
+  text-decoration: underline;
+}
+
+.step-note {
+  background: rgba(251, 191, 36, 0.1);
+  border-right: 3px solid var(--accent-2);
+  padding: 12px 18px;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.95rem;
+  margin-top: 12px;
+}
+
+.step-list {
+  padding-right: 25px;
+  color: var(--text-dim);
+}
+
+.step-list li {
+  margin-bottom: 8px;
+}
+
+.code-block {
+  background: #0a0f1a;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 15px 0;
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+
+.code-block code {
+  background: none;
+  padding: 0;
+  color: #4ade80;
+  font-family: Consolas, monospace;
+  font-size: 0.95rem;
+}
+
+.hash-block {
+  background: #0a0f1a;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 15px 0;
+  overflow-x: auto;
+  direction: ltr;
+  text-align: left;
+}
+
+.hash-block code {
+  background: none;
+  padding: 0;
+  color: var(--accent);
+  font-family: Consolas, monospace;
+  font-size: 0.85rem;
+  word-break: break-all;
+}
+
+/* ویدیو */
+.video-placeholder {
+  background: var(--card);
+  border: 2px dashed var(--border);
+  border-radius: 20px;
+  padding: 60px 30px;
+  text-align: center;
+  color: var(--text-dim);
+  transition: all 0.3s;
+}
+
+.video-placeholder:hover {
+  border-color: var(--accent);
+}
+
+.video-placeholder svg {
+  color: var(--accent);
+  margin-bottom: 15px;
+}
+
+.video-placeholder p {
+  font-size: 1.1rem;
+}
+
+/* ============================================ */
+/* سوالات متداول */
+/* ============================================ */
+
+.faq-list {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.faq-item:hover {
+  border-color: var(--accent);
+}
+
+.faq-item.open {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 22px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: bold;
+  font-family: inherit;
+  text-align: right;
+  transition: color 0.3s;
+}
+
+.faq-question:hover {
+  color: var(--accent);
+}
+
+.faq-icon {
+  color: var(--accent);
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 500px;
+}
+
+.faq-answer p {
+  padding: 0 25px 22px;
+  color: var(--text-dim);
+  line-height: 1.9;
+}
+
+.faq-answer code {
+  background: var(--bg);
+  padding: 2px 8px;
+  border-radius: 5px;
+  color: var(--accent-2);
+  font-family: Consolas, monospace;
+  font-size: 0.9rem;
+  direction: ltr;
+  display: inline-block;
+}
+
+/* ============================================ */
+/* اطلاعات دانلود */
+/* ============================================ */
+
+.download-info {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 25px;
+  padding-top: 25px;
+  border-top: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.info-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.info-label {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.info-value {
+  color: var(--text);
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+/* بخش hash */
+.hash-verify {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(10, 15, 26, 0.6);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  position: relative;
+}
+
+.hash-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  justify-content: center;
+}
+
+.hash-value {
+  font-family: Consolas, monospace;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  word-break: break-all;
+  direction: ltr;
+  text-align: center;
+  line-height: 1.6;
+  padding: 0 10px;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: var(--accent);
+  padding: 5px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.copy-btn:hover {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.copy-btn.copied {
+  background: #4ade80;
+  border-color: #4ade80;
+  color: white;
+}
+
+/* موبایل */
+@media (max-width: 768px) {
+  .install-step {
+    flex-direction: column;
+    gap: 15px;
+    padding: 25px 20px;
+  }
+
+  .step-circle {
+    width: 45px;
+    height: 45px;
+  }
+
+  .install-title {
+    font-size: 1.3rem;
+  }
+
+  .faq-question {
+    font-size: 0.95rem;
+    padding: 18px 20px;
+  }
+
+  .faq-answer p {
+    padding: 0 20px 18px;
+  }
+
+  .download-info {
+    gap: 15px;
+  }
+
+  .copy-btn {
+    position: static;
+    display: block;
+    margin: 10px auto 0;
+  }
+}
+  
 }
