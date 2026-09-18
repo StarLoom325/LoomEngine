@@ -90,7 +90,9 @@
     </p>
 
     <div class="hero-buttons">
-      <a href="#download" class="btn btn-primary">
+      <!-- دکمه دانلود اصلی - مستقیم به فایل exe -->
+      <a href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe"
+         class="btn btn-primary" download>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
           <polyline points="7 10 12 15 17 10"/>
@@ -235,9 +237,7 @@
   </div>
 </section>
 
-<!-- ============================================= -->
-<!-- بخش نصب کامل و واقعی -->
-<!-- ============================================= -->
+<!-- نصب -->
 <section id="install" class="section">
   <div class="container">
     <div class="section-header">
@@ -301,7 +301,7 @@
         <div class="install-step">
           <div class="step-circle">۲</div>
           <div class="step-content">
-            <h4>تأیید صحت فایل (اختیاری ولی پیشنهادی)</h4>
+            <h4>تأیید صحت فایل (اختیاری)</h4>
             <p>برای اطمینان از سالم بودن فایل، PowerShell رو باز کن و این دستور رو بزن:</p>
             <div class="code-block">
               <code>Get-FileHash LoomEngine.exe -Algorithm SHA256</code>
@@ -335,7 +335,7 @@
               <li>روی <strong>More info</strong> کلیک کن</li>
               <li>بعد روی <strong>Run anyway</strong> کلیک کن</li>
             </ul>
-            <div class="step-note">💡 این پیام چون فایل <strong>امضای دیجیتال</strong> نداره ظاهر می‌شه — طبیعیه.</div>
+            <div class="step-note">💡 این پیام چون فایل امضای دیجیتال نداره ظاهر می‌شه — طبیعیه.</div>
           </div>
         </div>
 
@@ -344,25 +344,9 @@
           <div class="step-content">
             <h4>شروع به ساخت بازی</h4>
             <p>بعد از باز شدن، روی <strong>NEW PROJECT</strong> کلیک کن، نوع ۲D رو انتخاب کن، و شروع کن!</p>
-            <p>برای راهنمای استفاده، بخش <a href="#faq">سوالات متداول</a> رو ببین.</p>
           </div>
         </div>
 
-      </div>
-    </div>
-
-    <!-- ویدیو آموزشی (اختیاری) -->
-    <div class="install-block">
-      <h3 class="install-title">
-        <span class="title-icon">🎬</span>
-        ویدیو آموزشی
-      </h3>
-      <div class="video-placeholder">
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="10"/>
-          <polygon points="10 8 16 12 10 16 10 8" fill="currentColor"/>
-        </svg>
-        <p>به‌زودی ویدیو آموزشی اضافه می‌شه</p>
       </div>
     </div>
 
@@ -399,7 +383,7 @@
           </svg>
         </button>
         <div class="faq-answer">
-          <p>نه! فایل exe همه چیز رو داخل خودش داره — پایتون، Qt، و کتابخانه‌های لازم. فقط دانلود کن و اجرا کن.</p>
+          <p>نه! فایل exe همه چیز رو داخل خودش داره — پایتون، Qt، و کتابخانه‌های لازم.</p>
         </div>
       </div>
 
@@ -411,13 +395,13 @@
           </svg>
         </button>
         <div class="faq-answer">
-          <p>چون فایل امضای دیجیتال (Code Signing) نداره. این امضا هزینه سالانه داره و فعلاً تهیه نشده. با کلیک روی <strong>More info</strong> و بعد <strong>Run anyway</strong> می‌تونی اجراش کنی.</p>
+          <p>چون فایل امضای دیجیتال نداره. با کلیک روی <strong>More info</strong> و بعد <strong>Run anyway</strong> می‌تونی اجراش کنی.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <button class="faq-question">
-          <span>چطور مطمئن بشم فایل سالمه و ویروس نداره؟</span>
+          <span>چطور مطمئن بشم فایل سالمه؟</span>
           <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
             <polyline points="6 9 12 15 18 9"/>
           </svg>
@@ -451,30 +435,6 @@
         </div>
       </div>
 
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>چطور بازی‌ام رو به exe تبدیل کنم؟</span>
-          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <p>بعد از ساخت بازی توی ادیتور، فایل پروژه رو ذخیره کن. بعد توی پوشه پروژه، فایل <code>main.py</code> رو با PyInstaller بیلد کن. راهنمای کامل توی مستندات هست.</p>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span>پروژه‌ام توی چه فایل‌هایی ذخیره می‌شه؟</span>
-          <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
-            <polyline points="6 9 12 15 18 9"/>
-          </svg>
-        </button>
-        <div class="faq-answer">
-          <p>هر پروژه یه پوشه با سه زیرپوشه‌ست: <code>scenes/</code> برای صحنه‌ها، <code>scripts/</code> برای اسکریپت‌های پایتون، و <code>assets/</code> برای تصاویر و صداها.</p>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -498,7 +458,8 @@
       <h3>LoomEngine 1.6</h3>
       <p class="download-platform">ویندوز ۱۰ و ۱۱ (۶۴ بیتی)</p>
 
-      <a href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine"
+      <!-- دکمه دانلود اصلی - مستقیم به فایل exe -->
+      <a href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe"
          class="btn btn-primary btn-large" download>
         دانلود رایگان — ۴۵ مگابایت
       </a>
@@ -552,7 +513,7 @@
         <a href="#install">نصب</a>
         <a href="#faq">سوالات</a>
         <a href="#download">دانلود</a>
-        <a href="https://github.com/USERNAME/LoomEngine">GitHub</a>
+        <a href="https://github.com/StarLoom325/LoomEngine">GitHub</a>
       </div>
     </div>
     <div class="footer-bottom">
