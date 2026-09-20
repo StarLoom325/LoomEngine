@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LoomEngine — Game & App Development</title>
+    <title>LoomEngine | موتور توسعه و بازی‌سازی</title>
 
     <meta name="description"
-          content="LoomEngine is a lightweight development environment for creating games, apps and projects.">
+          content="LoomEngine یک محیط توسعه سبک برای ساخت بازی، برنامه و پروژه‌های مختلف است.">
 
     <style>
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -21,79 +23,122 @@
         }
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family:
+                Tahoma,
+                Arial,
+                sans-serif;
+
             background:
-                radial-gradient(circle at 20% 10%, #38246b 0, transparent 35%),
-                radial-gradient(circle at 80% 20%, #124e62 0, transparent 30%),
+                radial-gradient(
+                    circle at 20% 10%,
+                    #38246b 0,
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 80% 20%,
+                    #124e62 0,
+                    transparent 30%
+                ),
                 #090914;
+
             color: white;
             min-height: 100vh;
         }
 
         a {
-            color: inherit;
             text-decoration: none;
+            color: inherit;
         }
 
-        /* NAVBAR */
+        /* =========================
+           نوار بالا
+        ========================= */
 
         nav {
             width: 100%;
-            padding: 18px 7%;
+            padding: 16px 7%;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
+
             position: sticky;
             top: 0;
             z-index: 100;
-            background: rgba(9, 9, 20, 0.78);
+
+            background: rgba(9, 9, 20, 0.8);
+
             backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.08);
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
+
             font-size: 22px;
             font-weight: bold;
         }
 
         .logo-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #6847ff, #29e6dc);
+            width: 44px;
+            height: 44px;
+
+            border-radius: 13px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 0 25px rgba(83, 104, 255, 0.35);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #6847ff,
+                    #29e6dc
+                );
+
+            box-shadow:
+                0 0 30px
+                rgba(83,104,255,0.35);
+
+            font-size: 23px;
         }
 
         nav ul {
             list-style: none;
+
             display: flex;
             gap: 28px;
         }
 
-        nav li a {
+        nav ul a {
             color: #c9c9d8;
+
             transition: 0.2s;
         }
 
-        nav li a:hover {
+        nav ul a:hover {
             color: #65e8ff;
         }
 
-        /* HERO */
+
+        /* =========================
+           صفحه اصلی
+        ========================= */
 
         .hero {
             min-height: 720px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             text-align: center;
+
             padding: 100px 20px;
         }
 
@@ -103,79 +148,142 @@
 
         .badge {
             display: inline-block;
-            padding: 8px 16px;
+
+            padding: 9px 18px;
+
             border-radius: 30px;
-            background: rgba(101, 232, 255, 0.08);
-            border: 1px solid rgba(101, 232, 255, 0.2);
+
+            background:
+                rgba(101,232,255,0.08);
+
+            border:
+                1px solid
+                rgba(101,232,255,0.2);
+
             color: #65e8ff;
+
             margin-bottom: 25px;
+
             font-size: 14px;
         }
 
         .hero h1 {
-            font-size: clamp(55px, 10vw, 105px);
+            font-size:
+                clamp(55px, 10vw, 105px);
+
             line-height: 0.95;
+
             margin-bottom: 25px;
-            background: linear-gradient(90deg, #ffffff, #8c7cff, #5ee9ff);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffffff,
+                    #8c7cff,
+                    #5ee9ff
+                );
+
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .hero h2 {
-            font-size: clamp(22px, 4vw, 38px);
+            font-size:
+                clamp(22px, 4vw, 38px);
+
             color: #dcdceb;
+
             margin-bottom: 20px;
         }
 
         .hero p {
-            max-width: 680px;
+            max-width: 700px;
+
             margin: auto;
+
             color: #a9a9bc;
-            line-height: 1.8;
+
+            line-height: 2;
+
             font-size: 18px;
         }
 
         .buttons {
             margin-top: 35px;
+
             display: flex;
+
             justify-content: center;
+
             gap: 15px;
+
             flex-wrap: wrap;
         }
 
         .button {
             padding: 15px 28px;
+
             border-radius: 13px;
+
             font-weight: bold;
+
             transition: 0.25s;
+
             display: inline-flex;
+
             align-items: center;
+
             gap: 9px;
         }
 
         .download {
-            background: linear-gradient(135deg, #5f63ff, #28d9d2);
+            background:
+                linear-gradient(
+                    135deg,
+                    #5f63ff,
+                    #28d9d2
+                );
+
             color: white;
-            box-shadow: 0 10px 35px rgba(53, 144, 255, 0.25);
+
+            box-shadow:
+                0 10px 35px
+                rgba(53,144,255,0.25);
         }
 
         .download:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 45px rgba(53, 144, 255, 0.4);
+            transform:
+                translateY(-3px)
+                scale(1.02);
+
+            box-shadow:
+                0 15px 45px
+                rgba(53,144,255,0.4);
         }
 
         .github {
-            border: 1px solid rgba(255,255,255,0.16);
-            background: rgba(255,255,255,0.05);
+            border:
+                1px solid
+                rgba(255,255,255,0.16);
+
+            background:
+                rgba(255,255,255,0.05);
+
             color: #ddd;
         }
 
         .github:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-3px);
+            background:
+                rgba(255,255,255,0.1);
+
+            transform:
+                translateY(-3px);
         }
 
-        /* SECTIONS */
+
+        /* =========================
+           بخش‌ها
+        ========================= */
 
         section {
             padding: 90px 7%;
@@ -183,11 +291,13 @@
 
         .section-title {
             text-align: center;
+
             margin-bottom: 50px;
         }
 
         .section-title h2 {
             font-size: 40px;
+
             margin-bottom: 12px;
         }
 
@@ -195,32 +305,56 @@
             color: #9999ad;
         }
 
-        /* FEATURES */
+
+        /* =========================
+           امکانات
+        ========================= */
 
         .features {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(230px, 1fr)
+                );
+
             gap: 20px;
+
             max-width: 1200px;
+
             margin: auto;
         }
 
         .card {
             padding: 28px;
+
             border-radius: 20px;
-            background: rgba(255,255,255,0.045);
-            border: 1px solid rgba(255,255,255,0.09);
+
+            background:
+                rgba(255,255,255,0.045);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.09);
+
             transition: 0.25s;
         }
 
         .card:hover {
-            transform: translateY(-6px);
-            background: rgba(255,255,255,0.07);
-            border-color: rgba(101,232,255,0.2);
+            transform:
+                translateY(-6px);
+
+            background:
+                rgba(255,255,255,0.07);
+
+            border-color:
+                rgba(101,232,255,0.2);
         }
 
         .card-icon {
             font-size: 35px;
+
             margin-bottom: 18px;
         }
 
@@ -230,29 +364,48 @@
 
         .card p {
             color: #9c9caf;
-            line-height: 1.7;
+
+            line-height: 1.9;
         }
 
-        /* LANGUAGES */
+
+        /* =========================
+           زبان‌ها
+        ========================= */
 
         .languages {
             max-width: 1000px;
+
             margin: auto;
+
             display: flex;
+
             flex-wrap: wrap;
+
             justify-content: center;
+
             gap: 12px;
         }
 
         .language {
             padding: 12px 19px;
+
             border-radius: 30px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
+
             color: #d8d8e4;
         }
 
-        /* DOWNLOAD */
+
+        /* =========================
+           دانلود
+        ========================= */
 
         .download-section {
             text-align: center;
@@ -260,42 +413,66 @@
 
         .download-box {
             max-width: 850px;
+
             margin: auto;
+
             padding: 55px 30px;
+
             border-radius: 30px;
+
             background:
                 linear-gradient(
                     135deg,
                     rgba(91,72,255,0.18),
                     rgba(35,214,209,0.10)
                 );
-            border: 1px solid rgba(255,255,255,0.1);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
         }
 
         .version {
             color: #65e8ff;
+
             margin: 15px 0 25px;
         }
 
         .download-box p {
             color: #a8a8ba;
+
             margin-bottom: 25px;
+
+            line-height: 1.9;
         }
 
-        /* FOOTER */
+
+        /* =========================
+           فوتر
+        ========================= */
 
         footer {
             padding: 35px 7%;
-            border-top: 1px solid rgba(255,255,255,0.08);
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.08);
+
             text-align: center;
+
             color: #777789;
+
+            line-height: 2;
         }
 
         footer strong {
             color: #bfc0d0;
         }
 
-        /* MOBILE */
+
+        /* =========================
+           موبایل
+        ========================= */
 
         @media (max-width: 700px) {
 
@@ -318,297 +495,508 @@
             .hero p {
                 font-size: 16px;
             }
+
+            .hero h1 {
+                font-size: 58px;
+            }
         }
+
     </style>
 </head>
 
+
 <body>
 
-<!-- NAVIGATION -->
+
+<!-- =========================
+     نوار بالا
+========================= -->
 
 <nav>
+
     <a href="#" class="logo">
-        <div class="logo-icon">🧵</div>
-        <span>LoomEngine</span>
+
+        <div class="logo-icon">
+            🧵
+        </div>
+
+        <span>
+            LoomEngine
+        </span>
+
     </a>
 
+
     <ul>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#languages">Languages</a></li>
-        <li><a href="#download">Download</a></li>
+
         <li>
-            <a href="https://github.com/StarLoom325/LoomEngine"
-               target="_blank">
-                GitHub
+            <a href="#features">
+                امکانات
             </a>
         </li>
+
+        <li>
+            <a href="#languages">
+                زبان‌ها
+            </a>
+        </li>
+
+        <li>
+            <a href="#download">
+                دانلود
+            </a>
+        </li>
+
+        <li>
+            <a
+                href="https://github.com/StarLoom325/LoomEngine"
+                target="_blank"
+            >
+                گیت‌هاب
+            </a>
+        </li>
+
     </ul>
+
 </nav>
 
 
-<!-- HERO -->
+
+<!-- =========================
+     صفحه اصلی
+========================= -->
 
 <header class="hero">
 
     <div class="hero-content">
 
+
         <div class="badge">
-            ✨ LoomEngine v1.5
+
+            ✨ نسخه 1.5
+
         </div>
 
-        <h1>LoomEngine</h1>
 
-        <h2>Build. Create. Run.</h2>
+        <h1>
+            LoomEngine
+        </h1>
+
+
+        <h2>
+            بساز، خلاق باش، اجرا کن
+        </h2>
+
 
         <p>
-            A lightweight development environment for creating
-            games, applications and projects with multiple
-            programming languages.
+
+            LoomEngine یک محیط توسعه سبک و ساده
+            برای ساخت بازی‌ها، برنامه‌ها و پروژه‌های
+            مختلف با زبان‌های برنامه‌نویسی گوناگون است.
+
         </p>
+
 
         <div class="buttons">
 
+
             <a
                 class="button download"
+
                 href="https://github.com/StarLoom325/LoomEngine/releases/download/Loom/LoomEngine.exe"
+
                 download
             >
-                ⬇️ Download LoomEngine
+
+                ⬇️
+
+                دانلود LoomEngine
+
             </a>
+
 
             <a
                 class="button github"
+
                 href="https://github.com/StarLoom325/LoomEngine"
+
                 target="_blank"
             >
-                ⭐ View on GitHub
+
+                ⭐
+
+                مشاهده در GitHub
+
             </a>
 
+
         </div>
+
 
     </div>
 
 </header>
 
 
-<!-- FEATURES -->
+
+<!-- =========================
+     امکانات
+========================= -->
 
 <section id="features">
 
+
     <div class="section-title">
 
-        <h2>Features</h2>
+        <h2>
+            امکانات LoomEngine
+        </h2>
 
         <p>
-            Everything you need to start creating.
+            ابزارهای موردنیاز برای شروع ساخت پروژه
         </p>
 
     </div>
+
 
 
     <div class="features">
 
+
         <div class="card">
 
-            <div class="card-icon">💻</div>
+            <div class="card-icon">
+                💻
+            </div>
 
-            <h3>Code Editor</h3>
+            <h3>
+                ویرایشگر کد
+            </h3>
 
             <p>
-                Write and manage your source code
-                inside a simple development environment.
+                کدهای خود را در محیط توسعه
+                LoomEngine بنویسید و مدیریت کنید.
             </p>
 
         </div>
 
 
+
         <div class="card">
 
-            <div class="card-icon">🎮</div>
+            <div class="card-icon">
+                🎮
+            </div>
 
-            <h3>Game Development</h3>
+            <h3>
+                توسعه بازی
+            </h3>
 
             <p>
-                Create projects and experiment with
-                games and interactive applications.
+                پروژه‌های بازی و برنامه‌های
+                تعاملی خود را ایجاد و اجرا کنید.
             </p>
 
         </div>
 
 
+
         <div class="card">
 
-            <div class="card-icon">📁</div>
+            <div class="card-icon">
+                📁
+            </div>
 
-            <h3>Project Manager</h3>
+            <h3>
+                مدیریت پروژه
+            </h3>
 
             <p>
-                Create projects, folders and files
-                directly from LoomEngine.
+                پوشه‌ها و فایل‌های پروژه را
+                مستقیماً مدیریت کنید.
             </p>
 
         </div>
 
 
+
         <div class="card">
 
-            <div class="card-icon">▶️</div>
+            <div class="card-icon">
+                ▶️
+            </div>
 
-            <h3>Run Your Code</h3>
+            <h3>
+                اجرای کد
+            </h3>
 
             <p>
-                Run supported projects directly
-                from the development environment.
+                پروژه‌ها و کدهای پشتیبانی‌شده
+                را مستقیماً اجرا کنید.
             </p>
 
         </div>
 
 
+
         <div class="card">
 
-            <div class="card-icon">📝</div>
+            <div class="card-icon">
+                📝
+            </div>
 
-            <h3>Notebook</h3>
+            <h3>
+                دفتر یادداشت
+            </h3>
 
             <p>
-                Keep your notes and ideas organized
-                inside the built-in notebook.
+                ایده‌ها و یادداشت‌های خود را
+                در دفتر داخلی LoomEngine ذخیره کنید.
             </p>
 
         </div>
 
 
+
         <div class="card">
 
-            <div class="card-icon">🧮</div>
+            <div class="card-icon">
+                🧮
+            </div>
 
-            <h3>Calculator</h3>
+            <h3>
+                ماشین حساب
+            </h3>
 
             <p>
-                A simple calculator is included
-                for everyday development tasks.
+                یک ماشین حساب داخلی برای
+                محاسبات روزمره در اختیار شماست.
             </p>
 
         </div>
 
 
+
         <div class="card">
 
-            <div class="card-icon">🎨</div>
+            <div class="card-icon">
+                🎨
+            </div>
 
-            <h3>SVG & ICO</h3>
+            <h3>
+                SVG و ICO
+            </h3>
 
             <p>
-                Work with SVG graphics and
-                application icons.
+                با فایل‌های گرافیکی SVG و
+                آیکون‌های ICO کار کنید.
             </p>
 
         </div>
 
 
+
         <div class="card">
 
-            <div class="card-icon">🌙</div>
+            <div class="card-icon">
+                🌙
+            </div>
 
-            <h3>Dark Interface</h3>
+            <h3>
+                محیط تاریک
+            </h3>
 
             <p>
-                A modern dark interface designed
-                for comfortable development.
+                رابط کاربری مدرن و تاریک
+                برای کار راحت‌تر با کد.
             </p>
 
         </div>
+
 
     </div>
 
 </section>
 
 
-<!-- LANGUAGES -->
+
+<!-- =========================
+     زبان‌ها
+========================= -->
 
 <section id="languages">
 
+
     <div class="section-title">
 
-        <h2>Supported Languages</h2>
+        <h2>
+            زبان‌های پشتیبانی‌شده
+        </h2>
 
         <p>
-            Work with different types of projects.
+            پروژه‌های مختلف خود را با زبان موردنظر بسازید.
         </p>
 
     </div>
+
 
 
     <div class="languages">
 
-        <span class="language">🐍 Python</span>
-        <span class="language">⚙️ C</span>
-        <span class="language">⚙️ C++</span>
-        <span class="language">🔷 C#</span>
-        <span class="language">☕ Java</span>
-        <span class="language">🟨 JavaScript</span>
-        <span class="language">🔵 TypeScript</span>
-        <span class="language">🌐 HTML</span>
-        <span class="language">🎨 CSS</span>
-        <span class="language">💠 SVG</span>
-        <span class="language">🖼️ ICO</span>
+
+        <span class="language">
+            🐍 Python
+        </span>
+
+
+        <span class="language">
+            ⚙️ C
+        </span>
+
+
+        <span class="language">
+            ⚙️ C++
+        </span>
+
+
+        <span class="language">
+            🔷 C#
+        </span>
+
+
+        <span class="language">
+            ☕ Java
+        </span>
+
+
+        <span class="language">
+            🟨 JavaScript
+        </span>
+
+
+        <span class="language">
+            🔵 TypeScript
+        </span>
+
+
+        <span class="language">
+            🌐 HTML
+        </span>
+
+
+        <span class="language">
+            🎨 CSS
+        </span>
+
+
+        <span class="language">
+            💠 SVG
+        </span>
+
+
+        <span class="language">
+            🖼️ ICO
+        </span>
+
 
     </div>
 
 </section>
 
 
-<!-- DOWNLOAD -->
 
-<section id="download" class="download-section">
+<!-- =========================
+     دانلود
+========================= -->
+
+<section
+    id="download"
+    class="download-section"
+>
+
 
     <div class="download-box">
 
-        <h2>Download LoomEngine</h2>
+
+        <h2>
+            دانلود LoomEngine
+        </h2>
+
 
         <div class="version">
-            Latest Release — v1.5
+            آخرین نسخه: 1.5
         </div>
 
+
         <p>
-            Download the Windows executable directly
-            from the official LoomEngine GitHub Release.
+
+            نسخه ویندوز LoomEngine را
+            مستقیماً از GitHub دانلود کنید.
+
         </p>
+
 
         <a
             class="button download"
+
             href="https://github.com/StarLoom325/LoomEngine/releases/download/Loom/LoomEngine.exe"
+
             download
         >
-            ⬇️ Download LoomEngine.exe
+
+            ⬇️
+
+            دانلود LoomEngine.exe
+
         </a>
 
-        <br><br>
+
+        <br>
+        <br>
+
 
         <a
             href="https://github.com/StarLoom325/LoomEngine/releases/tag/Loom"
+
             target="_blank"
+
             style="color:#65e8ff;"
         >
-            View Release on GitHub →
+
+            مشاهده صفحه نسخه در GitHub ←
+
         </a>
+
 
     </div>
 
 </section>
 
 
-<!-- FOOTER -->
+
+<!-- =========================
+     پایین سایت
+========================= -->
 
 <footer>
 
     <p>
-        © 2026 <strong>LoomEngine</strong>
-        — Built for creators.
+
+        © 2026
+
+        <strong>
+            LoomEngine
+        </strong>
+
+        — ساخته‌شده برای خلاق‌ها
+
     </p>
 
-    <p style="margin-top:10px;">
-        Open source project on GitHub
+
+    <p>
+
+        پروژه LoomEngine در GitHub
+
     </p>
 
 </footer>
