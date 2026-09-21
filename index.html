@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LoomEngine | موتور توسعه و بازی‌سازی</title>
+    <title>LoomEngine 2.2 | محیط توسعه و بازی‌سازی</title>
 
     <meta name="description"
-          content="LoomEngine یک محیط توسعه سبک برای ساخت بازی، برنامه و پروژه‌های مختلف است.">
+          content="LoomEngine یک محیط توسعه سبک برای ساخت بازی و پروژه با LoomScript، Python، C#، C++، JavaScript و HTML/CSS است.">
 
     <style>
-
         * {
             box-sizing: border-box;
             margin: 0;
@@ -23,26 +22,28 @@
         }
 
         body {
-            font-family:
-                Tahoma,
-                Arial,
-                sans-serif;
-
+            font-family: Tahoma, Arial, sans-serif;
             background:
-                radial-gradient(
-                    circle at 20% 10%,
-                    #38246b 0,
-                    transparent 35%
-                ),
-                radial-gradient(
-                    circle at 80% 20%,
-                    #124e62 0,
-                    transparent 30%
-                ),
-                #090914;
-
-            color: white;
+                radial-gradient(circle at 15% 5%, rgba(105, 70, 255, .30), transparent 30%),
+                radial-gradient(circle at 85% 15%, rgba(20, 220, 210, .18), transparent 28%),
+                radial-gradient(circle at 50% 100%, rgba(70, 40, 180, .16), transparent 35%),
+                #080810;
+            color: #fff;
             min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+            background-size: 45px 45px;
+            mask-image: linear-gradient(to bottom, black, transparent);
+            z-index: -1;
         }
 
         a {
@@ -51,28 +52,26 @@
         }
 
         /* =========================
-           نوار بالا
+           NAVBAR
         ========================= */
 
         nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
             width: 100%;
-            padding: 16px 7%;
+            padding: 14px 6%;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background: rgba(7, 7, 15, .76);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
 
-            background: rgba(9, 9, 20, 0.8);
-
-            backdrop-filter: blur(15px);
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,0.08);
+            border-bottom: 1px solid rgba(255,255,255,.08);
         }
 
         .logo {
@@ -80,58 +79,70 @@
             align-items: center;
             gap: 12px;
 
-            font-size: 22px;
+            font-size: 21px;
             font-weight: bold;
         }
 
         .logo-icon {
-            width: 44px;
-            height: 44px;
-
-            border-radius: 13px;
+            width: 45px;
+            height: 45px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
+            border-radius: 14px;
+
             background:
-                linear-gradient(
-                    135deg,
-                    #6847ff,
-                    #29e6dc
-                );
+                linear-gradient(135deg, #7055ff, #22ded4);
 
             box-shadow:
-                0 0 30px
-                rgba(83,104,255,0.35);
+                0 0 35px rgba(90,100,255,.35);
 
             font-size: 23px;
+        }
+
+        .logo span {
+            background:
+                linear-gradient(90deg, #fff, #8f82ff, #5de9df);
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         nav ul {
             list-style: none;
 
             display: flex;
-            gap: 28px;
+            align-items: center;
+            gap: 25px;
         }
 
         nav ul a {
-            color: #c9c9d8;
-
-            transition: 0.2s;
+            color: #bdbdce;
+            transition: .2s;
         }
 
         nav ul a:hover {
-            color: #65e8ff;
+            color: #63e8df;
         }
 
+        .nav-download {
+            padding: 10px 17px;
+            border-radius: 10px;
+
+            background:
+                linear-gradient(135deg, #6657ff, #22cfc9);
+
+            color: white !important;
+        }
 
         /* =========================
-           صفحه اصلی
+           HERO
         ========================= */
 
         .hero {
-            min-height: 720px;
+            min-height: 790px;
 
             display: flex;
             align-items: center;
@@ -139,48 +150,86 @@
 
             text-align: center;
 
-            padding: 100px 20px;
+            padding: 110px 20px 90px;
+
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(104,78,255,.18),
+                    transparent 70%
+                );
+
+            filter: blur(10px);
+            pointer-events: none;
         }
 
         .hero-content {
-            max-width: 900px;
+            position: relative;
+            max-width: 950px;
         }
 
         .badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
 
             padding: 9px 18px;
 
-            border-radius: 30px;
+            border-radius: 50px;
 
-            background:
-                rgba(101,232,255,0.08);
+            background: rgba(99,232,223,.07);
 
             border:
                 1px solid
-                rgba(101,232,255,0.2);
+                rgba(99,232,223,.22);
 
-            color: #65e8ff;
+            color: #63e8df;
 
-            margin-bottom: 25px;
+            margin-bottom: 28px;
 
             font-size: 14px;
         }
 
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: #63e8df;
+
+            box-shadow:
+                0 0 15px #63e8df;
+        }
+
         .hero h1 {
-            font-size:
-                clamp(55px, 10vw, 105px);
+            font-size: clamp(58px, 11vw, 120px);
 
-            line-height: 0.95;
+            line-height: .9;
 
-            margin-bottom: 25px;
+            margin-bottom: 30px;
+
+            letter-spacing: -4px;
 
             background:
                 linear-gradient(
-                    90deg,
-                    #ffffff,
-                    #8c7cff,
-                    #5ee9ff
+                    100deg,
+                    #fff 15%,
+                    #8d7dff 50%,
+                    #56e8df 85%
                 );
 
             -webkit-background-clip: text;
@@ -188,129 +237,262 @@
         }
 
         .hero h2 {
-            font-size:
-                clamp(22px, 4vw, 38px);
+            font-size: clamp(23px, 4vw, 40px);
 
-            color: #dcdceb;
+            color: #dedeee;
 
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .hero p {
-            max-width: 700px;
+            max-width: 760px;
 
             margin: auto;
 
-            color: #a9a9bc;
+            color: #a7a7bb;
 
             line-height: 2;
 
             font-size: 18px;
         }
 
+        .hero-highlight {
+            color: #65e8df;
+        }
+
+        /* =========================
+           BUTTONS
+        ========================= */
+
         .buttons {
-            margin-top: 35px;
+            margin-top: 38px;
 
             display: flex;
-
             justify-content: center;
 
-            gap: 15px;
+            gap: 14px;
 
             flex-wrap: wrap;
         }
 
         .button {
-            padding: 15px 28px;
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 15px 27px;
 
             border-radius: 13px;
 
             font-weight: bold;
 
-            transition: 0.25s;
+            transition: .25s;
 
-            display: inline-flex;
+            border: 1px solid transparent;
+        }
 
-            align-items: center;
-
-            gap: 9px;
+        .button:hover {
+            transform: translateY(-4px);
         }
 
         .download {
             background:
-                linear-gradient(
-                    135deg,
-                    #5f63ff,
-                    #28d9d2
-                );
-
-            color: white;
+                linear-gradient(135deg, #6558ff, #20d4cc);
 
             box-shadow:
-                0 10px 35px
-                rgba(53,144,255,0.25);
+                0 12px 40px rgba(55,130,255,.24);
         }
 
         .download:hover {
-            transform:
-                translateY(-3px)
-                scale(1.02);
-
             box-shadow:
-                0 15px 45px
-                rgba(53,144,255,0.4);
+                0 17px 50px rgba(55,150,255,.40);
         }
 
         .github {
-            border:
-                1px solid
-                rgba(255,255,255,0.16);
+            background: rgba(255,255,255,.045);
 
-            background:
-                rgba(255,255,255,0.05);
+            border-color:
+                rgba(255,255,255,.13);
 
-            color: #ddd;
+            color: #dedee8;
         }
 
         .github:hover {
-            background:
-                rgba(255,255,255,0.1);
-
-            transform:
-                translateY(-3px);
+            background: rgba(255,255,255,.09);
         }
 
+        /* =========================
+           IDE PREVIEW
+        ========================= */
+
+        .editor-preview {
+            max-width: 1000px;
+
+            margin: 20px auto 0;
+
+            padding: 7px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(126,92,255,.35),
+                    rgba(38,220,210,.22)
+                );
+
+            box-shadow:
+                0 30px 100px rgba(0,0,0,.35);
+        }
+
+        .editor-window {
+            overflow: hidden;
+
+            border-radius: 15px;
+
+            background: #11111b;
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            text-align: left;
+
+            direction: ltr;
+        }
+
+        .editor-top {
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 15px;
+
+            background: #181824;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,.07);
+        }
+
+        .window-dot {
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            margin-right: 7px;
+
+            background: #5c5c70;
+        }
+
+        .editor-title {
+            margin-left: 15px;
+
+            color: #8e8ea3;
+
+            font-size: 12px;
+        }
+
+        .editor-body {
+            min-height: 260px;
+
+            display: grid;
+
+            grid-template-columns: 190px 1fr;
+        }
+
+        .sidebar {
+            padding: 20px 15px;
+
+            background: #0d0d15;
+
+            border-right:
+                1px solid
+                rgba(255,255,255,.06);
+
+            color: #77778b;
+
+            font-family: Consolas, monospace;
+
+            font-size: 13px;
+
+            line-height: 2;
+        }
+
+        .sidebar .active {
+            color: #65e8df;
+        }
+
+        .code {
+            padding: 25px;
+
+            font-family:
+                Consolas,
+                "Courier New",
+                monospace;
+
+            font-size: 14px;
+
+            line-height: 1.9;
+
+            color: #d7d7e5;
+        }
+
+        .purple {
+            color: #a992ff;
+        }
+
+        .cyan {
+            color: #62e8df;
+        }
+
+        .green {
+            color: #75d99c;
+        }
+
+        .orange {
+            color: #ffbd73;
+        }
 
         /* =========================
-           بخش‌ها
+           SECTIONS
         ========================= */
 
         section {
-            padding: 90px 7%;
+            padding: 105px 7%;
         }
 
         .section-title {
             text-align: center;
-
-            margin-bottom: 50px;
+            max-width: 750px;
+            margin: 0 auto 55px;
         }
 
         .section-title h2 {
-            font-size: 40px;
+            font-size: clamp(30px, 5vw, 44px);
 
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .section-title p {
             color: #9999ad;
+            line-height: 1.9;
         }
 
-
         /* =========================
-           امکانات
+           FEATURES
         ========================= */
 
         .features {
+            max-width: 1200px;
+
+            margin: auto;
+
             display: grid;
 
             grid-template-columns:
@@ -320,57 +502,181 @@
                 );
 
             gap: 20px;
-
-            max-width: 1200px;
-
-            margin: auto;
         }
 
         .card {
-            padding: 28px;
+            position: relative;
 
-            border-radius: 20px;
+            padding: 30px;
+
+            border-radius: 21px;
 
             background:
-                rgba(255,255,255,0.045);
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.055),
+                    rgba(255,255,255,.025)
+                );
 
             border:
                 1px solid
-                rgba(255,255,255,0.09);
+                rgba(255,255,255,.09);
 
-            transition: 0.25s;
+            transition: .3s;
+
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 100px;
+            height: 100px;
+
+            top: -60px;
+            left: -60px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(106,85,255,.16);
+
+            filter: blur(20px);
         }
 
         .card:hover {
-            transform:
-                translateY(-6px);
-
-            background:
-                rgba(255,255,255,0.07);
+            transform: translateY(-8px);
 
             border-color:
-                rgba(101,232,255,0.2);
+                rgba(100,230,220,.25);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.22);
         }
 
         .card-icon {
-            font-size: 35px;
+            width: 55px;
+            height: 55px;
 
-            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 15px;
+
+            background:
+                rgba(105,87,255,.12);
+
+            margin-bottom: 20px;
+
+            font-size: 27px;
         }
 
         .card h3 {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            font-size: 19px;
         }
 
         .card p {
-            color: #9c9caf;
-
+            color: #9999ad;
             line-height: 1.9;
+            font-size: 14px;
         }
 
+        /* =========================
+           LOOMSCRIPT
+        ========================= */
+
+        .loomscript-section {
+            position: relative;
+        }
+
+        .loomscript-box {
+            max-width: 1100px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 25px;
+
+            padding: 8px;
+
+            border-radius: 28px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(109,79,255,.35),
+                    rgba(30,210,201,.20)
+                );
+        }
+
+        .loom-info,
+        .loom-code {
+            border-radius: 21px;
+
+            background: #11111a;
+
+            border:
+                1px solid
+                rgba(255,255,255,.07);
+
+            padding: 35px;
+        }
+
+        .loom-info h3 {
+            font-size: 28px;
+            margin-bottom: 17px;
+        }
+
+        .loom-info p {
+            color: #a3a3b8;
+            line-height: 2;
+            margin-bottom: 25px;
+        }
+
+        .loom-tag {
+            display: inline-block;
+
+            padding: 8px 13px;
+
+            border-radius: 9px;
+
+            background: rgba(102,84,255,.13);
+
+            color: #a99bff;
+
+            margin: 4px;
+
+            font-size: 13px;
+        }
+
+        .loom-code {
+            direction: ltr;
+            text-align: left;
+
+            font-family: Consolas, monospace;
+
+            color: #d7d7e5;
+
+            line-height: 1.9;
+
+            overflow-x: auto;
+        }
+
+        .code-header {
+            color: #65657a;
+            margin-bottom: 17px;
+        }
 
         /* =========================
-           زبان‌ها
+           LANGUAGES
         ========================= */
 
         .languages {
@@ -388,23 +694,103 @@
         }
 
         .language {
-            padding: 12px 19px;
+            padding: 13px 20px;
 
-            border-radius: 30px;
+            border-radius: 13px;
 
             background:
-                rgba(255,255,255,0.06);
+                rgba(255,255,255,.045);
 
             border:
                 1px solid
-                rgba(255,255,255,0.1);
+                rgba(255,255,255,.09);
 
             color: #d8d8e4;
+
+            transition: .2s;
         }
 
+        .language:hover {
+            transform: translateY(-3px);
+
+            border-color:
+                rgba(102,230,220,.25);
+
+            background:
+                rgba(102,230,220,.06);
+        }
+
+        .language.loom {
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(105,82,255,.16),
+                    rgba(32,210,202,.09)
+                );
+
+            border-color:
+                rgba(105,100,255,.28);
+
+            color: #b8b0ff;
+        }
 
         /* =========================
-           دانلود
+           STATS
+        ========================= */
+
+        .stats {
+            max-width: 1000px;
+
+            margin: auto;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 15px;
+        }
+
+        .stat {
+            text-align: center;
+
+            padding: 30px 15px;
+
+            border-radius: 18px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            border:
+                1px solid
+                rgba(255,255,255,.07);
+        }
+
+        .stat strong {
+            display: block;
+
+            font-size: 31px;
+
+            margin-bottom: 8px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #8878ff,
+                    #60e7df
+                );
+
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat span {
+            color: #8f8fa2;
+            font-size: 13px;
+        }
+
+        /* =========================
+           DOWNLOAD
         ========================= */
 
         .download-section {
@@ -412,51 +798,98 @@
         }
 
         .download-box {
-            max-width: 850px;
+            max-width: 900px;
 
             margin: auto;
 
-            padding: 55px 30px;
+            padding: 65px 30px;
 
             border-radius: 30px;
 
             background:
                 linear-gradient(
                     135deg,
-                    rgba(91,72,255,0.18),
-                    rgba(35,214,209,0.10)
+                    rgba(91,72,255,.18),
+                    rgba(35,214,209,.09)
                 );
 
             border:
                 1px solid
-                rgba(255,255,255,0.1);
+                rgba(255,255,255,.11);
+
+            box-shadow:
+                0 25px 80px rgba(0,0,0,.2);
+        }
+
+        .download-box h2 {
+            font-size: 37px;
+            margin-bottom: 12px;
         }
 
         .version {
-            color: #65e8ff;
-
-            margin: 15px 0 25px;
+            color: #65e8df;
+            margin: 15px 0 22px;
         }
 
         .download-box p {
+            max-width: 650px;
+
+            margin: 0 auto 28px;
+
             color: #a8a8ba;
 
-            margin-bottom: 25px;
-
-            line-height: 1.9;
+            line-height: 2;
         }
 
+        .requirements {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin: 25px 0;
+        }
+
+        .requirement {
+            padding: 9px 14px;
+
+            border-radius: 9px;
+
+            background:
+                rgba(255,255,255,.05);
+
+            color: #a9a9bb;
+
+            font-size: 12px;
+        }
+
+        .release-link {
+            display: inline-block;
+
+            margin-top: 22px;
+
+            color: #65e8df;
+
+            transition: .2s;
+        }
+
+        .release-link:hover {
+            color: white;
+        }
 
         /* =========================
-           فوتر
+           FOOTER
         ========================= */
 
         footer {
-            padding: 35px 7%;
+            padding: 45px 7%;
 
             border-top:
                 1px solid
-                rgba(255,255,255,0.08);
+                rgba(255,255,255,.08);
 
             text-align: center;
 
@@ -466,18 +899,60 @@
         }
 
         footer strong {
-            color: #bfc0d0;
+            color: #c5c5d4;
         }
 
+        .footer-links {
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 18px;
+
+            margin: 15px 0;
+        }
+
+        .footer-links a {
+            color: #858599;
+
+            transition: .2s;
+        }
+
+        .footer-links a:hover {
+            color: #65e8df;
+        }
 
         /* =========================
-           موبایل
+           ANIMATION
         ========================= */
 
-        @media (max-width: 700px) {
+        .fade {
+            animation:
+                fadeUp .8s ease both;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 800px) {
 
             nav {
-                padding: 15px 5%;
+                padding: 13px 5%;
             }
 
             nav ul {
@@ -485,31 +960,82 @@
             }
 
             .hero {
-                min-height: 650px;
-            }
-
-            section {
-                padding: 70px 5%;
-            }
-
-            .hero p {
-                font-size: 16px;
+                min-height: 680px;
+                padding-top: 90px;
             }
 
             .hero h1 {
-                font-size: 58px;
+                letter-spacing: -2px;
+            }
+
+            section {
+                padding: 75px 5%;
+            }
+
+            .editor-body {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .loomscript-box {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
         }
 
+        @media (max-width: 500px) {
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .button {
+                width: 100%;
+            }
+
+            .editor-preview {
+                display: none;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .download-box {
+                padding: 45px 20px;
+            }
+
+            .download-box h2 {
+                font-size: 29px;
+            }
+        }
     </style>
 </head>
 
-
 <body>
 
-
 <!-- =========================
-     نوار بالا
+     NAVIGATION
 ========================= -->
 
 <nav>
@@ -520,39 +1046,41 @@
             🧵
         </div>
 
-        <span>
-            LoomEngine
-        </span>
+        <span>LoomEngine</span>
 
     </a>
-
 
     <ul>
 
         <li>
-            <a href="#features">
-                امکانات
-            </a>
+            <a href="#features">امکانات</a>
         </li>
 
         <li>
-            <a href="#languages">
-                زبان‌ها
-            </a>
+            <a href="#loomscript">LoomScript</a>
         </li>
 
         <li>
-            <a href="#download">
-                دانلود
-            </a>
+            <a href="#languages">زبان‌ها</a>
+        </li>
+
+        <li>
+            <a href="#download">دانلود</a>
         </li>
 
         <li>
             <a
                 href="https://github.com/StarLoom325/LoomEngine"
-                target="_blank"
-            >
-                گیت‌هاب
+                target="_blank">
+                GitHub
+            </a>
+        </li>
+
+        <li>
+            <a
+                class="nav-download"
+                href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe">
+                دانلود
             </a>
         </li>
 
@@ -561,85 +1089,166 @@
 </nav>
 
 
-
 <!-- =========================
-     صفحه اصلی
+     HERO
 ========================= -->
 
 <header class="hero">
 
-    <div class="hero-content">
-
+    <div class="hero-content fade">
 
         <div class="badge">
 
-            ✨ نسخه 2.1
+            <span class="status-dot"></span>
+
+            LoomEngine 2.2 منتشر شد
 
         </div>
-
 
         <h1>
             LoomEngine
         </h1>
 
-
         <h2>
-            بساز، خلاق باش، اجرا کن
+            ایده‌ات را به یک پروژه واقعی تبدیل کن
         </h2>
-
 
         <p>
 
-            LoomEngine یک محیط توسعه سبک و ساده
-            برای ساخت بازی‌ها، برنامه‌ها و پروژه‌های
-            مختلف با زبان‌های برنامه‌نویسی گوناگون است.
+            یک محیط توسعه سبک و ساده برای ساخت
+            <span class="hero-highlight">بازی‌های 2D</span>،
+            برنامه‌ها و پروژه‌های مختلف با
+            LoomScript و زبان‌های محبوب برنامه‌نویسی.
 
         </p>
 
-
         <div class="buttons">
 
-
-<a
-    class="button download"
-    href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe"
-    download
->
-    ⬇️
-    دانلود LoomEngine
-</a>
-
-
             <a
-                class="button github"
+                class="button download"
+                href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe">
 
-                href="https://github.com/StarLoom325/LoomEngine"
+                ⬇️
 
-                target="_blank"
-            >
-
-                ⭐
-
-                مشاهده در GitHub
+                دانلود LoomEngine
 
             </a>
 
+            <a
+                class="button github"
+                href="https://github.com/StarLoom325/LoomEngine"
+                target="_blank">
+
+                ⭐
+
+                مشاهده GitHub
+
+            </a>
 
         </div>
 
+        <!-- IDE PREVIEW -->
+
+        <div class="editor-preview">
+
+            <div class="editor-window">
+
+                <div class="editor-top">
+
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+                    <span class="window-dot"></span>
+
+                    <span class="editor-title">
+                        LoomEngine — Game.loom
+                    </span>
+
+                </div>
+
+                <div class="editor-body">
+
+                    <div class="sidebar">
+
+                        <div class="active">
+                            📁 MyGame
+                        </div>
+
+                        <div>
+                            ├─ 📄 Game.loom
+                        </div>
+
+                        <div>
+                            ├─ 📄 Player.loom
+                        </div>
+
+                        <div>
+                            └─ 📁 Assets
+                        </div>
+
+                    </div>
+
+                    <div class="code">
+
+                        <div class="code-header">
+                            Game.loom
+                        </div>
+
+                        <div>
+                            <span class="purple">
+                                &lt;{Loomcod.StarLoom}&gt;;
+                            </span>
+                        </div>
+
+                        <br>
+
+                        <div>
+                            <span class="purple">game</span>
+                            <span class="cyan"> "MyGame"</span>
+                        </div>
+
+                        <div>
+                            <span class="purple">window</span>
+                            <span class="orange"> 960 540</span>
+                        </div>
+
+                        <div>
+                            <span class="purple">background</span>
+                            <span class="green"> "#101522"</span>
+                        </div>
+
+                        <div>
+                            <span class="purple">player</span>
+                            <span class="cyan">
+                                "Hero" 100 100
+                            </span>
+                        </div>
+
+                        <br>
+
+                        <div>
+                            <span class="purple">
+                                &lt;{Loomcod.StarLoom}&gt;;
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
 </header>
 
 
-
 <!-- =========================
-     امکانات
+     FEATURES
 ========================= -->
 
 <section id="features">
-
 
     <div class="section-title">
 
@@ -648,179 +1257,204 @@
         </h2>
 
         <p>
-            ابزارهای موردنیاز برای شروع ساخت پروژه
+            ابزارهای ضروری برای ساخت و مدیریت پروژه
+            در یک محیط ساده و سبک.
         </p>
 
     </div>
 
-
-
     <div class="features">
 
-
         <div class="card">
-
-            <div class="card-icon">
-                💻
-            </div>
-
-            <h3>
-                ویرایشگر کد
-            </h3>
-
+            <div class="card-icon">💻</div>
+            <h3>ویرایشگر کد</h3>
             <p>
-                کدهای خود را در محیط توسعه
-                LoomEngine بنویسید و مدیریت کنید.
+                محیط کدنویسی شبیه IDEهای مدرن
+                برای نوشتن و مدیریت فایل‌های پروژه.
             </p>
-
         </div>
 
-
-
         <div class="card">
-
-            <div class="card-icon">
-                🎮
-            </div>
-
-            <h3>
-                توسعه بازی
-            </h3>
-
+            <div class="card-icon">🎮</div>
+            <h3>ساخت بازی 2D</h3>
             <p>
-                پروژه‌های بازی و برنامه‌های
-                تعاملی خود را ایجاد و اجرا کنید.
+                ساخت بازی‌های دوبعدی با LoomScript
+                و ابزارهای داخلی موتور.
             </p>
-
         </div>
 
-
-
         <div class="card">
-
-            <div class="card-icon">
-                📁
-            </div>
-
-            <h3>
-                مدیریت پروژه
-            </h3>
-
+            <div class="card-icon">▶️</div>
+            <h3>اجرای پروژه</h3>
             <p>
-                پوشه‌ها و فایل‌های پروژه را
-                مستقیماً مدیریت کنید.
+                اجرای مستقیم پروژه‌ها و کدهای
+                پشتیبانی‌شده از داخل محیط.
             </p>
-
         </div>
 
-
-
         <div class="card">
-
-            <div class="card-icon">
-                ▶️
-            </div>
-
-            <h3>
-                اجرای کد
-            </h3>
-
+            <div class="card-icon">📁</div>
+            <h3>مدیریت فایل</h3>
             <p>
-                پروژه‌ها و کدهای پشتیبانی‌شده
-                را مستقیماً اجرا کنید.
+                ایجاد، حذف، وارد کردن و مدیریت
+                فایل‌ها و پوشه‌های پروژه.
             </p>
-
         </div>
 
-
-
         <div class="card">
-
-            <div class="card-icon">
-                📝
-            </div>
-
-            <h3>
-                دفتر یادداشت
-            </h3>
-
+            <div class="card-icon">🔎</div>
+            <h3>جستجوی پروژه</h3>
             <p>
-                ایده‌ها و یادداشت‌های خود را
-                در دفتر داخلی LoomEngine ذخیره کنید.
+                پیدا کردن متن و کد موردنظر در
+                فایل‌های پروژه.
             </p>
-
         </div>
 
-
-
         <div class="card">
-
-            <div class="card-icon">
-                🧮
-            </div>
-
-            <h3>
-                ماشین حساب
-            </h3>
-
+            <div class="card-icon">🧩</div>
+            <h3>چند زبان</h3>
             <p>
-                یک ماشین حساب داخلی برای
-                محاسبات روزمره در اختیار شماست.
+                امکان کار هم‌زمان با LoomScript،
+                Python، C#، C++ و زبان‌های وب.
             </p>
-
         </div>
 
-
-
         <div class="card">
-
-            <div class="card-icon">
-                🎨
-            </div>
-
-            <h3>
-                SVG و ICO
-            </h3>
-
+            <div class="card-icon">🌙</div>
+            <h3>Dark UI</h3>
             <p>
-                با فایل‌های گرافیکی SVG و
-                آیکون‌های ICO کار کنید.
+                محیط تاریک و مدرن برای کار راحت‌تر
+                در زمان‌های طولانی.
             </p>
-
         </div>
 
-
-
         <div class="card">
-
-            <div class="card-icon">
-                🌙
-            </div>
-
-            <h3>
-                محیط تاریک
-            </h3>
-
+            <div class="card-icon">⚡</div>
+            <h3>سبک و سریع</h3>
             <p>
-                رابط کاربری مدرن و تاریک
-                برای کار راحت‌تر با کد.
+                طراحی شده با تمرکز روی سادگی،
+                سرعت و مصرف پایین منابع.
             </p>
-
         </div>
-
 
     </div>
 
 </section>
 
 
+<!-- =========================
+     LOOMSCRIPT
+========================= -->
+
+<section id="loomscript" class="loomscript-section">
+
+    <div class="section-title">
+
+        <h2>
+            LoomScript
+        </h2>
+
+        <p>
+            زبان اختصاصی LoomEngine برای ساخت بازی‌های 2D
+        </p>
+
+    </div>
+
+    <div class="loomscript-box">
+
+        <div class="loom-info">
+
+            <h3>
+                🧵 زبان خود LoomEngine
+            </h3>
+
+            <p>
+
+                LoomScript یک زبان ساده و اختصاصی است
+                که برای ساخت پروژه‌های دوبعدی در
+                LoomEngine طراحی شده است.
+
+            </p>
+
+            <span class="loom-tag">
+                🎮 2D Game
+            </span>
+
+            <span class="loom-tag">
+                ⚡ ساده
+            </span>
+
+            <span class="loom-tag">
+                ▶️ اجرای مستقیم
+            </span>
+
+            <span class="loom-tag">
+                🧩 اختصاصی
+            </span>
+
+        </div>
+
+        <div class="loom-code">
+
+            <div class="code-header">
+                Game.loom
+            </div>
+
+            <div>
+                <span class="purple">
+                    &lt;{Loomcod.StarLoom}&gt;;
+                </span>
+            </div>
+
+            <div>
+                <span class="purple">game</span>
+                <span class="cyan"> "MyGame"</span>
+            </div>
+
+            <div>
+                <span class="purple">window</span>
+                <span class="orange"> 960 540</span>
+            </div>
+
+            <div>
+                <span class="purple">background</span>
+                <span class="green">
+                    "#182030"
+                </span>
+            </div>
+
+            <div>
+                <span class="purple">player</span>
+                <span class="cyan">
+                    "Hero" 100 100
+                </span>
+            </div>
+
+            <div>
+                <span class="purple">text</span>
+                <span class="green">
+                    "Hello Loom!" 20 20
+                </span>
+            </div>
+
+            <div>
+                <span class="purple">
+                    &lt;{Loomcod.StarLoom}&gt;;
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 
 <!-- =========================
-     زبان‌ها
+     LANGUAGES
 ========================= -->
 
 <section id="languages">
-
 
     <div class="section-title">
 
@@ -829,143 +1463,166 @@
         </h2>
 
         <p>
-            پروژه‌های مختلف خود را با زبان موردنظر بسازید.
+            LoomEngine فقط به یک زبان محدود نیست.
         </p>
 
     </div>
 
-
-
     <div class="languages">
 
+        <span class="language loom">
+            🧵 LoomScript
+        </span>
 
         <span class="language">
             🐍 Python
         </span>
 
-
         <span class="language">
-            ⚙️ C
+            🔷 C#
         </span>
-
 
         <span class="language">
             ⚙️ C++
         </span>
 
-
-        <span class="language">
-            🔷 C#
-        </span>
-
-
-        <span class="language">
-            ☕ Java
-        </span>
-
-
         <span class="language">
             🟨 JavaScript
         </span>
-
-
-        <span class="language">
-            🔵 TypeScript
-        </span>
-
 
         <span class="language">
             🌐 HTML
         </span>
 
-
         <span class="language">
             🎨 CSS
         </span>
 
-
         <span class="language">
-            💠 SVG
+            📄 Text
         </span>
-
-
-        <span class="language">
-            🖼️ ICO
-        </span>
-
 
     </div>
 
 </section>
 
 
-
 <!-- =========================
-     دانلود
+     STATS
 ========================= -->
 
-<section
-    id="download"
-    class="download-section"
->
+<section>
 
+    <div class="section-title">
+
+        <h2>
+            LoomEngine در یک نگاه
+        </h2>
+
+        <p>
+            یک محیط کوچک برای ایده‌های بزرگ.
+        </p>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong>2.2</strong>
+            <span>نسخه فعلی</span>
+        </div>
+
+        <div class="stat">
+            <strong>7+</strong>
+            <span>زبان و فرمت</span>
+        </div>
+
+        <div class="stat">
+            <strong>2D</strong>
+            <span>تمرکز LoomScript</span>
+        </div>
+
+        <div class="stat">
+            <strong>F5</strong>
+            <span>اجرای سریع پروژه</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DOWNLOAD
+========================= -->
+
+<section id="download" class="download-section">
 
     <div class="download-box">
 
-
         <h2>
-            دانلود LoomEngine
+            آماده‌ای با LoomEngine شروع کنی؟
         </h2>
 
-
         <div class="version">
-            آخرین نسخه: 2.1
+            آخرین نسخه: LoomEngine 2.2
         </div>
-
 
         <p>
 
-            نسخه ویندوز LoomEngine را
-            مستقیماً از GitHub دانلود کنید.
+            نسخه ویندوز LoomEngine را دریافت کن
+            و پروژه بعدی خودت را بساز.
 
         </p>
 
+        <div class="requirements">
 
-<a
-    class="button download"
-    href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe"
-    download
->
-    ⬇️
-    دانلود LoomEngine
-</a>
+            <span class="requirement">
+                🪟 Windows
+            </span>
 
+            <span class="requirement">
+                ⚡ سبک
+            </span>
 
-        <br>
-        <br>
+            <span class="requirement">
+                🎮 2D
+            </span>
 
+            <span class="requirement">
+                🧵 LoomScript
+            </span>
+
+        </div>
 
         <a
-            href="https://github.com/StarLoom325/LoomEngine/releases/tag/Loom"
+            class="button download"
+            href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe">
 
-            target="_blank"
+            ⬇️
 
-            style="color:#65e8ff;"
-        >
-
-            مشاهده صفحه نسخه در GitHub ←
+            دانلود LoomEngine.exe
 
         </a>
 
+        <br>
+
+        <a
+            class="release-link"
+            href="https://github.com/StarLoom325/LoomEngine/releases"
+            target="_blank">
+
+            مشاهده تمام نسخه‌ها در GitHub ←
+
+        </a>
 
     </div>
 
 </section>
 
 
-
 <!-- =========================
-     پایین سایت
+     FOOTER
 ========================= -->
 
 <footer>
@@ -978,19 +1635,43 @@
             LoomEngine
         </strong>
 
-        — ساخته‌شده برای خلاق‌ها
+        — ساخته‌شده برای خلاق‌ها 🧵
 
     </p>
 
+    <div class="footer-links">
+
+        <a href="#features">
+            امکانات
+        </a>
+
+        <a href="#loomscript">
+            LoomScript
+        </a>
+
+        <a href="#languages">
+            زبان‌ها
+        </a>
+
+        <a href="#download">
+            دانلود
+        </a>
+
+        <a
+            href="https://github.com/StarLoom325/LoomEngine"
+            target="_blank">
+
+            GitHub
+
+        </a>
+
+    </div>
 
     <p>
-
-        پروژه LoomEngine در GitHub
-
+        LoomEngine — Build. Create. Run.
     </p>
 
 </footer>
-
 
 </body>
 </html>
