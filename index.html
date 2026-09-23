@@ -5,16 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LoomEngine 2.3 | محیط توسعه و بازی‌سازی</title>
+    <title>LoomEngine 2.3 | موتور و محیط توسعه بازی‌سازی</title>
 
     <meta name="description"
-          content="LoomEngine یک محیط توسعه سبک برای ساخت بازی و پروژه با LoomScript، Python، C#، C++، JavaScript و HTML/CSS است.">
+        content="LoomEngine یک محیط توسعه سبک برای ساخت بازی و پروژه با LoomScript، Python، C#، C++، JavaScript و HTML/CSS است.">
+
+    <meta name="theme-color" content="#080810">
 
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        :root {
+            --bg: #070710;
+            --panel: rgba(18, 18, 31, .72);
+            --panel-solid: #11111c;
+            --purple: #7563ff;
+            --purple-light: #a99dff;
+            --cyan: #5ee9df;
+            --green: #73e6a3;
+            --text: #f7f7ff;
+            --muted: #9d9db2;
+            --border: rgba(255, 255, 255, .09);
         }
 
         html {
@@ -24,11 +39,11 @@
         body {
             font-family: Tahoma, Arial, sans-serif;
             background:
-                radial-gradient(circle at 15% 5%, rgba(105, 70, 255, .30), transparent 30%),
-                radial-gradient(circle at 85% 15%, rgba(20, 220, 210, .18), transparent 28%),
-                radial-gradient(circle at 50% 100%, rgba(70, 40, 180, .16), transparent 35%),
-                #080810;
-            color: #fff;
+                radial-gradient(circle at 15% 0%, rgba(112, 83, 255, .25), transparent 28%),
+                radial-gradient(circle at 90% 10%, rgba(28, 220, 211, .15), transparent 25%),
+                radial-gradient(circle at 50% 100%, rgba(87, 54, 220, .14), transparent 35%),
+                var(--bg);
+            color: var(--text);
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -38,22 +53,34 @@
             position: fixed;
             inset: 0;
             pointer-events: none;
+            z-index: -1;
             background-image:
                 linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
             background-size: 45px 45px;
-            mask-image: linear-gradient(to bottom, black, transparent);
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            left: -250px;
+            bottom: -250px;
+            border-radius: 50%;
+            background: rgba(90, 70, 255, .10);
+            filter: blur(80px);
+            pointer-events: none;
             z-index: -1;
         }
 
         a {
-            text-decoration: none;
             color: inherit;
+            text-decoration: none;
         }
 
-        /* =========================
-           NAVBAR
-        ========================= */
+        /* NAVBAR */
 
         nav {
             position: sticky;
@@ -61,31 +88,32 @@
             z-index: 1000;
 
             width: 100%;
-            padding: 14px 6%;
+            padding: 13px 6%;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 25px;
 
-            background: rgba(7, 7, 15, .76);
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
+            background: rgba(7, 7, 15, .72);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
 
-            border-bottom: 1px solid rgba(255,255,255,.08);
+            border-bottom: 1px solid var(--border);
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 12px;
-
             font-size: 21px;
             font-weight: bold;
+            white-space: nowrap;
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
+            width: 44px;
+            height: 44px;
 
             display: flex;
             align-items: center;
@@ -94,208 +122,189 @@
             border-radius: 14px;
 
             background:
-                linear-gradient(135deg, #7055ff, #22ded4);
+                linear-gradient(135deg, #725cff, #25ded4);
 
             box-shadow:
-                0 0 35px rgba(90,100,255,.35);
+                0 0 35px rgba(99, 93, 255, .30),
+                inset 0 1px 0 rgba(255,255,255,.3);
 
-            font-size: 23px;
+            font-size: 22px;
         }
 
         .logo span {
-            background:
-                linear-gradient(90deg, #fff, #8f82ff, #5de9df);
-
+            background: linear-gradient(90deg, #fff, #9c8fff, #60ebe1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         nav ul {
             list-style: none;
-
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 24px;
         }
 
         nav ul a {
             color: #bdbdce;
-            transition: .2s;
+            transition: .25s;
+            font-size: 14px;
         }
 
         nav ul a:hover {
-            color: #63e8df;
+            color: var(--cyan);
         }
 
         .nav-download {
             padding: 10px 17px;
-            border-radius: 10px;
-
-            background:
-                linear-gradient(135deg, #6657ff, #22cfc9);
-
+            border-radius: 11px;
+            background: linear-gradient(135deg, #6657ff, #22cfc9);
             color: white !important;
+            box-shadow: 0 8px 25px rgba(80, 100, 255, .20);
         }
 
-        /* =========================
-           HERO
-        ========================= */
+        /* HERO */
 
         .hero {
-            min-height: 790px;
+            min-height: 800px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
             text-align: center;
-
-            padding: 110px 20px 90px;
+            padding: 105px 20px 80px;
 
             position: relative;
+            overflow: hidden;
         }
 
         .hero::before {
             content: "";
-
             position: absolute;
 
-            width: 420px;
-            height: 420px;
+            width: 650px;
+            height: 650px;
+
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
 
             border-radius: 50%;
 
             background:
                 radial-gradient(
                     circle,
-                    rgba(104,78,255,.18),
+                    rgba(106, 78, 255, .17),
+                    rgba(52, 220, 210, .05) 40%,
                     transparent 70%
                 );
 
-            filter: blur(10px);
+            filter: blur(12px);
             pointer-events: none;
         }
 
         .hero-content {
             position: relative;
-            max-width: 950px;
+            max-width: 1050px;
+            width: 100%;
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
 
             padding: 9px 18px;
 
             border-radius: 50px;
 
-            background: rgba(99,232,223,.07);
+            background: rgba(99, 232, 223, .07);
+            border: 1px solid rgba(99, 232, 223, .22);
 
-            border:
-                1px solid
-                rgba(99,232,223,.22);
-
-            color: #63e8df;
+            color: var(--cyan);
 
             margin-bottom: 28px;
-
             font-size: 14px;
+
+            box-shadow:
+                0 0 30px rgba(60, 220, 210, .05);
         }
 
         .status-dot {
             width: 8px;
             height: 8px;
-
             border-radius: 50%;
-
-            background: #63e8df;
-
-            box-shadow:
-                0 0 15px #63e8df;
+            background: var(--cyan);
+            box-shadow: 0 0 15px var(--cyan);
+            animation: pulse 2s infinite;
         }
 
         .hero h1 {
-            font-size: clamp(58px, 11vw, 120px);
-
+            font-size: clamp(58px, 11vw, 125px);
             line-height: .9;
-
             margin-bottom: 30px;
-
-            letter-spacing: -4px;
+            letter-spacing: -5px;
 
             background:
                 linear-gradient(
                     100deg,
-                    #fff 15%,
-                    #8d7dff 50%,
-                    #56e8df 85%
+                    #fff 10%,
+                    #8e7eff 50%,
+                    #55e9df 90%
                 );
 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+
+            filter: drop-shadow(0 20px 45px rgba(100, 80, 255, .16));
         }
 
         .hero h2 {
             font-size: clamp(23px, 4vw, 40px);
-
             color: #dedeee;
-
             margin-bottom: 22px;
         }
 
         .hero p {
-            max-width: 760px;
-
+            max-width: 780px;
             margin: auto;
-
             color: #a7a7bb;
-
             line-height: 2;
-
             font-size: 18px;
         }
 
         .hero-highlight {
-            color: #65e8df;
+            color: var(--cyan);
+            font-weight: bold;
         }
 
-        /* =========================
-           BUTTONS
-        ========================= */
+        /* BUTTONS */
 
         .buttons {
             margin-top: 38px;
-
             display: flex;
             justify-content: center;
-
             gap: 14px;
-
             flex-wrap: wrap;
         }
 
         .button {
             display: inline-flex;
-
             align-items: center;
             justify-content: center;
-
             gap: 9px;
 
             padding: 15px 27px;
-
             border-radius: 13px;
 
             font-weight: bold;
-
             transition: .25s;
 
             border: 1px solid transparent;
         }
 
         .button:hover {
-            transform: translateY(-4px);
+            transform: translateY(-4px) scale(1.01);
         }
 
         .download {
@@ -303,20 +312,17 @@
                 linear-gradient(135deg, #6558ff, #20d4cc);
 
             box-shadow:
-                0 12px 40px rgba(55,130,255,.24);
+                0 12px 40px rgba(55, 130, 255, .24);
         }
 
         .download:hover {
             box-shadow:
-                0 17px 50px rgba(55,150,255,.40);
+                0 17px 55px rgba(55, 150, 255, .42);
         }
 
         .github {
             background: rgba(255,255,255,.045);
-
-            border-color:
-                rgba(255,255,255,.13);
-
+            border-color: rgba(255,255,255,.13);
             color: #dedee8;
         }
 
@@ -324,15 +330,11 @@
             background: rgba(255,255,255,.09);
         }
 
-        /* =========================
-           IDE PREVIEW
-        ========================= */
+        /* EDITOR */
 
         .editor-preview {
             max-width: 1000px;
-
-            margin: 20px auto 0;
-
+            margin: 45px auto 0;
             padding: 7px;
 
             border-radius: 20px;
@@ -340,27 +342,23 @@
             background:
                 linear-gradient(
                     135deg,
-                    rgba(126,92,255,.35),
-                    rgba(38,220,210,.22)
+                    rgba(126,92,255,.42),
+                    rgba(38,220,210,.25)
                 );
 
             box-shadow:
-                0 30px 100px rgba(0,0,0,.35);
+                0 30px 100px rgba(0,0,0,.40),
+                0 0 80px rgba(80,70,255,.08);
         }
 
         .editor-window {
             overflow: hidden;
-
             border-radius: 15px;
 
             background: #11111b;
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.08);
 
             text-align: left;
-
             direction: ltr;
         }
 
@@ -373,98 +371,63 @@
             padding: 0 15px;
 
             background: #181824;
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.07);
+            border-bottom: 1px solid rgba(255,255,255,.07);
         }
 
         .window-dot {
             width: 10px;
             height: 10px;
-
             border-radius: 50%;
-
             margin-right: 7px;
-
             background: #5c5c70;
         }
 
         .editor-title {
             margin-left: 15px;
-
             color: #8e8ea3;
-
             font-size: 12px;
         }
 
         .editor-body {
-            min-height: 260px;
-
+            min-height: 285px;
             display: grid;
-
             grid-template-columns: 190px 1fr;
         }
 
         .sidebar {
             padding: 20px 15px;
-
             background: #0d0d15;
-
-            border-right:
-                1px solid
-                rgba(255,255,255,.06);
+            border-right: 1px solid rgba(255,255,255,.06);
 
             color: #77778b;
-
             font-family: Consolas, monospace;
-
             font-size: 13px;
-
             line-height: 2;
         }
 
         .sidebar .active {
-            color: #65e8df;
+            color: var(--cyan);
         }
 
         .code {
             padding: 25px;
 
-            font-family:
-                Consolas,
-                "Courier New",
-                monospace;
-
+            font-family: Consolas, "Courier New", monospace;
             font-size: 14px;
-
             line-height: 1.9;
 
             color: #d7d7e5;
         }
 
-        .purple {
-            color: #a992ff;
-        }
+        .purple { color: #a992ff; }
+        .cyan { color: #62e8df; }
+        .green { color: #75d99c; }
+        .orange { color: #ffbd73; }
 
-        .cyan {
-            color: #62e8df;
-        }
-
-        .green {
-            color: #75d99c;
-        }
-
-        .orange {
-            color: #ffbd73;
-        }
-
-        /* =========================
-           SECTIONS
-        ========================= */
+        /* SECTIONS */
 
         section {
-            padding: 105px 7%;
+            padding: 110px 7%;
         }
 
         .section-title {
@@ -475,7 +438,6 @@
 
         .section-title h2 {
             font-size: clamp(30px, 5vw, 44px);
-
             margin-bottom: 14px;
         }
 
@@ -484,23 +446,14 @@
             line-height: 1.9;
         }
 
-        /* =========================
-           FEATURES
-        ========================= */
+        /* FEATURES */
 
         .features {
             max-width: 1200px;
-
             margin: auto;
 
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(230px, 1fr)
-                );
-
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
             gap: 20px;
         }
 
@@ -515,15 +468,12 @@
                 linear-gradient(
                     145deg,
                     rgba(255,255,255,.055),
-                    rgba(255,255,255,.025)
+                    rgba(255,255,255,.018)
                 );
 
-            border:
-                1px solid
-                rgba(255,255,255,.09);
+            border: 1px solid rgba(255,255,255,.09);
 
             transition: .3s;
-
             overflow: hidden;
         }
 
@@ -532,18 +482,37 @@
 
             position: absolute;
 
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
 
-            top: -60px;
-            left: -60px;
+            top: -90px;
+            left: -90px;
 
             border-radius: 50%;
 
-            background:
-                rgba(106,85,255,.16);
+            background: rgba(106,85,255,.16);
+            filter: blur(25px);
+        }
 
-            filter: blur(20px);
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent,
+                    rgba(255,255,255,.035),
+                    transparent
+                );
+
+            transform: translateX(-100%);
+            transition: .6s;
+        }
+
+        .card:hover::after {
+            transform: translateX(100%);
         }
 
         .card:hover {
@@ -567,10 +536,13 @@
             border-radius: 15px;
 
             background:
-                rgba(105,87,255,.12);
+                linear-gradient(
+                    135deg,
+                    rgba(105,87,255,.16),
+                    rgba(32,210,202,.08)
+                );
 
             margin-bottom: 20px;
-
             font-size: 27px;
         }
 
@@ -585,9 +557,7 @@
             font-size: 14px;
         }
 
-        /* =========================
-           LOOMSCRIPT
-        ========================= */
+        /* LOOMSCRIPT */
 
         .loomscript-section {
             position: relative;
@@ -595,18 +565,13 @@
 
         .loomscript-box {
             max-width: 1100px;
-
             margin: auto;
 
             display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
+            grid-template-columns: 1fr 1fr;
             gap: 25px;
 
             padding: 8px;
-
             border-radius: 28px;
 
             background:
@@ -615,18 +580,15 @@
                     rgba(109,79,255,.35),
                     rgba(30,210,201,.20)
                 );
+
+            box-shadow: 0 30px 90px rgba(0,0,0,.20);
         }
 
         .loom-info,
         .loom-code {
             border-radius: 21px;
-
             background: #11111a;
-
-            border:
-                1px solid
-                rgba(255,255,255,.07);
-
+            border: 1px solid rgba(255,255,255,.07);
             padding: 35px;
         }
 
@@ -643,17 +605,13 @@
 
         .loom-tag {
             display: inline-block;
-
             padding: 8px 13px;
-
             border-radius: 9px;
 
             background: rgba(102,84,255,.13);
-
             color: #a99bff;
 
             margin: 4px;
-
             font-size: 13px;
         }
 
@@ -662,9 +620,7 @@
             text-align: left;
 
             font-family: Consolas, monospace;
-
             color: #d7d7e5;
-
             line-height: 1.9;
 
             overflow-x: auto;
@@ -675,21 +631,15 @@
             margin-bottom: 17px;
         }
 
-        /* =========================
-           LANGUAGES
-        ========================= */
+        /* LANGUAGES */
 
         .languages {
             max-width: 1000px;
-
             margin: auto;
 
             display: flex;
-
             flex-wrap: wrap;
-
             justify-content: center;
-
             gap: 12px;
         }
 
@@ -698,15 +648,10 @@
 
             border-radius: 13px;
 
-            background:
-                rgba(255,255,255,.045);
-
-            border:
-                1px solid
-                rgba(255,255,255,.09);
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.09);
 
             color: #d8d8e4;
-
             transition: .2s;
         }
 
@@ -734,20 +679,14 @@
             color: #b8b0ff;
         }
 
-        /* =========================
-           STATS
-        ========================= */
+        /* STATS */
 
         .stats {
             max-width: 1000px;
-
             margin: auto;
 
             display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
 
@@ -758,19 +697,21 @@
 
             border-radius: 18px;
 
-            background:
-                rgba(255,255,255,.04);
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.07);
 
-            border:
-                1px solid
-                rgba(255,255,255,.07);
+            transition: .25s;
+        }
+
+        .stat:hover {
+            transform: translateY(-5px);
+            border-color: rgba(100,230,220,.20);
         }
 
         .stat strong {
             display: block;
 
             font-size: 31px;
-
             margin-bottom: 8px;
 
             background:
@@ -789,9 +730,7 @@
             font-size: 13px;
         }
 
-        /* =========================
-           DOWNLOAD
-        ========================= */
+        /* DOWNLOAD */
 
         .download-section {
             text-align: center;
@@ -799,7 +738,6 @@
 
         .download-box {
             max-width: 900px;
-
             margin: auto;
 
             padding: 65px 30px;
@@ -813,9 +751,7 @@
                     rgba(35,214,209,.09)
                 );
 
-            border:
-                1px solid
-                rgba(255,255,255,.11);
+            border: 1px solid rgba(255,255,255,.11);
 
             box-shadow:
                 0 25px 80px rgba(0,0,0,.2);
@@ -827,52 +763,39 @@
         }
 
         .version {
-            color: #65e8df;
+            color: var(--cyan);
             margin: 15px 0 22px;
         }
 
         .download-box p {
             max-width: 650px;
-
             margin: 0 auto 28px;
 
             color: #a8a8ba;
-
             line-height: 2;
         }
 
         .requirements {
             display: flex;
-
             justify-content: center;
-
             flex-wrap: wrap;
-
             gap: 10px;
-
             margin: 25px 0;
         }
 
         .requirement {
             padding: 9px 14px;
-
             border-radius: 9px;
 
-            background:
-                rgba(255,255,255,.05);
-
+            background: rgba(255,255,255,.05);
             color: #a9a9bb;
-
             font-size: 12px;
         }
 
         .release-link {
             display: inline-block;
-
             margin-top: 22px;
-
-            color: #65e8df;
-
+            color: var(--cyan);
             transition: .2s;
         }
 
@@ -880,21 +803,17 @@
             color: white;
         }
 
-        /* =========================
-           FOOTER
-        ========================= */
+        /* FOOTER */
 
         footer {
             padding: 45px 7%;
 
             border-top:
-                1px solid
-                rgba(255,255,255,.08);
+                1px solid rgba(255,255,255,.08);
 
             text-align: center;
 
             color: #777789;
-
             line-height: 2;
         }
 
@@ -904,33 +823,25 @@
 
         .footer-links {
             display: flex;
-
             justify-content: center;
-
             flex-wrap: wrap;
-
             gap: 18px;
-
             margin: 15px 0;
         }
 
         .footer-links a {
             color: #858599;
-
             transition: .2s;
         }
 
         .footer-links a:hover {
-            color: #65e8df;
+            color: var(--cyan);
         }
 
-        /* =========================
-           ANIMATION
-        ========================= */
+        /* ANIMATIONS */
 
         .fade {
-            animation:
-                fadeUp .8s ease both;
+            animation: fadeUp .8s ease both;
         }
 
         @keyframes fadeUp {
@@ -945,9 +856,19 @@
             }
         }
 
-        /* =========================
-           MOBILE
-        ========================= */
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .45;
+                transform: scale(.75);
+            }
+        }
+
+        /* MOBILE */
 
         @media (max-width: 800px) {
 
@@ -985,8 +906,7 @@
             }
 
             .stats {
-                grid-template-columns:
-                    repeat(2, 1fr);
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -1034,44 +954,27 @@
 
 <body>
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- NAVIGATION -->
 
 <nav>
 
     <a href="#" class="logo">
-
-        <div class="logo-icon">
-            🧵
-        </div>
-
+        <div class="logo-icon">🧵</div>
         <span>LoomEngine</span>
-
     </a>
 
     <ul>
 
-        <li>
-            <a href="#features">امکانات</a>
-        </li>
-
-        <li>
-            <a href="#loomscript">LoomScript</a>
-        </li>
-
-        <li>
-            <a href="#languages">زبان‌ها</a>
-        </li>
-
-        <li>
-            <a href="#download">دانلود</a>
-        </li>
+        <li><a href="#features">امکانات</a></li>
+        <li><a href="#loomscript">LoomScript</a></li>
+        <li><a href="#languages">زبان‌ها</a></li>
+        <li><a href="#download">دانلود</a></li>
 
         <li>
             <a
                 href="https://github.com/StarLoom325/LoomEngine"
-                target="_blank">
+                target="_blank"
+                rel="noopener">
                 GitHub
             </a>
         </li>
@@ -1089,37 +992,28 @@
 </nav>
 
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- HERO -->
 
 <header class="hero">
 
     <div class="hero-content fade">
 
         <div class="badge">
-
             <span class="status-dot"></span>
-
-            LoomEngine 2.2 منتشر شد
-
+            LoomEngine 2.3 منتشر شد
         </div>
 
-        <h1>
-            LoomEngine
-        </h1>
+        <h1>LoomEngine</h1>
 
         <h2>
             ایده‌ات را به یک پروژه واقعی تبدیل کن
         </h2>
 
         <p>
-
             یک محیط توسعه سبک و ساده برای ساخت
             <span class="hero-highlight">بازی‌های 2D</span>،
             برنامه‌ها و پروژه‌های مختلف با
             LoomScript و زبان‌های محبوب برنامه‌نویسی.
-
         </p>
 
         <div class="buttons">
@@ -1127,25 +1021,19 @@
             <a
                 class="button download"
                 href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe">
-
-                ⬇️
-
-                دانلود LoomEngine
-
+                ⬇️ دانلود LoomEngine
             </a>
 
             <a
                 class="button github"
                 href="https://github.com/StarLoom325/LoomEngine"
-                target="_blank">
-
-                ⭐
-
-                مشاهده GitHub
-
+                target="_blank"
+                rel="noopener">
+                ⭐ مشاهده GitHub
             </a>
 
         </div>
+
 
         <!-- IDE PREVIEW -->
 
@@ -1173,17 +1061,9 @@
                             📁 MyGame
                         </div>
 
-                        <div>
-                            ├─ 📄 Game.loom
-                        </div>
-
-                        <div>
-                            ├─ 📄 Player.loom
-                        </div>
-
-                        <div>
-                            └─ 📁 Assets
-                        </div>
+                        <div>├─ 📄 Game.loom</div>
+                        <div>├─ 📄 Player.loom</div>
+                        <div>└─ 📁 Assets</div>
 
                     </div>
 
@@ -1218,9 +1098,7 @@
 
                         <div>
                             <span class="purple">player</span>
-                            <span class="cyan">
-                                "Hero" 100 100
-                            </span>
+                            <span class="cyan"> "Hero" 100 100</span>
                         </div>
 
                         <br>
@@ -1244,17 +1122,13 @@
 </header>
 
 
-<!-- =========================
-     FEATURES
-========================= -->
+<!-- FEATURES -->
 
 <section id="features">
 
     <div class="section-title">
 
-        <h2>
-            امکانات LoomEngine
-        </h2>
+        <h2>امکانات LoomEngine</h2>
 
         <p>
             ابزارهای ضروری برای ساخت و مدیریت پروژه
@@ -1342,17 +1216,13 @@
 </section>
 
 
-<!-- =========================
-     LOOMSCRIPT
-========================= -->
+<!-- LOOMSCRIPT -->
 
 <section id="loomscript" class="loomscript-section">
 
     <div class="section-title">
 
-        <h2>
-            LoomScript
-        </h2>
+        <h2>LoomScript</h2>
 
         <p>
             زبان اختصاصی LoomEngine برای ساخت بازی‌های 2D
@@ -1364,33 +1234,18 @@
 
         <div class="loom-info">
 
-            <h3>
-                🧵 زبان خود LoomEngine
-            </h3>
+            <h3>🧵 زبان خود LoomEngine</h3>
 
             <p>
-
                 LoomScript یک زبان ساده و اختصاصی است
                 که برای ساخت پروژه‌های دوبعدی در
                 LoomEngine طراحی شده است.
-
             </p>
 
-            <span class="loom-tag">
-                🎮 2D Game
-            </span>
-
-            <span class="loom-tag">
-                ⚡ ساده
-            </span>
-
-            <span class="loom-tag">
-                ▶️ اجرای مستقیم
-            </span>
-
-            <span class="loom-tag">
-                🧩 اختصاصی
-            </span>
+            <span class="loom-tag">🎮 2D Game</span>
+            <span class="loom-tag">⚡ ساده</span>
+            <span class="loom-tag">▶️ اجرای مستقیم</span>
+            <span class="loom-tag">🧩 اختصاصی</span>
 
         </div>
 
@@ -1418,23 +1273,17 @@
 
             <div>
                 <span class="purple">background</span>
-                <span class="green">
-                    "#182030"
-                </span>
+                <span class="green"> "#182030"</span>
             </div>
 
             <div>
                 <span class="purple">player</span>
-                <span class="cyan">
-                    "Hero" 100 100
-                </span>
+                <span class="cyan"> "Hero" 100 100</span>
             </div>
 
             <div>
                 <span class="purple">text</span>
-                <span class="green">
-                    "Hello Loom!" 20 20
-                </span>
+                <span class="green"> "Hello Loom!" 20 20</span>
             </div>
 
             <div>
@@ -1450,17 +1299,13 @@
 </section>
 
 
-<!-- =========================
-     LANGUAGES
-========================= -->
+<!-- LANGUAGES -->
 
 <section id="languages">
 
     <div class="section-title">
 
-        <h2>
-            زبان‌های پشتیبانی‌شده
-        </h2>
+        <h2>زبان‌های پشتیبانی‌شده</h2>
 
         <p>
             LoomEngine فقط به یک زبان محدود نیست.
@@ -1470,54 +1315,27 @@
 
     <div class="languages">
 
-        <span class="language loom">
-            🧵 LoomScript
-        </span>
-
-        <span class="language">
-            🐍 Python
-        </span>
-
-        <span class="language">
-            🔷 C#
-        </span>
-
-        <span class="language">
-            ⚙️ C++
-        </span>
-
-        <span class="language">
-            🟨 JavaScript
-        </span>
-
-        <span class="language">
-            🌐 HTML
-        </span>
-
-        <span class="language">
-            🎨 CSS
-        </span>
-
-        <span class="language">
-            📄 Text
-        </span>
+        <span class="language loom">🧵 LoomScript</span>
+        <span class="language">🐍 Python</span>
+        <span class="language">🔷 C#</span>
+        <span class="language">⚙️ C++</span>
+        <span class="language">🟨 JavaScript</span>
+        <span class="language">🌐 HTML</span>
+        <span class="language">🎨 CSS</span>
+        <span class="language">📄 Text</span>
 
     </div>
 
 </section>
 
 
-<!-- =========================
-     STATS
-========================= -->
+<!-- STATS -->
 
 <section>
 
     <div class="section-title">
 
-        <h2>
-            LoomEngine در یک نگاه
-        </h2>
+        <h2>LoomEngine در یک نگاه</h2>
 
         <p>
             یک محیط کوچک برای ایده‌های بزرگ.
@@ -1552,9 +1370,7 @@
 </section>
 
 
-<!-- =========================
-     DOWNLOAD
-========================= -->
+<!-- DOWNLOAD -->
 
 <section id="download" class="download-section">
 
@@ -1569,40 +1385,23 @@
         </div>
 
         <p>
-
             نسخه ویندوز LoomEngine را دریافت کن
             و پروژه بعدی خودت را بساز.
-
         </p>
 
         <div class="requirements">
 
-            <span class="requirement">
-                🪟 Windows
-            </span>
-
-            <span class="requirement">
-                ⚡ سبک
-            </span>
-
-            <span class="requirement">
-                🎮 2D
-            </span>
-
-            <span class="requirement">
-                🧵 LoomScript
-            </span>
+            <span class="requirement">🪟 Windows</span>
+            <span class="requirement">⚡ سبک</span>
+            <span class="requirement">🎮 2D</span>
+            <span class="requirement">🧵 LoomScript</span>
 
         </div>
 
         <a
             class="button download"
             href="https://github.com/StarLoom325/LoomEngine/releases/download/v1.6/LoomEngine.exe">
-
-            ⬇️
-
-            دانلود LoomEngine.exe
-
+            ⬇️ دانلود LoomEngine.exe
         </a>
 
         <br>
@@ -1610,10 +1409,9 @@
         <a
             class="release-link"
             href="https://github.com/StarLoom325/LoomEngine/releases"
-            target="_blank">
-
+            target="_blank"
+            rel="noopener">
             مشاهده تمام نسخه‌ها در GitHub ←
-
         </a>
 
     </div>
@@ -1621,48 +1419,28 @@
 </section>
 
 
-<!-- =========================
-     FOOTER
-========================= -->
+<!-- FOOTER -->
 
 <footer>
 
     <p>
-
         © 2026
-
-        <strong>
-            LoomEngine
-        </strong>
-
+        <strong>LoomEngine</strong>
         — ساخته‌شده برای خلاق‌ها 🧵
-
     </p>
 
     <div class="footer-links">
 
-        <a href="#features">
-            امکانات
-        </a>
-
-        <a href="#loomscript">
-            LoomScript
-        </a>
-
-        <a href="#languages">
-            زبان‌ها
-        </a>
-
-        <a href="#download">
-            دانلود
-        </a>
+        <a href="#features">امکانات</a>
+        <a href="#loomscript">LoomScript</a>
+        <a href="#languages">زبان‌ها</a>
+        <a href="#download">دانلود</a>
 
         <a
             href="https://github.com/StarLoom325/LoomEngine"
-            target="_blank">
-
+            target="_blank"
+            rel="noopener">
             GitHub
-
         </a>
 
     </div>
