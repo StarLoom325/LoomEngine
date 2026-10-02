@@ -1,2675 +1,1749 @@
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#090814">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="SzG9uXuwl9cz1PR138MmUOSuRbty3bSFNzscdlu3aqc">
+    <meta name="description" content="LoomEngine 5.0 — یک محیط توسعه سبک برای ساخت بازی‌های 2D و برنامه‌های C#، C++، Python و 19 زبان دیگر. با LoomScript و IDE اختصاصی.">
+    <meta name="keywords" content="LoomEngine, LoomScript, بازی سازی, C#, C++, Python, IDE, game engine">
 
-    <meta name="theme-color"
-          content="#090814">
+    <meta property="og:title" content="LoomEngine 5.0 | محیط توسعه و بازی‌سازی">
+    <meta property="og:description" content="Build. Create. Run. — یک محیط توسعه سبک برای پروژه‌های کدنویسی و بازی‌سازی.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="LoomEngine.ico">
 
-    <meta name="google-site-verification"
-          content="SzG9uXuwl9cz1PR138MmUOSuRbty3bSFNzscdlu3aqc">
+    <link rel="icon" href="LoomEngine.ico" type="image/x-icon">
 
-    <meta name="description"
-          content="LoomEngine 3.0 یک محیط توسعه سبک برای ساخت بازی‌های 2D، برنامه‌ها و پروژه‌های مختلف با LoomScript و زبان‌های محبوب برنامه‌نویسی است.">
-
-    <meta property="og:title"
-          content="LoomEngine 3.0 | محیط توسعه و بازی‌سازی">
-
-    <meta property="og:description"
-          content="Build. Create. Run. — یک محیط توسعه سبک برای پروژه‌های کدنویسی و بازی‌سازی.">
-
-    <meta property="og:type"
-          content="website">
-
-    <meta property="og:image"
-          content="LoomEngine.ico">
-
-    <link rel="icon"
-          href="LoomEngine.ico"
-          type="image/x-icon">
-
-    <title>LoomEngine 3.0 | محیط توسعه و بازی‌سازی</title>
+    <title>LoomEngine 5.0 | محیط توسعه و بازی‌سازی</title>
 
     <style>
-
         /* =========================================================
            RESET
         ========================================================= */
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
             --bg: #070710;
             --bg-2: #0b0a16;
-
             --panel: rgba(18, 18, 31, .72);
             --panel-solid: #11111c;
-
             --purple: #7563ff;
             --purple-light: #aaa0ff;
-
             --cyan: #5ee9df;
-
             --green: #73e6a3;
             --orange: #ffb86b;
             --red: #ff6b81;
-
             --text: #f7f7ff;
             --muted: #9d9db2;
-
             --border: rgba(255, 255, 255, .09);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family:
-                Tahoma,
-                Arial,
-                sans-serif;
-
+            font-family: Tahoma, Arial, sans-serif;
             background:
-                radial-gradient(
-                    circle at 15% 0%,
-                    rgba(112, 83, 255, .24),
-                    transparent 28%
-                ),
-
-                radial-gradient(
-                    circle at 90% 10%,
-                    rgba(28, 220, 211, .13),
-                    transparent 25%
-                ),
-
-                radial-gradient(
-                    circle at 50% 100%,
-                    rgba(87, 54, 220, .13),
-                    transparent 35%
-                ),
-
+                radial-gradient(circle at 15% 0%, rgba(112, 83, 255, .24), transparent 28%),
+                radial-gradient(circle at 90% 10%, rgba(28, 220, 211, .13), transparent 25%),
+                radial-gradient(circle at 50% 100%, rgba(87, 54, 220, .13), transparent 35%),
                 var(--bg);
-
             color: var(--text);
-
             min-height: 100vh;
-
             overflow-x: hidden;
         }
 
         body::before {
             content: "";
-
-            position: fixed;
-            inset: 0;
-
-            pointer-events: none;
-            z-index: -1;
-
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: -1;
             background-image:
-                linear-gradient(
-                    rgba(255,255,255,.018) 1px,
-                    transparent 1px
-                ),
-
-                linear-gradient(
-                    90deg,
-                    rgba(255,255,255,.018) 1px,
-                    transparent 1px
-                );
-
+                linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
             background-size: 45px 45px;
-
-            mask-image:
-                linear-gradient(
-                    to bottom,
-                    black,
-                    transparent 90%
-                );
+            mask-image: linear-gradient(to bottom, black, transparent 90%);
         }
 
         body::after {
             content: "";
-
             position: fixed;
-
-            width: 520px;
-            height: 520px;
-
-            left: -280px;
-            bottom: -280px;
-
+            width: 520px; height: 520px;
+            left: -280px; bottom: -280px;
             border-radius: 50%;
-
-            background:
-                rgba(90, 70, 255, .10);
-
+            background: rgba(90, 70, 255, .10);
             filter: blur(90px);
-
-            pointer-events: none;
-            z-index: -1;
+            pointer-events: none; z-index: -1;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
+        a { color: inherit; text-decoration: none; }
+        button { font-family: inherit; cursor: pointer; }
 
-        button {
-            font-family: inherit;
+        /* =========================================================
+           SCROLL PROGRESS
+        ========================================================= */
+        .scroll-progress {
+            position: fixed; top: 0; left: 0;
+            height: 3px; width: 0%;
+            background: linear-gradient(90deg, #7563ff, #5ee9df);
+            z-index: 2000;
+            transition: width .1s linear;
+            box-shadow: 0 0 15px rgba(94, 233, 223, .6);
         }
 
         /* =========================================================
            NAVBAR
         ========================================================= */
-
         nav {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
+            position: sticky; top: 0; z-index: 1000;
             width: 100%;
-
-            padding:
-                11px 6%;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
+            padding: 11px 6%;
+            display: flex; align-items: center; justify-content: space-between;
             gap: 20px;
-
-            background:
-                rgba(7, 7, 15, .70);
-
+            background: rgba(7, 7, 15, .70);
             backdrop-filter: blur(22px);
             -webkit-backdrop-filter: blur(22px);
-
-            border-bottom:
-                1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-
-            gap: 12px;
-
-            font-size: 21px;
-            font-weight: bold;
-
+            display: flex; align-items: center; gap: 12px;
+            font-size: 21px; font-weight: bold;
             white-space: nowrap;
         }
 
         .logo-icon {
-            width: 45px;
-            height: 45px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
+            width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center;
             border-radius: 14px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #725cff,
-                    #25ded4
-                );
-
-            box-shadow:
-                0 0 35px rgba(99, 93, 255, .30),
-                inset 0 1px 0
-                rgba(255,255,255,.35);
-
+            background: linear-gradient(135deg, #725cff, #25ded4);
+            box-shadow: 0 0 35px rgba(99, 93, 255, .30),
+                        inset 0 1px 0 rgba(255,255,255,.35);
             overflow: hidden;
         }
 
-        .logo-icon svg {
-            width: 28px;
-            height: 28px;
-        }
+        .logo-icon svg { width: 28px; height: 28px; }
 
         .logo span {
-            background:
-                linear-gradient(
-                    90deg,
-                    #fff,
-                    #9c8fff,
-                    #60ebe1
-                );
-
+            background: linear-gradient(90deg, #fff, #9c8fff, #60ebe1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         nav ul {
             list-style: none;
-
-            display: flex;
-            align-items: center;
-
-            gap: 21px;
+            display: flex; align-items: center; gap: 21px;
         }
 
         nav ul a {
             color: #bdbdce;
-
             font-size: 14px;
-
             transition: .25s;
+            position: relative;
         }
 
-        nav ul a:hover {
-            color: var(--cyan);
+        nav ul a:hover { color: var(--cyan); }
+
+        nav ul a::after {
+            content: "";
+            position: absolute;
+            bottom: -6px; right: 0;
+            width: 0; height: 2px;
+            background: var(--cyan);
+            transition: width .3s;
         }
+
+        nav ul a:hover::after { width: 100%; }
 
         .nav-download {
             padding: 10px 17px;
-
             border-radius: 11px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #6657ff,
-                    #22cfc9
-                );
-
+            background: linear-gradient(135deg, #6657ff, #22cfc9);
             color: white !important;
-
-            box-shadow:
-                0 8px 25px
-                rgba(80,100,255,.20);
+            box-shadow: 0 8px 25px rgba(80,100,255,.20);
         }
+
+        .nav-download::after { display: none; }
 
         .nav-download:hover {
             transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(80,100,255,.35);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 18px;
         }
 
         /* =========================================================
            HERO
         ========================================================= */
-
         .hero {
             min-height: 820px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
+            display: flex; align-items: center; justify-content: center;
             text-align: center;
-
-            padding:
-                105px 20px 80px;
-
+            padding: 105px 20px 80px;
             position: relative;
-
             overflow: hidden;
         }
 
         .hero::before {
             content: "";
-
             position: absolute;
-
-            width: 700px;
-            height: 700px;
-
-            top: 10px;
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
+            width: 700px; height: 700px;
+            top: 10px; left: 50%;
+            transform: translateX(-50%);
             border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(106,78,255,.18),
-                    rgba(52,220,210,.05) 40%,
-                    transparent 72%
-                );
-
+            background: radial-gradient(circle,
+                rgba(106,78,255,.18),
+                rgba(52,220,210,.05) 40%,
+                transparent 72%);
             filter: blur(10px);
-
             pointer-events: none;
+            animation: pulseGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { transform: translateX(-50%) scale(1); opacity: 1; }
+            50% { transform: translateX(-50%) scale(1.08); opacity: .8; }
         }
 
         .hero-content {
             position: relative;
-
-            max-width: 1100px;
-            width: 100%;
+            max-width: 1100px; width: 100%;
         }
 
         .badge {
-            display: inline-flex;
-            align-items: center;
-
-            gap: 9px;
-
-            padding:
-                10px 18px;
-
+            display: inline-flex; align-items: center; gap: 9px;
+            padding: 10px 18px;
             border-radius: 50px;
-
-            background:
-                rgba(99,232,223,.07);
-
-            border:
-                1px solid
-                rgba(99,232,223,.22);
-
+            background: rgba(99,232,223,.07);
+            border: 1px solid rgba(99,232,223,.22);
             color: var(--cyan);
-
             margin-bottom: 27px;
-
             font-size: 14px;
-
-            box-shadow:
-                0 0 30px
-                rgba(60,220,210,.05);
+            box-shadow: 0 0 30px rgba(60,220,210,.05);
         }
 
         .status-dot {
-            width: 8px;
-            height: 8px;
-
+            width: 8px; height: 8px;
             border-radius: 50%;
-
             background: var(--cyan);
-
-            box-shadow:
-                0 0 15px var(--cyan);
-
-            animation:
-                pulse 2s infinite;
+            box-shadow: 0 0 15px var(--cyan);
+            animation: pulse 2s infinite;
         }
 
         .hero h1 {
-            font-size:
-                clamp(58px, 11vw, 125px);
-
+            font-size: clamp(58px, 11vw, 125px);
             line-height: .9;
-
             margin-bottom: 30px;
-
             letter-spacing: -5px;
-
-            background:
-                linear-gradient(
-                    100deg,
-                    #fff 10%,
-                    #8e7eff 50%,
-                    #55e9df 90%
-                );
-
+            background: linear-gradient(100deg, #fff 10%, #8e7eff 50%, #55e9df 90%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-
-            filter:
-                drop-shadow(
-                    0 20px 45px
-                    rgba(100,80,255,.16)
-                );
+            filter: drop-shadow(0 20px 45px rgba(100,80,255,.16));
         }
 
         .hero h2 {
-            font-size:
-                clamp(23px, 4vw, 40px);
-
+            font-size: clamp(23px, 4vw, 40px);
             color: #dedeee;
-
             margin-bottom: 21px;
         }
 
         .hero p {
             max-width: 800px;
-
             margin: auto;
-
             color: #a7a7bb;
-
             line-height: 2;
-
             font-size: 18px;
         }
 
-        .hero-highlight {
-            color: var(--cyan);
-            font-weight: bold;
-        }
-
-        /* =========================================================
-           HERO MINI STATS
-        ========================================================= */
+        .hero-highlight { color: var(--cyan); font-weight: bold; }
 
         .hero-stats {
             margin: 34px auto 0;
-
-            display: flex;
-            justify-content: center;
-
-            flex-wrap: wrap;
-
-            gap: 10px;
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
         }
 
         .hero-stat {
-            padding:
-                9px 14px;
-
+            padding: 9px 14px;
             border-radius: 11px;
-
-            background:
-                rgba(255,255,255,.045);
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
-
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.08);
             color: #a9a9bb;
-
             font-size: 12px;
         }
 
-        .hero-stat strong {
-            color: #f1f1ff;
-        }
+        .hero-stat strong { color: #f1f1ff; }
 
         /* =========================================================
            BUTTONS
         ========================================================= */
-
         .buttons {
             margin-top: 38px;
-
-            display: flex;
-            justify-content: center;
-
-            gap: 14px;
-
-            flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;
         }
 
         .button {
-            display: inline-flex;
-
-            align-items: center;
-            justify-content: center;
-
+            display: inline-flex; align-items: center; justify-content: center;
             gap: 9px;
-
-            padding:
-                15px 27px;
-
+            padding: 15px 27px;
             border-radius: 13px;
-
             font-weight: bold;
-
-            transition:
-                .25s;
-
-            border:
-                1px solid transparent;
+            transition: .25s;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
 
-        .button:hover {
-            transform:
-                translateY(-4px)
-                scale(1.01);
+        .button::before {
+            content: "";
+            position: absolute; top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: rgba(255,255,255,.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width .5s, height .5s;
         }
+
+        .button:hover::before { width: 300px; height: 300px; }
+
+        .button:hover { transform: translateY(-4px) scale(1.01); }
 
         .download {
-            background:
-                linear-gradient(
-                    135deg,
-                    #6558ff,
-                    #20d4cc
-                );
-
-            box-shadow:
-                0 12px 40px
-                rgba(55,130,255,.24);
+            background: linear-gradient(135deg, #6558ff, #20d4cc);
+            box-shadow: 0 12px 40px rgba(55,130,255,.24);
         }
 
-        .download:hover {
-            box-shadow:
-                0 17px 55px
-                rgba(55,150,255,.42);
-        }
+        .download:hover { box-shadow: 0 17px 55px rgba(55,150,255,.42); }
 
         .github {
-            background:
-                rgba(255,255,255,.045);
-
-            border-color:
-                rgba(255,255,255,.13);
-
+            background: rgba(255,255,255,.045);
+            border-color: rgba(255,255,255,.13);
             color: #dedee8;
         }
 
-        .github:hover {
-            background:
-                rgba(255,255,255,.09);
-        }
+        .github:hover { background: rgba(255,255,255,.09); }
 
         /* =========================================================
            EDITOR
         ========================================================= */
-
         .editor-preview {
             max-width: 1000px;
-
-            margin:
-                55px auto 0;
-
+            margin: 55px auto 0;
             padding: 7px;
-
             border-radius: 22px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(126,92,255,.42),
-                    rgba(38,220,210,.25)
-                );
-
-            box-shadow:
-                0 30px 100px rgba(0,0,0,.40),
-                0 0 80px
-                rgba(80,70,255,.08);
+            background: linear-gradient(135deg,
+                rgba(126,92,255,.42),
+                rgba(38,220,210,.25));
+            box-shadow: 0 30px 100px rgba(0,0,0,.40),
+                        0 0 80px rgba(80,70,255,.08);
         }
 
         .editor-window {
             overflow: hidden;
-
             border-radius: 16px;
-
             background: #11111b;
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
-
+            border: 1px solid rgba(255,255,255,.08);
             text-align: left;
             direction: ltr;
         }
 
         .editor-top {
             height: 43px;
-
-            display: flex;
-            align-items: center;
-
+            display: flex; align-items: center;
             padding: 0 15px;
-
             background: #181824;
-
-            border-bottom:
-                1px solid
-                rgba(255,255,255,.07);
+            border-bottom: 1px solid rgba(255,255,255,.07);
         }
 
         .window-dot {
-            width: 10px;
-            height: 10px;
-
+            width: 10px; height: 10px;
             border-radius: 50%;
-
             margin-right: 7px;
-
             background: #5c5c70;
         }
 
+        .window-dot.red { background: #ff6b6b; }
+        .window-dot.yellow { background: #ffbd58; }
+        .window-dot.green { background: #6bcf7f; }
+
         .editor-title {
             margin-left: 15px;
-
             color: #8e8ea3;
-
             font-size: 12px;
         }
 
-        .editor-body {
-            min-height: 300px;
-
-            display: grid;
-
-            grid-template-columns:
-                190px 1fr;
+        .editor-tabs {
+            margin-left: auto;
+            display: flex;
+            gap: 4px;
         }
 
-        .sidebar {
-            padding:
-                20px 15px;
-
-            background: #0d0d15;
-
-            border-right:
-                1px solid
-                rgba(255,255,255,.06);
-
+        .editor-tab {
+            padding: 5px 12px;
+            border-radius: 6px;
+            background: transparent;
+            border: none;
             color: #77778b;
-
-            font-family:
-                Consolas,
-                monospace;
-
-            font-size: 13px;
-
-            line-height: 2;
+            font-size: 11px;
+            font-family: Consolas, monospace;
+            transition: .2s;
         }
 
-        .sidebar .active {
+        .editor-tab.active {
+            background: rgba(106,87,255,.20);
             color: var(--cyan);
         }
 
+        .editor-tab:hover { color: var(--cyan); }
+
+        .editor-body {
+            min-height: 300px;
+            display: grid;
+            grid-template-columns: 190px 1fr;
+        }
+
+        .sidebar {
+            padding: 20px 15px;
+            background: #0d0d15;
+            border-right: 1px solid rgba(255,255,255,.06);
+            color: #77778b;
+            font-family: Consolas, monospace;
+            font-size: 13px;
+            line-height: 2;
+        }
+
+        .sidebar .active { color: var(--cyan); }
+
         .code {
             padding: 25px;
-
-            font-family:
-                Consolas,
-                "Courier New",
-                monospace;
-
+            font-family: Consolas, "Courier New", monospace;
             font-size: 14px;
-
             line-height: 1.9;
-
             color: #d7d7e5;
-
             overflow-x: auto;
         }
 
-        .purple {
-            color: #a992ff;
-        }
-
-        .cyan {
-            color: #62e8df;
-        }
-
-        .green {
-            color: #75d99c;
-        }
-
-        .orange {
-            color: #ffbd73;
-        }
+        .purple { color: #a992ff; }
+        .cyan   { color: #62e8df; }
+        .green  { color: #75d99c; }
+        .orange { color: #ffbd73; }
+        .red    { color: #ff6b81; }
+        .gray   { color: #6b6b80; }
+        .yellow { color: #ffd166; }
+        .pink   { color: #ff79c6; }
 
         /* =========================================================
            SECTIONS
         ========================================================= */
-
-        section {
-            padding:
-                110px 7%;
-        }
+        section { padding: 110px 7%; }
 
         .section-title {
             text-align: center;
-
             max-width: 760px;
-
-            margin:
-                0 auto 55px;
+            margin: 0 auto 55px;
         }
 
         .section-title h2 {
-            font-size:
-                clamp(30px, 5vw, 44px);
-
+            font-size: clamp(30px, 5vw, 44px);
             margin-bottom: 14px;
         }
 
-        .section-title p {
-            color: #9999ad;
-
-            line-height: 1.9;
-        }
+        .section-title p { color: #9999ad; line-height: 1.9; }
 
         /* =========================================================
            FEATURES
         ========================================================= */
-
         .features {
             max-width: 1200px;
-
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(235px, 1fr)
-                );
-
+            grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
             gap: 20px;
         }
 
         .card {
             position: relative;
-
             padding: 30px;
-
             border-radius: 21px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,.055),
-                    rgba(255,255,255,.018)
-                );
-
-            border:
-                1px solid
-                rgba(255,255,255,.09);
-
-            transition:
-                .3s;
-
+            background: linear-gradient(145deg,
+                rgba(255,255,255,.055),
+                rgba(255,255,255,.018));
+            border: 1px solid rgba(255,255,255,.09);
+            transition: .3s;
             overflow: hidden;
         }
 
         .card::before {
             content: "";
-
             position: absolute;
-
-            width: 150px;
-            height: 150px;
-
-            top: -90px;
-            left: -90px;
-
+            width: 150px; height: 150px;
+            top: -90px; left: -90px;
             border-radius: 50%;
-
-            background:
-                rgba(106,85,255,.16);
-
+            background: rgba(106,85,255,.16);
             filter: blur(25px);
         }
 
         .card::after {
             content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    120deg,
-                    transparent,
-                    rgba(255,255,255,.035),
-                    transparent
-                );
-
-            transform:
-                translateX(-100%);
-
-            transition:
-                .6s;
+            position: absolute; inset: 0;
+            background: linear-gradient(120deg,
+                transparent,
+                rgba(255,255,255,.035),
+                transparent);
+            transform: translateX(-100%);
+            transition: .6s;
         }
 
-        .card:hover::after {
-            transform:
-                translateX(100%);
-        }
+        .card:hover::after { transform: translateX(100%); }
 
         .card:hover {
-            transform:
-                translateY(-8px);
-
-            border-color:
-                rgba(100,230,220,.25);
-
-            box-shadow:
-                0 20px 50px
-                rgba(0,0,0,.22);
+            transform: translateY(-8px);
+            border-color: rgba(100,230,220,.25);
+            box-shadow: 0 20px 50px rgba(0,0,0,.22);
         }
 
         .card-icon {
-            width: 55px;
-            height: 55px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
+            width: 55px; height: 55px;
+            display: flex; align-items: center; justify-content: center;
             border-radius: 15px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(105,87,255,.16),
-                    rgba(32,210,202,.08)
-                );
-
+            background: linear-gradient(135deg,
+                rgba(105,87,255,.16),
+                rgba(32,210,202,.08));
             margin-bottom: 20px;
-
             font-size: 27px;
         }
 
-        .card h3 {
-            margin-bottom: 12px;
-
-            font-size: 19px;
-        }
-
-        .card p {
-            color: #9999ad;
-
-            line-height: 1.9;
-
-            font-size: 14px;
-        }
+        .card h3 { margin-bottom: 12px; font-size: 19px; }
+        .card p { color: #9999ad; line-height: 1.9; font-size: 14px; }
 
         /* =========================================================
            LOOMSCRIPT
         ========================================================= */
-
-        .loomscript-section {
-            position: relative;
-        }
+        .loomscript-section { position: relative; }
 
         .loomscript-box {
             max-width: 1100px;
-
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
+            grid-template-columns: 1fr 1fr;
             gap: 25px;
-
             padding: 8px;
-
             border-radius: 28px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(109,79,255,.35),
-                    rgba(30,210,201,.20)
-                );
-
-            box-shadow:
-                0 30px 90px
-                rgba(0,0,0,.20);
+            background: linear-gradient(135deg,
+                rgba(109,79,255,.35),
+                rgba(30,210,201,.20));
+            box-shadow: 0 30px 90px rgba(0,0,0,.20);
         }
 
-        .loom-info,
-        .loom-code {
+        .loom-info, .loom-code {
             border-radius: 21px;
-
             background: #11111a;
-
-            border:
-                1px solid
-                rgba(255,255,255,.07);
-
+            border: 1px solid rgba(255,255,255,.07);
             padding: 35px;
         }
 
-        .loom-info h3 {
-            font-size: 28px;
-
-            margin-bottom: 17px;
-        }
-
-        .loom-info p {
-            color: #a3a3b8;
-
-            line-height: 2;
-
-            margin-bottom: 25px;
-        }
+        .loom-info h3 { font-size: 28px; margin-bottom: 17px; }
+        .loom-info p { color: #a3a3b8; line-height: 2; margin-bottom: 25px; }
 
         .loom-tag {
             display: inline-block;
-
-            padding:
-                8px 13px;
-
+            padding: 8px 13px;
             border-radius: 9px;
-
-            background:
-                rgba(102,84,255,.13);
-
-            color:
-                #a99bff;
-
+            background: rgba(102,84,255,.13);
+            color: #a99bff;
             margin: 4px;
-
             font-size: 13px;
         }
 
         .loom-code {
             direction: ltr;
             text-align: left;
-
-            font-family:
-                Consolas,
-                monospace;
-
+            font-family: Consolas, monospace;
             color: #d7d7e5;
-
             line-height: 1.9;
-
             overflow-x: auto;
+            position: relative;
         }
 
         .code-header {
             color: #65657a;
-
             margin-bottom: 17px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: rgba(94,233,223,.08);
+            border: 1px solid rgba(94,233,223,.20);
+            color: var(--cyan);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-family: Tahoma;
+            transition: .2s;
+        }
+
+        .copy-btn:hover {
+            background: rgba(94,233,223,.20);
         }
 
         /* =========================================================
            LANGUAGES
         ========================================================= */
-
         .languages {
             max-width: 1050px;
-
             margin: auto;
-
-            display: flex;
-
-            flex-wrap: wrap;
-
+            display: flex; flex-wrap: wrap;
             justify-content: center;
-
             gap: 12px;
         }
 
         .language {
-            padding:
-                12px 17px;
-
+            padding: 12px 17px;
             border-radius: 13px;
-
-            background:
-                rgba(255,255,255,.045);
-
-            border:
-                1px solid
-                rgba(255,255,255,.09);
-
+            background: rgba(255,255,255,.045);
+            border: 1px solid rgba(255,255,255,.09);
             color: #d8d8e4;
-
-            transition:
-                .2s;
+            transition: .2s;
         }
 
         .language:hover {
-            transform:
-                translateY(-3px);
-
-            border-color:
-                rgba(102,230,220,.25);
-
-            background:
-                rgba(102,230,220,.06);
-        }
-
-        .language.loom {
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(105,82,255,.16),
-                    rgba(32,210,202,.09)
-                );
-
-            border-color:
-                rgba(105,100,255,.28);
-
-            color: #b8b0ff;
+            transform: translateY(-3px);
+            border-color: rgba(102,230,220,.25);
+            background: rgba(102,230,220,.06);
         }
 
         /* =========================================================
-           VERSION 3.0
+           VERSION 5.0
         ========================================================= */
-
-        .release-section {
-            position: relative;
-        }
+        .release-section { position: relative; }
 
         .release-grid {
             max-width: 1100px;
-
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    3,
-                    1fr
-                );
-
+            grid-template-columns: repeat(3, 1fr);
             gap: 18px;
         }
 
         .release-card {
             padding: 25px;
-
             border-radius: 19px;
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.08);
+            transition: .25s;
+        }
 
-            background:
-                rgba(255,255,255,.035);
-
-            border:
-                1px solid
-                rgba(255,255,255,.08);
+        .release-card:hover {
+            border-color: rgba(100,230,220,.20);
+            transform: translateY(-5px);
         }
 
         .release-card strong {
             display: block;
-
             color: white;
-
             margin-bottom: 9px;
-
             font-size: 17px;
         }
 
         .release-card span {
             color: #9999ad;
-
             line-height: 1.8;
-
             font-size: 14px;
         }
 
         /* =========================================================
            STATS
         ========================================================= */
-
         .stats {
             max-width: 1000px;
-
             margin: auto;
-
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    4,
-                    1fr
-                );
-
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
 
         .stat {
             text-align: center;
-
-            padding:
-                30px 15px;
-
+            padding: 30px 15px;
             border-radius: 18px;
-
-            background:
-                rgba(255,255,255,.04);
-
-            border:
-                1px solid
-                rgba(255,255,255,.07);
-
-            transition:
-                .25s;
+            background: rgba(255,255,255,.04);
+            border: 1px solid rgba(255,255,255,.07);
+            transition: .25s;
         }
 
         .stat:hover {
-            transform:
-                translateY(-5px);
-
-            border-color:
-                rgba(100,230,220,.20);
+            transform: translateY(-5px);
+            border-color: rgba(100,230,220,.20);
         }
 
         .stat strong {
             display: block;
-
             font-size: 31px;
-
             margin-bottom: 8px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #8878ff,
-                    #60e7df
-                );
-
+            background: linear-gradient(90deg, #8878ff, #60e7df);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .stat span {
-            color: #8f8fa2;
+        .stat span { color: #8f8fa2; font-size: 13px; }
 
-            font-size: 13px;
+        /* =========================================================
+           SHORTCUTS
+        ========================================================= */
+        .shortcuts {
+            max-width: 900px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 14px;
+        }
+
+        .shortcut {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.08);
+            transition: .2s;
+        }
+
+        .shortcut:hover {
+            border-color: rgba(100,230,220,.20);
+            background: rgba(100,230,220,.04);
+        }
+
+        .shortcut span {
+            color: #b9b9cc;
+            font-size: 14px;
+        }
+
+        .kbd {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 7px;
+            background: #0a0a15;
+            border: 1px solid rgba(255,255,255,.12);
+            box-shadow: 0 2px 0 rgba(0,0,0,.5),
+                        inset 0 1px 0 rgba(255,255,255,.08);
+            font-family: Consolas, monospace;
+            font-size: 12px;
+            color: var(--cyan);
+        }
+
+        /* =========================================================
+           FAQ
+        ========================================================= */
+        .faq {
+            max-width: 820px;
+            margin: auto;
+        }
+
+        .faq-item {
+            margin-bottom: 12px;
+            border-radius: 16px;
+            background: rgba(255,255,255,.035);
+            border: 1px solid rgba(255,255,255,.08);
+            overflow: hidden;
+            transition: .25s;
+        }
+
+        .faq-item.open {
+            border-color: rgba(100,230,220,.25);
+            background: rgba(100,230,220,.03);
+        }
+
+        .faq-q {
+            width: 100%;
+            padding: 20px 24px;
+            background: transparent;
+            border: none;
+            color: var(--text);
+            text-align: right;
+            font-size: 16px;
+            font-family: inherit;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            transition: .2s;
+        }
+
+        .faq-q:hover { color: var(--cyan); }
+
+        .faq-q .arrow {
+            transition: .3s;
+            color: var(--cyan);
+            font-size: 18px;
+        }
+
+        .faq-item.open .faq-q .arrow {
+            transform: rotate(180deg);
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease, padding .3s ease;
+            padding: 0 24px;
+            color: #9999ad;
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+        .faq-item.open .faq-a {
+            max-height: 400px;
+            padding: 0 24px 20px;
         }
 
         /* =========================================================
            DOWNLOAD
         ========================================================= */
-
-        .download-section {
-            text-align: center;
-        }
+        .download-section { text-align: center; }
 
         .download-box {
             max-width: 900px;
-
             margin: auto;
-
-            padding:
-                65px 30px;
-
+            padding: 65px 30px;
             border-radius: 30px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(91,72,255,.18),
-                    rgba(35,214,209,.09)
-                );
-
-            border:
-                1px solid
-                rgba(255,255,255,.11);
-
-            box-shadow:
-                0 25px 80px
-                rgba(0,0,0,.2);
+            background: linear-gradient(135deg,
+                rgba(91,72,255,.18),
+                rgba(35,214,209,.09));
+            border: 1px solid rgba(255,255,255,.11);
+            box-shadow: 0 25px 80px rgba(0,0,0,.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        .download-box h2 {
-            font-size: 37px;
-
-            margin-bottom: 12px;
+        .download-box::before {
+            content: "";
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle,
+                rgba(94,233,223,.06) 0%,
+                transparent 60%);
+            animation: rotate 25s linear infinite;
+            pointer-events: none;
         }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        .download-box h2 { font-size: 37px; margin-bottom: 12px; position: relative; }
 
         .version {
             color: var(--cyan);
-
-            margin:
-                15px 0 22px;
+            margin: 15px 0 22px;
+            position: relative;
         }
 
         .download-box p {
             max-width: 650px;
-
-            margin:
-                0 auto 28px;
-
+            margin: 0 auto 28px;
             color: #a8a8ba;
-
             line-height: 2;
+            position: relative;
         }
 
         .requirements {
-            display: flex;
-
-            justify-content: center;
-
-            flex-wrap: wrap;
-
-            gap: 10px;
-
+            display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
             margin: 25px 0;
+            position: relative;
         }
 
         .requirement {
-            padding:
-                9px 14px;
-
+            padding: 9px 14px;
             border-radius: 9px;
-
-            background:
-                rgba(255,255,255,.05);
-
+            background: rgba(255,255,255,.05);
             color: #a9a9bb;
-
             font-size: 12px;
         }
 
         .release-link {
             display: inline-block;
-
             margin-top: 22px;
-
             color: var(--cyan);
-
             transition: .2s;
+            position: relative;
         }
 
-        .release-link:hover {
-            color: white;
-        }
+        .release-link:hover { color: white; }
 
         /* =========================================================
            FOOTER
         ========================================================= */
-
         footer {
-            padding:
-                48px 7%;
-
-            border-top:
-                1px solid
-                rgba(255,255,255,.08);
-
+            padding: 48px 7%;
+            border-top: 1px solid rgba(255,255,255,.08);
             text-align: center;
-
             color: #777789;
-
             line-height: 2;
         }
 
-        footer strong {
-            color: #c5c5d4;
-        }
+        footer strong { color: #c5c5d4; }
 
         .footer-links {
-            display: flex;
-
-            justify-content: center;
-
-            flex-wrap: wrap;
-
+            display: flex; justify-content: center; flex-wrap: wrap;
             gap: 18px;
-
             margin: 15px 0;
         }
 
         .footer-links a {
             color: #858599;
-
             transition: .2s;
         }
 
-        .footer-links a:hover {
-            color: var(--cyan);
+        .footer-links a:hover { color: var(--cyan); }
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 48px; height: 48px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #6657ff, #22cfc9);
+            border: none;
+            color: white;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: .3s;
+            z-index: 999;
+            box-shadow: 0 10px 30px rgba(80,100,255,.35);
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-4px);
         }
 
         /* =========================================================
            ANIMATIONS
         ========================================================= */
-
-        .fade {
-            animation:
-                fadeUp .8s ease both;
-        }
+        .fade { animation: fadeUp .8s ease both; }
 
         .reveal {
             opacity: 0;
-
-            transform:
-                translateY(20px);
-
-            transition:
-                .7s ease;
+            transform: translateY(20px);
+            transition: .7s ease;
         }
 
         .reveal.show {
             opacity: 1;
-
-            transform:
-                translateY(0);
+            transform: translateY(0);
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-
-                transform:
-                    translateY(25px);
-            }
-
-            to {
-                opacity: 1;
-
-                transform:
-                    translateY(0);
-            }
+            from { opacity: 0; transform: translateY(25px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-
-                transform:
-                    scale(1);
-            }
-
-            50% {
-                opacity: .45;
-
-                transform:
-                    scale(.75);
-            }
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: .45; transform: scale(.75); }
         }
 
         /* =========================================================
            MOBILE
         ========================================================= */
-
         @media (max-width: 900px) {
+            nav { padding: 12px 5%; }
 
-            nav {
-                padding:
-                    12px 5%;
-            }
+            .nav-toggle { display: block; }
 
             nav ul {
-                display: none;
+                position: absolute;
+                top: 100%; right: 0;
+                width: 100%;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                background: rgba(7,7,15,.98);
+                backdrop-filter: blur(22px);
+                border-bottom: 1px solid var(--border);
+                padding: 15px 5%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height .4s ease, padding .3s ease;
             }
 
-            .hero {
-                min-height: 700px;
-
-                padding-top: 90px;
+            nav ul.open {
+                max-height: 500px;
+                padding: 15px 5% 25px;
             }
 
-            .editor-body {
-                grid-template-columns:
-                    1fr;
+            nav ul li {
+                padding: 12px 0;
+                border-bottom: 1px solid rgba(255,255,255,.05);
             }
 
-            .sidebar {
-                display: none;
+            nav ul li:last-child {
+                border-bottom: none;
+                padding-top: 15px;
             }
 
-            .loomscript-box {
-                grid-template-columns:
-                    1fr;
+            nav ul a::after { display: none; }
+
+            .nav-download {
+                display: block;
+                text-align: center;
             }
 
-            .release-grid {
-                grid-template-columns:
-                    1fr;
-            }
+            .hero { min-height: 700px; padding-top: 90px; }
 
-            .stats {
-                grid-template-columns:
-                    repeat(
-                        2,
-                        1fr
-                    );
-            }
+            .editor-body { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
 
-            section {
-                padding:
-                    80px 5%;
-            }
+            .loomscript-box { grid-template-columns: 1fr; }
+
+            .release-grid { grid-template-columns: 1fr; }
+
+            .stats { grid-template-columns: repeat(2, 1fr); }
+
+            section { padding: 80px 5%; }
         }
 
         @media (max-width: 520px) {
-
-            .logo {
-                font-size: 18px;
-            }
-
-            .logo-icon {
-                width: 40px;
-                height: 40px;
-            }
+            .logo { font-size: 18px; }
+            .logo-icon { width: 40px; height: 40px; }
 
             .hero h1 {
                 font-size: 55px;
-
                 letter-spacing: -2px;
             }
 
-            .hero p {
-                font-size: 15px;
-            }
+            .hero p { font-size: 15px; }
 
-            .button {
-                width: 100%;
-            }
+            .button { width: 100%; }
 
-            .editor-preview {
-                display: none;
-            }
+            .editor-preview { display: none; }
 
-            .stats {
-                grid-template-columns:
-                    1fr;
-            }
+            .stats { grid-template-columns: 1fr; }
 
-            .download-box {
-                padding:
-                    45px 20px;
-            }
+            .download-box { padding: 45px 20px; }
+            .download-box h2 { font-size: 29px; }
 
-            .download-box h2 {
-                font-size: 29px;
-            }
+            .hero-stats { gap: 7px; }
 
-            .hero-stats {
-                gap: 7px;
+            .back-to-top {
+                bottom: 15px;
+                right: 15px;
+                width: 42px;
+                height: 42px;
             }
         }
-
     </style>
 </head>
 
 <body>
 
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <!-- =========================================================
      NAVIGATION
 ========================================================= -->
-
 <nav>
-
     <a href="#" class="logo">
-
         <div class="logo-icon">
-
-            <svg
-                viewBox="0 0 64 64"
-                xmlns="http://www.w3.org/2000/svg">
-
-                <path
-                    d="M18 10V46H49"
-                    fill="none"
-                    stroke="white"
-                    stroke-width="7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"/>
-
-                <path
-                    d="M38 19L30 30L38 41"
-                    fill="none"
-                    stroke="#5ee9df"
-                    stroke-width="5"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"/>
-
-                <circle
-                    cx="18"
-                    cy="10"
-                    r="4"
-                    fill="#5ee9df"/>
-
-                <circle
-                    cx="49"
-                    cy="46"
-                    r="4"
-                    fill="#a99dff"/>
-
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 10V46H49" fill="none" stroke="white" stroke-width="7"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M38 19L30 30L38 41" fill="none" stroke="#5ee9df" stroke-width="5"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="18" cy="10" r="4" fill="#5ee9df"/>
+                <circle cx="49" cy="46" r="4" fill="#a99dff"/>
             </svg>
-
         </div>
-
         <span>LoomEngine</span>
-
     </a>
 
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">☰</button>
 
-    <ul>
-
+    <ul id="navMenu">
+        <li><a href="#features">امکانات</a></li>
+        <li><a href="#loomscript">LoomScript</a></li>
+        <li><a href="#languages">زبان‌ها</a></li>
+        <li><a href="#shortcuts">کلیدها</a></li>
+        <li><a href="#version">نسخه 5.0</a></li>
+        <li><a href="#faq">سؤالات</a></li>
         <li>
-            <a href="#features">
-                امکانات
-            </a>
-        </li>
-
-        <li>
-            <a href="#loomscript">
-                LoomScript
-            </a>
-        </li>
-
-        <li>
-            <a href="#languages">
-                زبان‌ها
-            </a>
-        </li>
-
-        <li>
-            <a href="#version">
-                نسخه 3.0
-            </a>
-        </li>
-
-        <li>
-            <a
-                href="https://github.com/StarLoom325/LoomEngine"
-                target="_blank"
-                rel="noopener">
+            <a href="https://github.com/StarLoom325/LoomEngine" target="_blank" rel="noopener">
                 GitHub
             </a>
         </li>
-
         <li>
-            <a
-                class="nav-download"
-                href="https://github.com/StarLoom325/LoomEngine/releases"
-                target="_blank"
-                rel="noopener">
-
-                دانلود 3.0
-
+            <a class="nav-download"
+               href="https://github.com/StarLoom325/LoomEngine/releases"
+               target="_blank" rel="noopener">
+                دانلود 5.0
             </a>
         </li>
-
     </ul>
-
 </nav>
 
 
 <!-- =========================================================
      HERO
 ========================================================= -->
-
 <header class="hero">
-
     <div class="hero-content fade">
-
         <div class="badge">
-
             <span class="status-dot"></span>
-
-            LoomEngine 3.0 — نسخه جدید
-
+            LoomEngine 5.0 — نسخه جدید منتشر شد
         </div>
 
-
-        <h1>
-            LoomEngine
-        </h1>
-
-
-        <h2>
-            ایده‌ات را به یک پروژه واقعی تبدیل کن
-        </h2>
-
+        <h1>LoomEngine</h1>
+        <h2>ایده‌ات را به یک پروژه واقعی تبدیل کن</h2>
 
         <p>
-
-            یک محیط توسعه سبک و ساده برای ساخت
-
-            <span class="hero-highlight">
-                بازی‌های 2D
-            </span>
-
-            ، برنامه‌ها و پروژه‌های مختلف با
-
-            <span class="hero-highlight">
-                LoomScript
-            </span>
-
-            و زبان‌های محبوب برنامه‌نویسی.
-
+            یک محیط توسعه سبک، سریع و مدرن برای ساخت
+            <span class="hero-highlight">بازی‌های 2D</span>
+            و
+            <span class="hero-highlight">برنامه‌های C# / C++ / Python</span>
+            با IDE اختصاصی و پشتیبانی از ۲۰ زبان برنامه‌نویسی.
         </p>
 
-
         <div class="hero-stats">
-
-            <div class="hero-stat">
-                <strong>3.0</strong>
-                نسخه
-            </div>
-
-            <div class="hero-stat">
-                <strong>19</strong>
-                زبان و فرمت
-            </div>
-
-            <div class="hero-stat">
-                <strong>F5</strong>
-                اجرای سریع
-            </div>
-
-            <div class="hero-stat">
-                <strong>2D</strong>
-                LoomScript
-            </div>
-
+            <div class="hero-stat"><strong>5.0</strong> نسخه</div>
+            <div class="hero-stat"><strong>20</strong> زبان و فرمت</div>
+            <div class="hero-stat"><strong>F5</strong> اجرای سریع</div>
+            <div class="hero-stat"><strong>2D/3D</strong> موتور بازی</div>
+            <div class="hero-stat"><strong>MIT</strong> متن‌باز</div>
         </div>
-
 
         <div class="buttons">
-
-            <a
-                class="button download"
-                href="https://github.com/StarLoom325/LoomEngine/releases"
-                target="_blank"
-                rel="noopener">
-
-                ⬇️ دانلود LoomEngine 3.0
-
+            <a class="button download"
+               href="https://github.com/StarLoom325/LoomEngine/releases"
+               target="_blank" rel="noopener">
+                ⬇️ دانلود LoomEngine 5.0
             </a>
-
-
-            <a
-                class="button github"
-                href="https://github.com/StarLoom325/LoomEngine"
-                target="_blank"
-                rel="noopener">
-
-                ⭐ مشاهده GitHub
-
+            <a class="button github"
+               href="https://github.com/StarLoom325/LoomEngine"
+               target="_blank" rel="noopener">
+                ⭐ مشاهده در GitHub
             </a>
-
         </div>
-
 
         <!-- IDE PREVIEW -->
-
         <div class="editor-preview">
-
             <div class="editor-window">
-
                 <div class="editor-top">
+                    <span class="window-dot red"></span>
+                    <span class="window-dot yellow"></span>
+                    <span class="window-dot green"></span>
+                    <span class="editor-title">LoomEngine 5.0 — Program.cs</span>
 
-                    <span class="window-dot"></span>
-                    <span class="window-dot"></span>
-                    <span class="window-dot"></span>
-
-                    <span class="editor-title">
-                        LoomEngine 3.0 — Main.loom
-                    </span>
-
+                    <div class="editor-tabs">
+                        <button class="editor-tab active" data-lang="cs">C#</button>
+                        <button class="editor-tab" data-lang="cpp">C++</button>
+                        <button class="editor-tab" data-lang="py">Python</button>
+                    </div>
                 </div>
-
 
                 <div class="editor-body">
-
                     <div class="sidebar">
-
-                        <div class="active">
-                            📁 MyGame
-                        </div>
-
-                        <div>
-                            ├─ 📄 Main.loom
-                        </div>
-
-                        <div>
-                            ├─ 📄 Player.loom
-                        </div>
-
-                        <div>
-                            ├─ 📄 Game.cs
-                        </div>
-
-                        <div>
-                            └─ 📁 Assets
-                        </div>
-
+                        <div class="active">📁 MyGame</div>
+                        <div>├─ 📄 Program.cs</div>
+                        <div>├─ 📄 Player.cs</div>
+                        <div>├─ 📄 Game.cs</div>
+                        <div>├─ 📁 assets</div>
+                        <div>│  ├─ models</div>
+                        <div>│  └─ textures</div>
+                        <div>└─ 📁 build</div>
                     </div>
 
-
-                    <div class="code">
-
-                        <div class="code-header">
-                            Main.loom
-                        </div>
-
-                        <div>
-
-                            <span class="purple">
-                                &lt;{Loomcod.StarLoom}&gt;;
-                            </span>
-
-                        </div>
-
-                        <br>
-
-                        <div>
-
-                            <span class="purple">
-                                game
-                            </span>
-
-                            <span class="cyan">
-                                "MyGame"
-                            </span>
-
-                        </div>
-
-                        <div>
-
-                            <span class="purple">
-                                window
-                            </span>
-
-                            <span class="orange">
-                                960 540
-                            </span>
-
-                        </div>
-
-                        <div>
-
-                            <span class="purple">
-                                background
-                            </span>
-
-                            <span class="green">
-                                "#101522"
-                            </span>
-
-                        </div>
-
-                        <div>
-
-                            <span class="purple">
-                                player
-                            </span>
-
-                            <span class="cyan">
-                                "Hero" 100 100
-                            </span>
-
-                        </div>
-
-                        <div>
-
-                            <span class="purple">
-                                text
-                            </span>
-
-                            <span class="green">
-                                "Hello Loom!" 20 20
-                            </span>
-
-                        </div>
-
-                        <br>
-
-                        <div>
-
-                            <span class="purple">
-                                &lt;{Loomcod.StarLoom}&gt;;
-                            </span>
-
-                        </div>
-
+                    <div class="code" id="codePreview">
+                        <!-- filled by JS -->
                     </div>
-
                 </div>
-
             </div>
-
         </div>
-
     </div>
-
 </header>
 
 
 <!-- =========================================================
      FEATURES
 ========================================================= -->
-
-<section
-    id="features"
-    class="reveal">
-
+<section id="features" class="reveal">
     <div class="section-title">
-
-        <h2>
-            امکانات LoomEngine 3.0
-        </h2>
-
-        <p>
-
-            ابزارهای اصلی توسعه در یک محیط
-            سبک، ساده و یکپارچه.
-
-        </p>
-
+        <h2>امکانات LoomEngine 5.0</h2>
+        <p>ابزارهای اصلی توسعه در یک محیط سبک، ساده و یکپارچه.</p>
     </div>
-
 
     <div class="features">
-
         <div class="card">
-
-            <div class="card-icon">
-                💻
-            </div>
-
-            <h3>
-                ویرایشگر کد
-            </h3>
-
-            <p>
-
-                محیط کدنویسی تاریک با فایل‌های
-                قابل مدیریت و ساختار پروژه.
-
-            </p>
-
+            <div class="card-icon">💻</div>
+            <h3>ویرایشگر حرفه‌ای</h3>
+            <p>محیط کدنویسی تاریک با هایلایت سینتکس برای ۲۰ زبان، تب‌های متعدد و شماره‌گذاری خطوط.</p>
         </div>
 
-
         <div class="card">
-
-            <div class="card-icon">
-                🎮
-            </div>
-
-            <h3>
-                ساخت بازی 2D
-            </h3>
-
-            <p>
-
-                ساخت پروژه‌های دوبعدی با
-                LoomScript و Runtime داخلی.
-
-            </p>
-
+            <div class="card-icon">🎮</div>
+            <h3>ساخت بازی C#</h3>
+            <p>ساخت پروژه‌های 2D و 3D با C#، کامپایل و اجرای سریع با یک کلیک.</p>
         </div>
 
-
         <div class="card">
-
-            <div class="card-icon">
-                ⚡
-            </div>
-
-            <h3>
-                اجرای سریع
-            </h3>
-
-            <p>
-
-                اجرای فایل و پروژه از داخل محیط
-                با کلید F5.
-
-            </p>
-
+            <div class="card-icon">⚡</div>
+            <h3>اجرای فوری F5</h3>
+            <p>اجرای هر فایل (C#, C++, Python, JS, Java و ...) از داخل IDE با کلید F5.</p>
         </div>
 
-
         <div class="card">
-
-            <div class="card-icon">
-                🧩
-            </div>
-
-            <h3>
-                چندزبانه
-            </h3>
-
-            <p>
-
-                کار با زبان‌های مختلف برنامه‌نویسی
-                در یک محیط واحد.
-
-            </p>
-
+            <div class="card-icon">🧩</div>
+            <h3>چندزبانه</h3>
+            <p>پشتیبانی کامل از C#, C++, C, Python, JavaScript, TypeScript, Java, Rust, Go و ...</p>
         </div>
 
-
         <div class="card">
-
-            <div class="card-icon">
-                🔗
-            </div>
-
-            <h3>
-                پروژه چندفایلی
-            </h3>
-
-            <p>
-
-                مناسب برای پروژه‌هایی که از چند
-                فایل و چند کلاس تشکیل شده‌اند.
-
-            </p>
-
+            <div class="card-icon">🔗</div>
+            <h3>پروژه چندفایلی</h3>
+            <p>مدیریت پروژه‌های بزرگ با چند فایل و کلاس، ساخت پوشه و سازمان‌دهی فایل‌ها.</p>
         </div>
 
-
         <div class="card">
-
-            <div class="card-icon">
-                📁
-            </div>
-
-            <h3>
-                مدیریت پروژه
-            </h3>
-
-            <p>
-
-                ایجاد، باز کردن، حذف، وارد کردن
-                و مدیریت فایل‌ها و پوشه‌ها.
-
-            </p>
-
+            <div class="card-icon">📁</div>
+            <h3>مدیریت فایل‌ها</h3>
+            <p>ایجاد، باز کردن، حذف، ایمپورت مدل و تکسچر، و سازمان‌دهی کامل پوشه‌ها.</p>
         </div>
 
-
         <div class="card">
-
-            <div class="card-icon">
-                🔎
-            </div>
-
-            <h3>
-                جستجوی پروژه
-            </h3>
-
-            <p>
-
-                پیدا کردن سریع متن و کد در
-                فایل‌های پروژه.
-
-            </p>
-
+            <div class="card-icon">🔎</div>
+            <h3>جستجوی پیشرفته</h3>
+            <p>پیدا کردن سریع متن و کد در تمام فایل‌های پروژه با نتایج لحظه‌ای.</p>
         </div>
 
-
         <div class="card">
-
-            <div class="card-icon">
-                🌙
-            </div>
-
-            <h3>
-                رابط Dark
-            </h3>
-
-            <p>
-
-                محیط تاریک و مدرن برای تجربه
-                بهتر کدنویسی.
-
-            </p>
-
+            <div class="card-icon">🌙</div>
+            <h3>رابط Dark مدرن</h3>
+            <p>رابط کاربری تیره و چشم‌نواز با چیدمان حرفه‌ای برای تمرکز بیشتر.</p>
         </div>
 
+        <div class="card">
+            <div class="card-icon">📦</div>
+            <h3>Export پروژه</h3>
+            <p>خروجی گرفتن از پروژه به‌صورت بسته‌ی کامل با کد و assets آماده.</p>
+        </div>
     </div>
-
 </section>
 
 
 <!-- =========================================================
      LOOMSCRIPT
 ========================================================= -->
-
-<section
-    id="loomscript"
-    class="loomscript-section reveal">
-
+<section id="loomscript" class="loomscript-section reveal">
     <div class="section-title">
-
-        <h2>
-            LoomScript
-        </h2>
-
-        <p>
-
-            زبان اختصاصی LoomEngine برای
-            ساخت پروژه‌های 2D.
-
-        </p>
-
+        <h2>LoomScript</h2>
+        <p>زبان اختصاصی LoomEngine برای ساخت پروژه‌های 2D.</p>
     </div>
-
 
     <div class="loomscript-box">
-
-
         <div class="loom-info">
-
-            <h3>
-                🧵 زبان خود LoomEngine
-            </h3>
-
+            <h3>🧵 زبان خود LoomEngine</h3>
             <p>
-
-                LoomScript یک زبان ساده و اختصاصی
-                برای تعریف پروژه‌ها و عناصر پایه
-                بازی‌های دوبعدی در LoomEngine است.
-
+                LoomScript یک زبان ساده و اختصاصی برای تعریف پروژه‌ها و عناصر پایه
+                بازی‌های دوبعدی در LoomEngine است. سینتکس ساده، اجرای مستقیم،
+                و سازگار با Runtime داخلی موتور.
             </p>
 
-
-            <span class="loom-tag">
-                🎮 2D Game
-            </span>
-
-            <span class="loom-tag">
-                ⚡ ساده
-            </span>
-
-            <span class="loom-tag">
-                ▶️ اجرای مستقیم
-            </span>
-
-            <span class="loom-tag">
-                🧩 اختصاصی
-            </span>
-
+            <span class="loom-tag">🎮 2D Game</span>
+            <span class="loom-tag">⚡ ساده</span>
+            <span class="loom-tag">▶️ اجرای مستقیم</span>
+            <span class="loom-tag">🧩 اختصاصی</span>
+            <span class="loom-tag">🎨 رنگ و تکسچر</span>
+            <span class="loom-tag">📦 Export</span>
         </div>
-
 
         <div class="loom-code">
-
             <div class="code-header">
-                Main.loom
+                <span>Main.loom</span>
+                <button class="copy-btn" data-copy="loom">📋 کپی</button>
             </div>
 
-            <div>
+            <pre id="loomCode" style="font-family:inherit;color:inherit;"><span class="purple">&lt;{Loomcod.StarLoom}&gt;;</span>
 
-                <span class="purple">
-                    &lt;{Loomcod.StarLoom}&gt;;
-                </span>
+<span class="purple">game</span> <span class="cyan">"MyGame"</span>
 
-            </div>
+<span class="purple">window</span> <span class="orange">960 540</span>
 
-            <div>
+<span class="purple">background</span> <span class="green">"#182030"</span>
 
-                <span class="purple">
-                    game
-                </span>
+<span class="purple">player</span> <span class="cyan">"Hero"</span> <span class="orange">100 100</span> <span class="green">"#6c63ff"</span> <span class="orange">40 40</span>
 
-                <span class="cyan">
-                    "MyGame"
-                </span>
+<span class="purple">rect</span> <span class="cyan">"Ground"</span> <span class="orange">0 450 960 90</span> <span class="green">"#303030"</span>
 
-            </div>
+<span class="purple">circle</span> <span class="cyan">"Ball"</span> <span class="orange">300 220 30</span> <span class="green">"#ff5050"</span>
 
-            <div>
+<span class="purple">text</span> <span class="green">"Hello Loom!"</span> <span class="orange">20 20</span> <span class="green">"#ffffff"</span> <span class="orange">24</span>
 
-                <span class="purple">
-                    window
-                </span>
-
-                <span class="orange">
-                    960 540
-                </span>
-
-            </div>
-
-            <div>
-
-                <span class="purple">
-                    background
-                </span>
-
-                <span class="green">
-                    "#182030"
-                </span>
-
-            </div>
-
-            <div>
-
-                <span class="purple">
-                    player
-                </span>
-
-                <span class="cyan">
-                    "Hero" 100 100
-                </span>
-
-            </div>
-
-            <div>
-
-                <span class="purple">
-                    text
-                </span>
-
-                <span class="green">
-                    "Hello Loom!" 20 20
-                </span>
-
-            </div>
-
-            <div>
-
-                <span class="purple">
-                    &lt;{Loomcod.StarLoom}&gt;;
-                </span>
-
-            </div>
-
+<span class="purple">&lt;{Loomcod.StarLoom}&gt;;</span></pre>
         </div>
-
     </div>
-
 </section>
 
 
 <!-- =========================================================
      LANGUAGES
 ========================================================= -->
-
-<section
-    id="languages"
-    class="reveal">
-
+<section id="languages" class="reveal">
     <div class="section-title">
-
-        <h2>
-            زبان‌ها و فرمت‌ها
-        </h2>
-
-        <p>
-
-            LoomEngine برای کار با مجموعه‌ای
-            از زبان‌ها و فایل‌های توسعه طراحی شده است.
-
-        </p>
-
+        <h2>زبان‌ها و فرمت‌ها</h2>
+        <p>LoomEngine برای کار با مجموعه‌ای از زبان‌ها و فایل‌های توسعه طراحی شده است.</p>
     </div>
-
 
     <div class="languages">
-
-        <span class="language loom">
-            🧵 LoomScript
-        </span>
-
-        <span class="language">
-            🐍 Python
-        </span>
-
-        <span class="language">
-            🔷 C#
-        </span>
-
-        <span class="language">
-            ⚙️ C++
-        </span>
-
-        <span class="language">
-            C
-        </span>
-
-        <span class="language">
-            🟨 JavaScript
-        </span>
-
-        <span class="language">
-            TS TypeScript
-        </span>
-
-        <span class="language">
-            🌐 HTML
-        </span>
-
-        <span class="language">
-            🎨 CSS
-        </span>
-
-        <span class="language">
-            ☕ Java
-        </span>
-
-        <span class="language">
-            🦀 Rust
-        </span>
-
-        <span class="language">
-            🐹 Go
-        </span>
-
-        <span class="language">
-            🌙 Lua
-        </span>
-
-        <span class="language">
-            💎 Ruby
-        </span>
-
-        <span class="language">
-            🐘 PHP
-        </span>
-
-        <span class="language">
-            🎯 Dart
-        </span>
-
-        <span class="language">
-            🟣 Kotlin
-        </span>
-
-        <span class="language">
-            🎮 GDScript
-        </span>
-
-        <span class="language">
-            📄 Text
-        </span>
-
+        <span class="language">🐍 Python</span>
+        <span class="language">🔷 C#</span>
+        <span class="language">⚙️ C++</span>
+        <span class="language">C</span>
+        <span class="language">🟨 JavaScript</span>
+        <span class="language">TS TypeScript</span>
+        <span class="language">🌐 HTML</span>
+        <span class="language">🎨 CSS</span>
+        <span class="language">☕ Java</span>
+        <span class="language">🦀 Rust</span>
+        <span class="language">🐹 Go</span>
+        <span class="language">🌙 Lua</span>
+        <span class="language">💎 Luau</span>
+        <span class="language">💎 Ruby</span>
+        <span class="language">🐘 PHP</span>
+        <span class="language">🎯 Dart</span>
+        <span class="language">🟣 Kotlin</span>
+        <span class="language">🎮 GDScript</span>
+        <span class="language">🦅 Swift</span>
+        <span class="language">📊 R</span>
+        <span class="language">🔷 PowerShell</span>
+        <span class="language">🐚 Bash</span>
+        <span class="language">📄 Text</span>
     </div>
-
 </section>
 
 
 <!-- =========================================================
-     VERSION 3.0
+     SHORTCUTS
 ========================================================= -->
-
-<section
-    id="version"
-    class="release-section reveal">
-
+<section id="shortcuts" class="reveal">
     <div class="section-title">
-
-        <h2>
-            چرا LoomEngine 3.0؟
-        </h2>
-
-        <p>
-
-            نسخه 3.0 روی تجربه توسعه،
-            چندزبانه بودن و مدیریت پروژه تمرکز دارد.
-
-        </p>
-
+        <h2>کلیدهای میانبر</h2>
+        <p>سریع‌تر کار کن با میانبرهای حرفه‌ای IDE.</p>
     </div>
 
+    <div class="shortcuts">
+        <div class="shortcut">
+            <span>اجرای فایل</span>
+            <span class="kbd">F5</span>
+        </div>
+        <div class="shortcut">
+            <span>ذخیره فایل</span>
+            <span class="kbd">Ctrl + S</span>
+        </div>
+        <div class="shortcut">
+            <span>پروژه جدید</span>
+            <span class="kbd">Ctrl + N</span>
+        </div>
+        <div class="shortcut">
+            <span>باز کردن پروژه</span>
+            <span class="kbd">Ctrl + O</span>
+        </div>
+        <div class="shortcut">
+            <span>جستجو در پروژه</span>
+            <span class="kbd">Ctrl + F</span>
+        </div>
+        <div class="shortcut">
+            <span>حذف انتخاب</span>
+            <span class="kbd">Delete</span>
+        </div>
+    </div>
+</section>
+
+
+<!-- =========================================================
+     VERSION 5.0
+========================================================= -->
+<section id="version" class="release-section reveal">
+    <div class="section-title">
+        <h2>چرا LoomEngine 5.0؟</h2>
+        <p>نسخه 5.0 روی تجربه توسعه، چندزبانه بودن، و پشتیبانی کامل از C# و C++ تمرکز دارد.</p>
+    </div>
 
     <div class="release-grid">
-
         <div class="release-card">
-
-            <strong>
-                🚀 Multi-Language
-            </strong>
-
-            <span>
-
-                امکان کار با مجموعه‌ای از زبان‌های
-                برنامه‌نویسی در یک محیط واحد.
-
-            </span>
-
+            <strong>🚀 Multi-Language</strong>
+            <span>کار با ۲۰ زبان برنامه‌نویسی مختلف در یک محیط واحد.</span>
         </div>
-
-
         <div class="release-card">
-
-            <strong>
-                🔗 Multi-File
-            </strong>
-
-            <span>
-
-                پروژه‌های چندفایلی برای ساختارهای
-                واقعی‌تر و بزرگ‌تر.
-
-            </span>
-
+            <strong>🔗 Multi-File</strong>
+            <span>پروژه‌های چندفایلی با ساختار پوشه‌ای حرفه‌ای.</span>
         </div>
-
-
         <div class="release-card">
-
-            <strong>
-                🧵 LoomScript
-            </strong>
-
-            <span>
-
-                زبان اختصاصی LoomEngine برای
-                ساخت پروژه‌های دوبعدی.
-
-            </span>
-
+            <strong>🧵 LoomScript</strong>
+            <span>زبان اختصاصی برای پروژه‌های 2D با Runtime داخلی.</span>
         </div>
-
-
         <div class="release-card">
-
-            <strong>
-                ▶️ Run with F5
-            </strong>
-
-            <span>
-
-                اجرای سریع پروژه از داخل
-                محیط توسعه.
-
-            </span>
-
+            <strong>▶️ Run with F5</strong>
+            <span>اجرای مستقیم هر فایل (C#, C++, Python و ...) با یک کلید.</span>
         </div>
-
-
         <div class="release-card">
-
-            <strong>
-                📂 Project System
-            </strong>
-
-            <span>
-
-                ساختار پروژه شامل Scripts،
-                Assets و Scenes.
-
-            </span>
-
+            <strong>📂 Project System</strong>
+            <span>ساختار پروژه شامل src، assets (models/textures/audio/shaders) و build.</span>
         </div>
-
-
         <div class="release-card">
-
-            <strong>
-                🌙 Modern UI
-            </strong>
-
-            <span>
-
-                رابط کاربری تیره و مدرن برای
-                تمرکز بیشتر روی کدنویسی.
-
-            </span>
-
+            <strong>📦 Export Bundle</strong>
+            <span>خروجی گرفتن از پروژه به‌صورت بسته‌ی کامل آماده‌ی انتقال.</span>
         </div>
-
     </div>
-
 </section>
 
 
 <!-- =========================================================
      STATS
 ========================================================= -->
-
-<section
-    class="reveal">
-
+<section class="reveal">
     <div class="section-title">
-
-        <h2>
-            LoomEngine در یک نگاه
-        </h2>
-
-        <p>
-
-            یک محیط کوچک برای ایده‌های بزرگ.
-
-        </p>
-
+        <h2>LoomEngine در یک نگاه</h2>
+        <p>یک محیط کوچک برای ایده‌های بزرگ.</p>
     </div>
-
 
     <div class="stats">
-
         <div class="stat">
-
-            <strong>
-                3.0
-            </strong>
-
-            <span>
-                نسخه فعلی
-            </span>
-
+            <strong data-count="5.0" data-suffix="">5.0</strong>
+            <span>نسخه فعلی</span>
         </div>
-
-
         <div class="stat">
-
-            <strong>
-                19
-            </strong>
-
-            <span>
-                زبان و فرمت
-            </span>
-
+            <strong data-count="20">20</strong>
+            <span>زبان و فرمت</span>
         </div>
-
-
         <div class="stat">
-
-            <strong>
-                2D
-            </strong>
-
-            <span>
-                تمرکز LoomScript
-            </span>
-
+            <strong>2D/3D</strong>
+            <span>پشتیبانی موتور</span>
         </div>
-
-
         <div class="stat">
-
-            <strong>
-                F5
-            </strong>
-
-            <span>
-                اجرای سریع
-            </span>
-
+            <strong>MIT</strong>
+            <span>لایسنس متن‌باز</span>
         </div>
+    </div>
+</section>
 
+
+<!-- =========================================================
+     FAQ
+========================================================= -->
+<section id="faq" class="reveal">
+    <div class="section-title">
+        <h2>سؤالات متداول</h2>
+        <p>پاسخ‌های سریع به سؤالات پرتکرار.</p>
     </div>
 
+    <div class="faq">
+        <div class="faq-item">
+            <button class="faq-q">
+                LoomEngine رایگان است؟
+                <span class="arrow">▾</span>
+            </button>
+            <div class="faq-a">
+                بله. LoomEngine کاملاً رایگان و متن‌باز (MIT License) است.
+                می‌توانید آن را دانلود، استفاده و حتی ویرایش کنید.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q">
+                برای اجرای C# چه چیزی نیاز دارم؟
+                <span class="arrow">▾</span>
+            </button>
+            <div class="faq-a">
+                برای اجرای پروژه‌های C# نیاز به نصب .NET SDK دارید.
+                از سایت microsoft.com/dotnet دانلود و نصب کنید.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q">
+                برای C++ چه کامپایلری لازم است؟
+                <span class="arrow">▾</span>
+            </button>
+            <div class="faq-a">
+                روی ویندوز: MinGW-w64 یا Visual Studio C++ Tools.
+                روی Linux: دستور <code>sudo apt install g++</code>.
+                روی macOS: <code>xcode-select --install</code>.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q">
+                چطور می‌توانم پروژه‌ام را با دیگران به اشتراک بگذارم؟
+                <span class="arrow">▾</span>
+            </button>
+            <div class="faq-a">
+                از دکمه‌ی «Export» در IDE استفاده کنید. یک پوشه‌ی کامل شامل
+                کد، assets و build تولید می‌شود که می‌توانید آن را zip کرده
+                و به هر کسی بدهید.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <button class="faq-q">
+                آیا LoomEngine روی Linux یا macOS اجرا می‌شود؟
+                <span class="arrow">▾</span>
+            </button>
+            <div class="faq-a">
+                بله. IDE روی هر سه سیستم (Windows، Linux، macOS) اجرا می‌شود.
+                برای بازی‌های C#/C++ هم کامپایلرهای بومی همان سیستم استفاده می‌شوند.
+            </div>
+        </div>
+    </div>
 </section>
 
 
 <!-- =========================================================
      DOWNLOAD
 ========================================================= -->
-
-<section
-    id="download"
-    class="download-section reveal">
-
+<section id="download" class="download-section reveal">
     <div class="download-box">
-
-        <h2>
-            آماده‌ای با LoomEngine شروع کنی؟
-        </h2>
-
-
-        <div class="version">
-            آخرین نسخه: LoomEngine 3.0
-        </div>
-
+        <h2>آماده‌ای با LoomEngine شروع کنی؟</h2>
+        <div class="version">آخرین نسخه: LoomEngine 5.0</div>
 
         <p>
-
-            LoomEngine را دریافت کن،
-            پروژه‌ات را بساز و ایده‌ات را
+            LoomEngine را دریافت کن، پروژه‌ات را بساز و ایده‌ات را
             به یک پروژه واقعی تبدیل کن.
-
         </p>
 
-
         <div class="requirements">
-
-            <span class="requirement">
-                🪟 Windows
-            </span>
-
-            <span class="requirement">
-                ⚡ سبک
-            </span>
-
-            <span class="requirement">
-                🎮 2D
-            </span>
-
-            <span class="requirement">
-                🧵 LoomScript
-            </span>
-
-            <span class="requirement">
-                💻 Multi-Language
-            </span>
-
+            <span class="requirement">🪟 Windows</span>
+            <span class="requirement">🐧 Linux</span>
+            <span class="requirement">🍎 macOS</span>
+            <span class="requirement">⚡ سبک</span>
+            <span class="requirement">🎮 2D/3D</span>
+            <span class="requirement">💻 20 زبان</span>
         </div>
 
-
-        <a
-            class="button download"
-            href="https://github.com/StarLoom325/LoomEngine/releases"
-            target="_blank"
-            rel="noopener">
-
-            ⬇️ دریافت LoomEngine 3.0
-
+        <a class="button download"
+           href="https://github.com/StarLoom325/LoomEngine/releases"
+           target="_blank" rel="noopener">
+            ⬇️ دریافت LoomEngine 5.0
         </a>
-
 
         <br>
 
-
-        <a
-            class="release-link"
-            href="https://github.com/StarLoom325/LoomEngine/releases"
-            target="_blank"
-            rel="noopener">
-
+        <a class="release-link"
+           href="https://github.com/StarLoom325/LoomEngine/releases"
+           target="_blank" rel="noopener">
             مشاهده نسخه‌ها در GitHub ←
-
         </a>
-
     </div>
-
 </section>
 
 
 <!-- =========================================================
      FOOTER
 ========================================================= -->
-
 <footer>
-
     <p>
-
-        © 2026
-
-        <strong>
-            LoomEngine
-        </strong>
-
-        — ساخته‌شده برای خلاق‌ها 🧵
-
+        © 2026 <strong>LoomEngine</strong> — ساخته‌شده برای خلاق‌ها 🧵
     </p>
-
 
     <div class="footer-links">
-
-        <a href="#features">
-            امکانات
-        </a>
-
-        <a href="#loomscript">
-            LoomScript
-        </a>
-
-        <a href="#languages">
-            زبان‌ها
-        </a>
-
-        <a href="#version">
-            نسخه 3.0
-        </a>
-
-        <a href="#download">
-            دانلود
-        </a>
-
-        <a
-            href="https://github.com/StarLoom325/LoomEngine"
-            target="_blank"
-            rel="noopener">
-
+        <a href="#features">امکانات</a>
+        <a href="#loomscript">LoomScript</a>
+        <a href="#languages">زبان‌ها</a>
+        <a href="#shortcuts">کلیدها</a>
+        <a href="#version">نسخه 5.0</a>
+        <a href="#faq">سؤالات</a>
+        <a href="#download">دانلود</a>
+        <a href="https://github.com/StarLoom325/LoomEngine" target="_blank" rel="noopener">
             GitHub
-
         </a>
-
     </div>
 
-
-    <p>
-        LoomEngine — Build. Create. Run.
-    </p>
-
+    <p>LoomEngine — Build. Create. Run.</p>
 </footer>
 
 
 <!-- =========================================================
-     SMALL INTERACTION
+     BACK TO TOP
 ========================================================= -->
+<button class="back-to-top" id="backTop" aria-label="Back to top">↑</button>
 
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
 <script>
+    /* =========================================================
+       Scroll progress bar
+    ========================================================= */
+    const scrollProgress = document.getElementById("scrollProgress");
+    window.addEventListener("scroll", () => {
+        const h = document.documentElement;
+        const scrolled = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+        scrollProgress.style.width = scrolled + "%";
+    });
 
-    const revealElements =
-        document.querySelectorAll(".reveal");
-
-    const revealObserver =
-        new IntersectionObserver(
-            entries => {
-
-                entries.forEach(
-                    entry => {
-
-                        if (entry.isIntersecting) {
-
-                            entry.target
-                                .classList
-                                .add("show");
-
-                            revealObserver
-                                .unobserve(
-                                    entry.target
-                                );
-                        }
-
-                    }
-                );
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-
-    revealElements.forEach(
-        element => {
-
-            revealObserver.observe(
-                element
-            );
-
-        }
+    /* =========================================================
+       Reveal on scroll
+    ========================================================= */
+    const revealElements = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12 }
     );
+    revealElements.forEach(el => revealObserver.observe(el));
 
+    /* =========================================================
+       Mobile menu toggle
+    ========================================================= */
+    const navToggle = document.getElementById("navToggle");
+    const navMenu = document.getElementById("navMenu");
+    navToggle.addEventListener("click", () => {
+        navMenu.classList.toggle("open");
+    });
+    navMenu.querySelectorAll("a").forEach(a => {
+        a.addEventListener("click", () => navMenu.classList.remove("open"));
+    });
+
+    /* =========================================================
+       FAQ accordion
+    ========================================================= */
+    document.querySelectorAll(".faq-q").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const item = btn.parentElement;
+            const wasOpen = item.classList.contains("open");
+            document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+            if (!wasOpen) item.classList.add("open");
+        });
+    });
+
+    /* =========================================================
+       Back to top
+    ========================================================= */
+    const backTop = document.getElementById("backTop");
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 400) backTop.classList.add("show");
+        else backTop.classList.remove("show");
+    });
+    backTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    /* =========================================================
+       Code preview tabs (hero)
+    ========================================================= */
+    const codeSamples = {
+        cs: `<span class="gray">// Program.cs</span>
+<span class="purple">using</span> System;
+
+<span class="purple">class</span> <span class="cyan">Program</span>
+{
+    <span class="purple">static void</span> <span class="yellow">Main</span>()
+    {
+        Console.<span class="yellow">WriteLine</span>(<span class="green">"Hello from Loom!"</span>);
+    }
+}`,
+        cpp: `<span class="gray">// main.cpp</span>
+<span class="purple">#include</span> <span class="orange">&lt;iostream&gt;</span>
+
+<span class="purple">int</span> <span class="yellow">main</span>()
+{
+    std::cout &lt;&lt; <span class="green">"Hello from Loom!"</span> &lt;&lt; std::endl;
+    <span class="purple">return</span> <span class="orange">0</span>;
+}`,
+        py: `<span class="gray"># main.py</span>
+<span class="purple">def</span> <span class="cyan">main</span>():
+    <span class="yellow">print</span>(<span class="green">"Hello from Loom!"</span>)
+
+<span class="purple">if</span> __name__ == <span class="green">"__main__"</span>:
+    <span class="cyan">main</span>()`
+    };
+
+    const codePreview = document.getElementById("codePreview");
+    const tabs = document.querySelectorAll(".editor-tab");
+
+    function showCode(lang) {
+        codePreview.innerHTML = codeSamples[lang] || "";
+        tabs.forEach(t => t.classList.toggle("active", t.dataset.lang === lang));
+    }
+    tabs.forEach(t => t.addEventListener("click", () => showCode(t.dataset.lang)));
+    showCode("cs");
+
+    /* =========================================================
+       Copy LoomScript
+    ========================================================= */
+    document.querySelectorAll(".copy-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const codeEl = document.getElementById("loomCode");
+            if (!codeEl) return;
+            navigator.clipboard.writeText(codeEl.textContent).then(() => {
+                const old = btn.textContent;
+                btn.textContent = "✓ کپی شد";
+                setTimeout(() => btn.textContent = old, 1500);
+            });
+        });
+    });
+
+    /* =========================================================
+       Animated counters
+    ========================================================= */
+    const statEls = document.querySelectorAll(".stat strong[data-count]");
+    const statObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseFloat(el.dataset.count);
+                const isFloat = String(target).includes(".");
+                let current = 0;
+                const step = target / 40;
+                const interval = setInterval(() => {
+                    current += step;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(interval);
+                    }
+                    el.textContent = isFloat
+                        ? current.toFixed(1)
+                        : Math.round(current);
+                }, 25);
+                statObserver.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+    statEls.forEach(el => statObserver.observe(el));
 </script>
 
 </body>
 </html>
-
